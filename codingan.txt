@@ -1,0 +1,119 @@
+
+        int hitung = Integer.parseInt(stok) * Integer.parseInt(jumlah.getText());
+        harga.setText(Integer.toString(hitung));
+
+
+ try {
+            // TODO add your handling code here:
+            String sql = "SELECT harga from barang where Id_barang = ?";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement st = cn.prepareStatement(sql);
+            st.setString(1, Id_barang);
+            java.sql.ResultSet rs = st.executeQuery();
+            if (rs.next() == true) {
+                String total = rs.getString("harga");
+                harga.setText(total);
+            }
+            
+        } catch (SQLException ex) {
+        }
+
+
+
+
+try {
+            String sql = "select max(right(no_faktur,2)) as no_terakhir from transaksi_penjualan;";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = cnn.prepareStatement(sql);
+            java.sql.ResultSet rs = stm.executeQuery(sql);
+            rs.next();
+            kode = rs.getString("no_terakhir");
+            
+            if (kode == null) {
+                IDtransaksi.setText("FK-01");
+                
+                String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDtransaksi.getText() + "')";
+                pst = cnn.prepareStatement(sql12);
+                pst.execute();
+            } else if (rs.last()) {                
+                IDtransaksi.setText("FK-" + kode);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
+
+
+
+try {
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery("select max(right(no_faktur,2)) as no_terakhir from transaksi_penjualan;");
+            
+            if (rs.next()) {
+                String kode = rs.getString("no_terakhir").substring(1);
+                String AN = "" + (Integer.parseInt(kode) + 1);
+                String Nol = "";
+                
+                if (AN.length() == 1) {
+                    Nol = "0";
+                } else if (AN.length() == 2) {
+                    Nol = "00";
+                } else if (AN.length() == 3) {
+                    Nol = "000";
+                } else if (AN.length() == 4) {
+                    Nol = "0000";
+                }
+                IDtransaksi.setText("FK-" + Nol + AN);
+                
+            }
+            
+            IDtransaksi.setText("FK-01");
+            String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('"+ IDtransaksi.getText() +"')";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            pst = cnn.prepareStatement(sql12);
+            pst.execute();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+
+
+
+
+
+
+
+
+CREATE TRIGGER `update_log` AFTER INSERT ON `keranjang`
+ FOR EACH ROW INSERT INTO log_transaksipenjualan SET
+no_faktur = NEW.no_faktur,
+Id_barang = NEW.Id_barang,
+jumlah = NEW.jumlah,
+Total = NEW.harga,
+waktu = NOW()
+
+
+
+
+CREATE TRIGGER `Tambah` AFTER INSERT ON `keranjang`
+ FOR EACH ROW BEGIN
+UPDATE inventori SET stok=stok +NEW.jumlah
+WHERE Id_barang = NEW.id_barang;
+END
+
+
+
+
+CREATE TRIGGER `Tambah` AFTER DELETE ON `keranjang`
+ FOR EACH ROW BEGIN
+UPDATE inventori SET stok=stok +OLD.jumlah
+WHERE Id_barang = OLD.id_barang;
+END
+
+
+
+UPDATE keranjang SET jumlah = 0 WHERE Id_barang = 'B-01';
