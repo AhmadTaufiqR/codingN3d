@@ -499,8 +499,10 @@ private void hapus(){
         jButton2.setBackground(new java.awt.Color(252, 242, 6));
         jButton2.setText("jButton1");
 
+        jButton3.setBackground(new java.awt.Color(252, 242, 6));
         jButton3.setText("jButton1");
 
+        jButton4.setBackground(new java.awt.Color(252, 242, 6));
         jButton4.setText("jButton1");
 
         javax.swing.GroupLayout TransaksiPenjualanLayout = new javax.swing.GroupLayout(TransaksiPenjualan);
