@@ -502,7 +502,7 @@ private void hapus(){
         jButton3.setBackground(new java.awt.Color(252, 242, 6));
         jButton3.setText("jButton1");
 
-        jButton4.setBackground(new java.awt.Color(252, 242, 6));
+        jButton4.setBackground(new java.awt.Color(204, 0, 0));
         jButton4.setText("jButton1");
 
         javax.swing.GroupLayout TransaksiPenjualanLayout = new javax.swing.GroupLayout(TransaksiPenjualan);
