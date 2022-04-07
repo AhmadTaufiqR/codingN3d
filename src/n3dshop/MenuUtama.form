@@ -733,11 +733,17 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="f2" red="fc" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="f2" red="fc" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
             </Component>
