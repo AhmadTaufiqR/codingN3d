@@ -7,6 +7,7 @@ package n3dshop;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,7 +18,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a;
     String hrg_ecer, hrg_grosir, Id;
-    String Id_barang, kode, tanggal;
+    String Id_barang;
     PreparedStatement pst;
 
     /**
