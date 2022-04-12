@@ -904,7 +904,16 @@ private void Banyak(){
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
-      
+        try {
+            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah, harga) Values '"+Id_barang+"', '"+namaprd.getText()+"', '"+
+                    satuan.getSelectedItem()+"', '"+jumlah.getText()+"', '"+harga.getText()+"'";
+            java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
+        }
     }//GEN-LAST:event_tambahActionPerformed
 
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
