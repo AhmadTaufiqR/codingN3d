@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuUtama extends javax.swing.JFrame {
 
     int a;
-    String hrg, hg, Id;
+    String hrg_ecer, hrg_grosir, Id;
     String Id_barang, kode, tanggal;
     PreparedStatement pst;
 
@@ -30,6 +30,7 @@ public class MenuUtama extends javax.swing.JFrame {
     public MenuUtama() {
         initComponents();
         load_table();
+        Banyak();
     }
 
 private void load_table (){
@@ -37,30 +38,25 @@ private void load_table (){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
-        model.addColumn("Jenis barang");
-        model.addColumn("Harga");
         model.addColumn("Stok");
+        model.addColumn("Eceran");
+        model.addColumn("Grosir");
+        model.addColumn("Harga Ecer");
+        model.addColumn("Harga Grosir");
         //menampilkan database dalam tabel
         try {
-            int no=1;
-            String sql = "SELECT barang.Id_barang, barang.nama_barang, barang.jenis_barang, barang.harga, inventori.stok FROM barang JOIN inventori ON barang.Id_barang = inventori.Id_barang;";
+            String sql = "SELECT id_barang, nama_barang, stok, eceran, grosir, harga_eceran, harga_grosir FROM barang;";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()){
-                model.addRow(new Object[]{res.getString("Id_barang"),
-                res.getString("nama_barang"),res.getString("jenis_barang"),res.getString("harga"), res.getString("stok")});
+                model.addRow(new Object[]{res.getString("id_barang"),
+                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
-            daftarbrg.setModel(model);
+            barang_barang.setModel(model);
         } catch (Exception e) {
         }
     }
-
-
-
-
-
-
 
 private void hapus(){
     namaprd.setText("");
@@ -68,6 +64,17 @@ private void hapus(){
     harga.setText("");
 }
 
+private void Banyak(){
+    try {
+            String sql = "SELECT COUNT(Id_barang) AS total FROM barang";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            res.next();
+            total.setText(res.getString("total"));
+        } catch (Exception e) {
+        }
+}
 
 
     /**
@@ -88,15 +95,13 @@ private void hapus(){
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        daftarbrg = new javax.swing.JTable();
+        barang_barang = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         cari = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         namaprd = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jumlah = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         harga = new javax.swing.JTextField();
         tambah = new javax.swing.JButton();
@@ -104,6 +109,8 @@ private void hapus(){
         batal = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         satuan = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jumlah = new javax.swing.JTextField();
         TransaksiPenjualan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -124,6 +131,7 @@ private void hapus(){
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        tanggalreal = new javax.swing.JLabel();
         TransaksiPembelian = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -188,17 +196,17 @@ private void hapus(){
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(725, 725, 725)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_tjual, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btn_tpembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_tjual, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_tpembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,7 +219,7 @@ private void hapus(){
 
         jPanel3.setBackground(new java.awt.Color(116, 114, 203));
 
-        daftarbrg.setModel(new javax.swing.table.DefaultTableModel(
+        barang_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -222,12 +230,12 @@ private void hapus(){
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        daftarbrg.addMouseListener(new java.awt.event.MouseAdapter() {
+        barang_barang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                daftarbrgMouseClicked(evt);
+                barang_barangMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(daftarbrg);
+        jScrollPane1.setViewportView(barang_barang);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,13 +282,13 @@ private void hapus(){
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cari)
                     .addComponent(jLabel8)
-                    .addComponent(total))
-                .addGap(22, 22, 22)
+                    .addComponent(total)
+                    .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -288,22 +296,6 @@ private void hapus(){
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("NAMA PRODUK");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("JUMLAH BARANG");
-
-        jumlah.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jumlahKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jumlahKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jumlahKeyTyped(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,7 +347,23 @@ private void hapus(){
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("SATUAN");
 
-        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("JUMLAH BARANG");
+
+        jumlah.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jumlahKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jumlahKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jumlahKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout CariLayout = new javax.swing.GroupLayout(Cari);
         Cari.setLayout(CariLayout);
@@ -374,20 +382,20 @@ private void hapus(){
                         .addGap(56, 56, 56)
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(namaprd)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jumlah)
-                                    .addComponent(jLabel7)
-                                    .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CariLayout.createSequentialGroup()
                                     .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel21)
-                            .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(satuan, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE)
+                                    .addComponent(namaprd, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(harga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jumlah, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(jLabel6))
+                        .addContainerGap(56, Short.MAX_VALUE))))
         );
         CariLayout.setVerticalGroup(
             CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,13 +416,13 @@ private void hapus(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaprd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(13, 13, 13)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -451,6 +459,7 @@ private void hapus(){
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("CARI");
 
         list_barang.setModel(new javax.swing.table.DefaultTableModel(
@@ -499,28 +508,13 @@ private void hapus(){
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         jButton4.setText("  SCAN");
 
+        tanggalreal.setText("tanggal");
+
         javax.swing.GroupLayout TransaksiPenjualanLayout = new javax.swing.GroupLayout(TransaksiPenjualan);
         TransaksiPenjualan.setLayout(TransaksiPenjualanLayout);
         TransaksiPenjualanLayout.setHorizontalGroup(
             TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPenjualanLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
-            .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
             .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
@@ -552,6 +546,24 @@ private void hapus(){
                         .addGap(47, 47, 47)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(349, Short.MAX_VALUE))
+            .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())
+                    .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))
+                    .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tanggalreal)
+                        .addGap(63, 63, 63))))
         );
         TransaksiPenjualanLayout.setVerticalGroup(
             TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,12 +579,14 @@ private void hapus(){
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9))
+                    .addComponent(tanggalreal, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -809,20 +823,22 @@ private void hapus(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
-        model.addColumn("Jenis barang");
-        model.addColumn("Harga");
         model.addColumn("Stok");
+        model.addColumn("Eceran");
+        model.addColumn("Grosir");
+        model.addColumn("Harga Ecer");
+        model.addColumn("Harga Grosir");
         //menampilkan database dalam tabel
         try {
-            String sql = "SELECT barang.Id_barang, barang.nama_barang, barang.jenis_barang, barang.harga, inventori.stok FROM barang JOIN inventori ON barang.Id_barang = inventori.Id_barang where barang.nama_barang LIKE '%"+cari.getText()+"%'";
+            String sql = "SELECT id_barang, nama_barang, stok, eceran, grosir, harga_eceran, harga_grosir FROM barang where nama_barang LIKE '%"+cari.getText()+"%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()){
-                model.addRow(new Object[]{res.getString("Id_barang"),
-                res.getString("nama_barang"),res.getString("jenis_barang"),res.getString("harga"), res.getString("stok")});
+                model.addRow(new Object[]{res.getString("id_barang"),
+                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
-            daftarbrg.setModel(model);
+            barang_barang.setModel(model);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cariKeyReleased
@@ -832,17 +848,19 @@ private void hapus(){
         
     }//GEN-LAST:event_totalPropertyChange
 
-    private void daftarbrgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarbrgMouseClicked
+    private void barang_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barang_barangMouseClicked
         // TODO add your handling code here:
-        a = daftarbrg.rowAtPoint(evt.getPoint());
-        String NamaBr = (String) daftarbrg.getValueAt(a, 1);
+        a = barang_barang.rowAtPoint(evt.getPoint());
+        String NamaBr = (String) barang_barang.getValueAt(a, 1);
         namaprd.setText(NamaBr);
         
-        hrg = (String) daftarbrg.getValueAt(a, 3);
+        hrg_ecer = (String) barang_barang.getValueAt(a, 5);
+        hrg_grosir = (String) barang_barang.getValueAt(a, 6);
         
-        Id_barang = (String) daftarbrg.getValueAt(a, 0);
+        
+        Id_barang = (String) barang_barang.getValueAt(a, 0);
 
-    }//GEN-LAST:event_daftarbrgMouseClicked
+    }//GEN-LAST:event_barang_barangMouseClicked
 
     private void hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaActionPerformed
         // TODO add your handling code here:
@@ -851,17 +869,27 @@ private void hapus(){
 
     private void jumlahKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahKeyReleased
        harga.setText("");
+       String pilihan = satuan.getSelectedItem().toString();
+           if (pilihan == "ECERAN") {
+                String jl = jumlah.getText();
+                double jm = Double.parseDouble(jl);
+                double st = Double.parseDouble(hrg_ecer);
+
+                double tt = jm*st;
+                String hsl = String.format("%.2f", tt);
+                harga.setText(hsl);
+           } else if (pilihan == "GROSIR"){
+               String jl = jumlah.getText();
+                double jm = Double.parseDouble(jl);
+                double st = Double.parseDouble(hrg_grosir);
+
+                double tt = jm*st;
+                String hsl = String.format("%.2f", tt);
+                harga.setText(hsl);
+           } else {
+               harga.setText("");
+           }
        
-       if (jumlah.getText() != ""){
-       String jl = jumlah.getText();
-       double jm = Double.parseDouble(jl);
-       double st = Double.parseDouble(hrg);
-       
-       double tt = jm*st;
-       String hsl = String.format("%.2f", tt);
-       harga.setText(hsl);
-       }
-        
     }//GEN-LAST:event_jumlahKeyReleased
 
     private void jumlahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahKeyTyped
@@ -884,6 +912,7 @@ private void hapus(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:Kasir.removeAll();
+        Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
         
@@ -894,6 +923,7 @@ private void hapus(){
 
     private void btn_tpembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tpembelianActionPerformed
         // TODO add your handling code here:
+        Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
         
@@ -904,6 +934,7 @@ private void hapus(){
 
     private void tambahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprdActionPerformed
         // TODO add your handling code here:
+        Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
         
@@ -952,6 +983,7 @@ private void hapus(){
     private javax.swing.JPanel Kasir;
     private javax.swing.JPanel TransaksiPembelian;
     private javax.swing.JPanel TransaksiPenjualan;
+    private javax.swing.JTable barang_barang;
     private javax.swing.JButton batal;
     private javax.swing.JTextField bayar;
     private javax.swing.JTextField bayar1;
@@ -959,7 +991,6 @@ private void hapus(){
     private javax.swing.JButton btn_tjual;
     private javax.swing.JButton btn_tpembelian;
     private javax.swing.JTextField cari;
-    private javax.swing.JTable daftarbrg;
     private javax.swing.JTextField harga;
     private javax.swing.JTextField hargaTotal;
     private javax.swing.JTextField id_transaksi;
@@ -1011,6 +1042,7 @@ private void hapus(){
     private javax.swing.JButton scbtl;
     private javax.swing.JButton tambah;
     private javax.swing.JButton tambahprd;
+    private javax.swing.JLabel tanggalreal;
     private javax.swing.JTable tblebrg;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
