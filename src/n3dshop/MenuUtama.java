@@ -32,6 +32,7 @@ public class MenuUtama extends javax.swing.JFrame {
         initComponents();
         load_table();
         Banyak();
+        tampil_data();
     }
 
 private void load_table (){
@@ -63,6 +64,8 @@ private void hapus(){
     namaprd.setText("");
     jumlah.setText("");
     harga.setText("");
+    cari.setText("");
+    satuan.setSelectedItem("SATUAN");
 }
 
 private void Banyak(){
@@ -75,6 +78,30 @@ private void Banyak(){
             total.setText(res.getString("total"));
         } catch (Exception e) {
         }
+}
+
+public void tampil_data(){
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("Id barang");
+    model.addColumn("Nama Barang");
+    model.addColumn("Satuan");
+    model.addColumn("Jumlah");
+    model.addColumn("Harga");
+    
+    try {
+        String sql = "Select * From keranjang";
+        java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+        java.sql.Statement stm = cn.createStatement();
+        java.sql.ResultSet res = stm.executeQuery(sql);
+        while (res.next()){
+            model.addRow
+        (new Object[]
+        {res.getString("Id_barang"),res.getString("nama_barang"), res.getString("satuan"), res.getString("jumlah"), res.getString("harga")});
+        }
+        list_barang.setModel(model);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Data tidak muncul");
+    }
 }
 
 
@@ -167,7 +194,7 @@ private void Banyak(){
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Angkringan-removebg-preview 2.png"))); // NOI18N
 
         btn_tjual.setBackground(new java.awt.Color(252, 242, 6));
-        btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_tjual.setForeground(new java.awt.Color(0, 0, 0));
         btn_tjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
         btn_tjual.setText("TRANSAKSI JUAL");
@@ -179,7 +206,7 @@ private void Banyak(){
         });
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
-        btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_tpembelian.setForeground(new java.awt.Color(0, 0, 0));
         btn_tpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icons8_buy.png"))); // NOI18N
         btn_tpembelian.setText("TRANSAKSI BELI");
@@ -310,7 +337,7 @@ private void Banyak(){
         });
 
         tambah.setBackground(new java.awt.Color(252, 242, 6));
-        tambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tambah.setForeground(new java.awt.Color(0, 0, 0));
         tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Group 10.png"))); // NOI18N
         tambah.setText("TAMBAH");
@@ -334,10 +361,10 @@ private void Banyak(){
         );
 
         batal.setBackground(new java.awt.Color(252, 242, 6));
-        batal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        batal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         batal.setForeground(new java.awt.Color(0, 0, 0));
         batal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-1.png"))); // NOI18N
-        batal.setText("CLEAR");
+        batal.setText("BATAL");
         batal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 batalActionPerformed(evt);
@@ -460,7 +487,8 @@ private void Banyak(){
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CARI");
 
         list_barang.setModel(new javax.swing.table.DefaultTableModel(
@@ -476,12 +504,20 @@ private void Banyak(){
         ));
         jScrollPane2.setViewportView(list_barang);
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("KODE TRANSAKSI");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("JUMLAH BARANG");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("BAYAR");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("KEMBALI");
 
         jButton1.setBackground(new java.awt.Color(255, 232, 22));
@@ -509,6 +545,8 @@ private void Banyak(){
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         jButton4.setText("  SCAN");
 
+        tanggalreal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tanggalreal.setForeground(new java.awt.Color(255, 255, 255));
         tanggalreal.setText("tanggal");
 
         javax.swing.GroupLayout TransaksiPenjualanLayout = new javax.swing.GroupLayout(TransaksiPenjualan);
@@ -546,7 +584,7 @@ private void Banyak(){
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
             .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,6 +673,8 @@ private void Banyak(){
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("CARI");
 
         tblebrg.setModel(new javax.swing.table.DefaultTableModel(
@@ -654,12 +694,20 @@ private void Banyak(){
         hargaTotal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         hargaTotal.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("KEMBALI");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("BAYAR");
 
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("JUMLAH BARANG");
 
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("KODE TRANSAKSI");
 
         print.setBackground(new java.awt.Color(255, 232, 22));
@@ -740,7 +788,7 @@ private void Banyak(){
                             .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(47, 47, 47)
                             .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(355, Short.MAX_VALUE)))
+                    .addContainerGap(331, Short.MAX_VALUE)))
         );
         TransaksiPembelianLayout.setVerticalGroup(
             TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -817,6 +865,7 @@ private void Banyak(){
         Kasir.add(TransaksiPenjualan);
         Kasir.repaint();
         Kasir.revalidate();
+        tampil_data();
     }//GEN-LAST:event_btn_tjualActionPerformed
 
     private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
@@ -905,12 +954,14 @@ private void Banyak(){
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah, harga) Values '"+Id_barang+"', '"+namaprd.getText()+"', '"+
-                    satuan.getSelectedItem()+"', '"+jumlah.getText()+"', '"+harga.getText()+"'";
+            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah, harga) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+
+                    satuan.getSelectedItem()+"', '"+jumlah.getText()+"', '"+harga.getText()+"')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+            hapus();
+            load_table();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
         }
@@ -918,6 +969,20 @@ private void Banyak(){
 
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            String sql = "DELETE FROM keranjang;";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+            load_table();
+            hapus();
+            tampil_data();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
+        }
     }//GEN-LAST:event_batalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
