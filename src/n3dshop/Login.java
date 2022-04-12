@@ -156,17 +156,17 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "SELECT Username, Password, Lavel from petugas WHERE Username='" + Username.getText()
-                    + "'AND Password='" + Password.getText() 
-                    + "'AND Lavel='"+ Level.getSelectedItem()+"'";
+            String sql = "SELECT username, password, level from petugas WHERE username='" + Username.getText()
+                    + "'AND password='" + Password.getText() 
+                    + "'AND level='"+ Level.getSelectedItem()+"'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             java.sql.ResultSet rs = pst.executeQuery(sql);
 
             if (rs.next()) {
-                if (Username.getText().equals(rs.getString("Username"))
-                        && Password.getText().equals(rs.getString("Password"))
-                        && Level.getSelectedItem().equals(rs.getString("Lavel"))) {
+                if (Username.getText().equals(rs.getString("username"))
+                        && Password.getText().equals(rs.getString("password"))
+                        && Level.getSelectedItem().equals(rs.getString("level"))) {
                     JOptionPane.showMessageDialog(null, "Anda Berhasil Login");
                     this.setVisible(false);
                     new MenuUtama().setVisible(true);

@@ -9,7 +9,7 @@ public class Koneksi {
         if(cn == null){
             try {
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                cn=DriverManager.getConnection("jdbc:mysql://localhost/n3d_shop","root","");
+                cn=DriverManager.getConnection("jdbc:mysql://localhost/n3d_akhir","root","");
                 System.out.println("BERHASIL");
             } catch (Exception e) {
                 e.printStackTrace();
