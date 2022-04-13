@@ -175,7 +175,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jButton3.setText("TRANSAKSI PEMBELIAN");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setIconTextGap(25);
+        jButton3.setIconTextGap(23);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout TRANSAKSILayout = new javax.swing.GroupLayout(TRANSAKSI);

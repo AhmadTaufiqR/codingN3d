@@ -343,7 +343,7 @@
                       <Color id="Default Cursor"/>
                     </Property>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
-                    <Property name="iconTextGap" type="int" value="25"/>
+                    <Property name="iconTextGap" type="int" value="23"/>
                     <Property name="verticalTextPosition" type="int" value="1"/>
                   </Properties>
                 </Component>
