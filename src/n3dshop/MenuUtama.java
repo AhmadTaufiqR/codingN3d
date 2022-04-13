@@ -115,7 +115,6 @@ public void tampil_data(){
     private void initComponents() {
 
         Kasir = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -192,19 +191,6 @@ public void tampil_data(){
         setSize(new java.awt.Dimension(1280, 720));
 
         Kasir.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
-        Kasir.add(jPanel1, "card5");
 
         Cari.setBackground(new java.awt.Color(0, 9, 87));
         Cari.setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -1144,7 +1130,6 @@ public void tampil_data(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
