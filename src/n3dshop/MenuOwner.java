@@ -44,7 +44,6 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         dashborad = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -185,8 +184,6 @@ public class MenuOwner extends javax.swing.JFrame {
         jButton3.setIconTextGap(23);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        jLabel10.setText("jLabel10");
-
         javax.swing.GroupLayout TRANSAKSILayout = new javax.swing.GroupLayout(TRANSAKSI);
         TRANSAKSI.setLayout(TRANSAKSILayout);
         TRANSAKSILayout.setHorizontalGroup(
@@ -195,9 +192,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TRANSAKSILayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel9)
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel10))
+                        .addComponent(jLabel9))
                     .addGroup(TRANSAKSILayout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,9 +204,7 @@ public class MenuOwner extends javax.swing.JFrame {
             TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TRANSAKSILayout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                .addComponent(jLabel9)
                 .addGap(79, 79, 79)
                 .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,7 +334,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
