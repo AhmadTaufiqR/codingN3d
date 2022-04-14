@@ -44,6 +44,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         dashborad = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -163,13 +164,11 @@ public class MenuOwner extends javax.swing.JFrame {
         TRANSAKSI.setBackground(new java.awt.Color(196, 196, 196));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/transaksieksen.png"))); // NOI18N
         jLabel9.setText(" TRANSAKSI");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/transaksipenjualan.png"))); // NOI18N
         jButton1.setText("TRANSAKSI PENJUALAN");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -179,13 +178,14 @@ public class MenuOwner extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/transaksipembelian.png"))); // NOI18N
         jButton3.setText("TRANSAKSI PEMBELIAN");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setIconTextGap(23);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
+        jLabel10.setText("jLabel10");
 
         javax.swing.GroupLayout TRANSAKSILayout = new javax.swing.GroupLayout(TRANSAKSI);
         TRANSAKSI.setLayout(TRANSAKSILayout);
@@ -195,7 +195,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TRANSAKSILayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel9))
+                        .addComponent(jLabel9)
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel10))
                     .addGroup(TRANSAKSILayout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +209,9 @@ public class MenuOwner extends javax.swing.JFrame {
             TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TRANSAKSILayout.createSequentialGroup()
                 .addGap(92, 92, 92)
-                .addComponent(jLabel9)
+                .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addGap(79, 79, 79)
                 .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +225,6 @@ public class MenuOwner extends javax.swing.JFrame {
         dashborad.setPreferredSize(new java.awt.Dimension(650, 350));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ICONDASHBOARDOWNER.png"))); // NOI18N
         jLabel8.setText(" DASHBOARD");
 
@@ -338,6 +341,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
