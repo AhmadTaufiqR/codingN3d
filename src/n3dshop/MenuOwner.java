@@ -39,6 +39,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         navbar = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
         KONTEN = new javax.swing.JPanel();
         TRANSAKSI = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -95,6 +96,20 @@ public class MenuOwner extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         Unduh = new javax.swing.JButton();
+        Profil = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -194,15 +209,23 @@ public class MenuOwner extends javax.swing.JFrame {
 
         navbar.setBackground(new java.awt.Color(240, 225, 89));
 
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Profil1.png"))); // NOI18N
+
         javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
         navbarLayout.setHorizontalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navbarLayout.createSequentialGroup()
+                .addContainerGap(1157, Short.MAX_VALUE)
+                .addComponent(jLabel29)
+                .addGap(64, 64, 64))
         );
         navbarLayout.setVerticalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navbarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel29)
+                .addGap(29, 29, 29))
         );
 
         OWNER.add(navbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 80));
@@ -473,7 +496,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(TransaksiPembelian1, "card5");
 
         jLabel14.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\Vector.png")); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Databarang1.png"))); // NOI18N
         jLabel14.setText(" DATA BARANG");
         jLabel14.setToolTipText("");
 
@@ -521,7 +544,7 @@ public class MenuOwner extends javax.swing.JFrame {
 
         Hapus1.setBackground(new java.awt.Color(240, 225, 89));
         Hapus1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        Hapus1.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\delete (1).png")); // NOI18N
+        Hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Delete2.png"))); // NOI18N
         Hapus1.setText("HAPUS");
         Hapus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,7 +600,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(DataBarang, "card6");
 
         jLabel16.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\Vector (1).png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Suplier1.png"))); // NOI18N
         jLabel16.setText(" SUPLIER");
         jLabel16.setToolTipText("");
 
@@ -652,7 +675,7 @@ public class MenuOwner extends javax.swing.JFrame {
 
         Hapus2.setBackground(new java.awt.Color(240, 225, 89));
         Hapus2.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        Hapus2.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\delete (1).png")); // NOI18N
+        Hapus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Delete2.png"))); // NOI18N
         Hapus2.setText("HAPUS");
         Hapus2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -740,7 +763,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(Suplier, "card7");
 
         jLabel21.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\Vector (3).png")); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector (3).png"))); // NOI18N
         jLabel21.setText(" DATA LAPORAN");
         jLabel21.setToolTipText("");
 
@@ -839,6 +862,132 @@ public class MenuOwner extends javax.swing.JFrame {
 
         KONTEN.add(DataLaporan, "card8");
 
+        jLabel24.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector (4).png"))); // NOI18N
+        jLabel24.setText("Profil");
+        jLabel24.setToolTipText("");
+
+        jLabel25.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel25.setText("Username");
+
+        jTextField1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel26.setText("Level");
+
+        jLabel27.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel27.setText("Nama");
+
+        jLabel28.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel28.setText("No.handphone");
+
+        jTextField2.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        jTextField4.setFont(new java.awt.Font("Roboto Slab", 0, 12)); // NOI18N
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/SimpanProfil.png"))); // NOI18N
+
+        jLabel31.setFont(new java.awt.Font("Roboto Slab", 0, 12)); // NOI18N
+        jLabel31.setText("Simpan");
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/editprofil.png"))); // NOI18N
+
+        jLabel33.setFont(new java.awt.Font("Roboto Slab", 0, 12)); // NOI18N
+        jLabel33.setText("Edit");
+
+        javax.swing.GroupLayout ProfilLayout = new javax.swing.GroupLayout(Profil);
+        Profil.setLayout(ProfilLayout);
+        ProfilLayout.setHorizontalGroup(
+            ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProfilLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ProfilLayout.createSequentialGroup()
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117)
+                        .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(417, Short.MAX_VALUE))
+                    .addGroup(ProfilLayout.createSequentialGroup()
+                        .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ProfilLayout.createSequentialGroup()
+                                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel27))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(ProfilLayout.createSequentialGroup()
+                                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel31)
+                                    .addComponent(jLabel30))
+                                .addGap(39, 39, 39)))
+                        .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32)
+                            .addGroup(ProfilLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel33)))
+                        .addGap(739, 739, 739))))
+        );
+        ProfilLayout.setVerticalGroup(
+            ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProfilLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ProfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31))
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
+
+        KONTEN.add(Profil, "card9");
+
         OWNER.add(KONTEN, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 0, 980, 720));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -924,6 +1073,22 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UnduhActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -977,6 +1142,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel MENUSAMPING;
     private javax.swing.JTextField NamaBarang;
     private javax.swing.JPanel OWNER;
+    private javax.swing.JPanel Profil;
     private javax.swing.JButton Simpan1;
     private javax.swing.JButton Simpan2;
     private javax.swing.JButton Simpan3;
@@ -1006,7 +1172,17 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1027,6 +1203,10 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel navbar;
     // End of variables declaration//GEN-END:variables
 }

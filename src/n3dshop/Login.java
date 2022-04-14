@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
         Masuk.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Group.png"))); // NOI18N
-        Masuk.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 40, -1, -1));
+        Masuk.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 50, 90, -1));
 
         jPanel2.setBackground(new java.awt.Color(78, 80, 130));
         jPanel2.setForeground(new java.awt.Color(78, 80, 130));
@@ -115,7 +115,6 @@ public class Login extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 232, 22));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("MASUK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
