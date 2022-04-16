@@ -544,7 +544,7 @@ public class MenuOwner extends javax.swing.JFrame {
 
         Hapus1.setBackground(new java.awt.Color(240, 225, 89));
         Hapus1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        Hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Delete2.png"))); // NOI18N
+        Hapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
         Hapus1.setText("HAPUS");
         Hapus1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -575,8 +575,8 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Edit1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Hapus1)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(Hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         DataBarangLayout.setVerticalGroup(
             DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,10 +591,10 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Simpan3)
-                    .addComponent(Edit1)
-                    .addComponent(Hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(Simpan3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Edit1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Hapus1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         KONTEN.add(DataBarang, "card6");
@@ -675,7 +675,7 @@ public class MenuOwner extends javax.swing.JFrame {
 
         Hapus2.setBackground(new java.awt.Color(240, 225, 89));
         Hapus2.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        Hapus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Delete2.png"))); // NOI18N
+        Hapus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
         Hapus2.setText("HAPUS");
         Hapus2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -715,11 +715,11 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Edit2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Hapus2))
+                        .addComponent(Hapus2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SuplierLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 946, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         SuplierLayout.setVerticalGroup(
             SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -754,10 +754,10 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Simpan4)
-                    .addComponent(Edit2)
-                    .addComponent(Hapus2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(Simpan4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Hapus2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Edit2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         KONTEN.add(Suplier, "card7");

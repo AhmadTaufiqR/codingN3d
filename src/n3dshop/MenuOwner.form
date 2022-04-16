@@ -753,10 +753,10 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="Edit1" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="Hapus1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Hapus1" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -774,11 +774,11 @@
                           <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Simpan3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Edit1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Hapus1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="Simpan3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="Edit1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="Hapus1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -873,7 +873,7 @@
                       <Font name="Roboto Slab" size="14" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/FIleGambar/Delete2.png"/>
+                      <Image iconType="3" name="/FIleGambar/delete (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="HAPUS"/>
                   </Properties>
@@ -926,14 +926,14 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="Edit2" min="-2" pref="121" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="Hapus2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Hapus2" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" min="-2" pref="946" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -979,11 +979,11 @@
                           <Component id="jScrollPane5" min="-2" pref="300" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="Simpan4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Edit2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Hapus2" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="Simpan4" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="Hapus2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="Edit2" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1117,7 +1117,7 @@
                       <Font name="Roboto Slab" size="14" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/FIleGambar/Delete2.png"/>
+                      <Image iconType="3" name="/FIleGambar/delete (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="HAPUS"/>
                   </Properties>
