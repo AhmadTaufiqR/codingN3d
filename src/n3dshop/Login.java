@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         Username.setBackground(new Color(0,0,0,0));
-        Password.setBackground(new Color(0,0,0,0));
+        txt_password.setBackground(new Color(0,0,0,0));
     }
 
     /**
@@ -46,12 +46,12 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Username = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Level = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        txt_password = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -88,14 +88,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("USERNAME");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 108, 28));
 
-        Password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        Password.setForeground(new java.awt.Color(255, 255, 255));
-        Password.setBorder(null);
-        Password.setCaretColor(new java.awt.Color(255, 255, 255));
-        Password.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        Password.setOpaque(false);
-        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 237, 430, 31));
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Line 32.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 274, 430, 18));
 
@@ -122,6 +114,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 114, 42));
+
+        txt_password.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txt_password.setForeground(new java.awt.Color(255, 255, 255));
+        txt_password.setBorder(null);
+        txt_password.setOpaque(false);
+        jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 430, 30));
 
         Masuk.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 492, 576));
 
@@ -156,7 +154,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String sql = "SELECT username, password, level from petugas WHERE username='" + Username.getText()
-                    + "'AND password='" + Password.getText() 
+                    + "'AND password='" + txt_password.getText()
                     + "'AND level='"+ Level.getSelectedItem()+"'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
@@ -164,11 +162,20 @@ public class Login extends javax.swing.JFrame {
 
             if (rs.next()) {
                 if (Username.getText().equals(rs.getString("username"))
-                        && Password.getText().equals(rs.getString("password"))
+                        && txt_password.getText().equals(rs.getString("password"))
                         && Level.getSelectedItem().equals(rs.getString("level"))) {
                     JOptionPane.showMessageDialog(null, "Anda Berhasil Login");
-                    this.setVisible(false);
-                    new MenuUtama().setVisible(true);
+                    
+                        if (Level.getSelectedItem() == "OWNER") {
+                            this.setVisible(false);
+                            new MenuOwner().setVisible(true);
+                        } else if (Level.getSelectedItem() == "KASIR"){
+                        this.setVisible(false);
+                        new MenuUtama().setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "SILAHKAN PILIH LAVEL");
+                        }
+                    
 
                 }
             } else {
@@ -218,7 +225,6 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Level;
     private javax.swing.JPanel Masuk;
-    private javax.swing.JTextField Password;
     private javax.swing.JTextField Username;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -232,6 +238,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField txt_password;
     // End of variables declaration//GEN-END:variables
 class RoundedPanel extends JPanel
     {
