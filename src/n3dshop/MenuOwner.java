@@ -5,6 +5,12 @@
  */
 package n3dshop;
 
+import java.sql.Connection;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sun.security.util.Password;
+
 /**
  *
  * @author HP
@@ -16,7 +22,36 @@ public class MenuOwner extends javax.swing.JFrame {
      */
     public MenuOwner() {
         initComponents();
+        Tabel_Akun();
     }
+private void Tabel_Akun(){
+            DefaultTableModel model=new DefaultTableModel();
+        model.addColumn("USERNAME");
+        model.addColumn("NAMA");
+        model.addColumn("LEVEL");
+        model.addColumn("NO HP");
+        model.addColumn("ALAMAT");
+        model.addColumn("PASSWORD");
+   
+        
+        String cari= cariAkun.getText();
+
+        try {
+            String sql = "SELECT * FROM petugas WHERE username LIKE'%"+cari+"%'";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()){
+                model.addRow
+                (new Object[]
+                {res.getString("username"),res.getString("nama"),res.getString("level"),
+                    res.getString("no_telepon"),res.getString("alamat"),res.getString("password")});
+               }
+             tabelAkun.setModel(model);
+                } catch (Exception e) {
+
+        }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,6 +164,8 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         alamatAkun = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        PasswordAkun = new javax.swing.JPasswordField();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -1048,6 +1085,11 @@ public class MenuOwner extends javax.swing.JFrame {
                 cariAkunActionPerformed(evt);
             }
         });
+        cariAkun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariAkunKeyReleased(evt);
+            }
+        });
 
         jLabel36.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         jLabel36.setText("Cari : ");
@@ -1113,7 +1155,7 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        pilihanAkun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pilihanAkun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Salah Satu", "OWNER", "KASIR" }));
 
         noHpAkun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1132,6 +1174,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 alamatAkunActionPerformed(evt);
             }
         });
+
+        jLabel41.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel41.setText("PASSWORD");
 
         javax.swing.GroupLayout AkunLayout = new javax.swing.GroupLayout(Akun);
         Akun.setLayout(AkunLayout);
@@ -1161,15 +1206,19 @@ public class MenuOwner extends javax.swing.JFrame {
                                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(namaAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(usernameAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(91, 91, 91)
+                                        .addGap(84, 84, 84)
                                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel39)
-                                            .addComponent(jLabel40)))
-                                    .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel40)
+                                            .addComponent(jLabel39))
+                                        .addGap(7, 7, 7))
+                                    .addGroup(AkunLayout.createSequentialGroup()
+                                        .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel41))))
                             .addGroup(AkunLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
                                 .addComponent(jLabel36)
@@ -1179,11 +1228,12 @@ public class MenuOwner extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
                                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(alamatAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PasswordAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(175, 175, 175))))
                     .addGroup(AkunLayout.createSequentialGroup()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 956, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 18, Short.MAX_VALUE))))
+                        .addGap(0, 16, Short.MAX_VALUE))))
         );
         AkunLayout.setVerticalGroup(
             AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1209,8 +1259,10 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 22, Short.MAX_VALUE)
+                    .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41)
+                    .addComponent(PasswordAkun, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1332,14 +1384,52 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void simpanAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanAkunActionPerformed
         // TODO add your handling code here:
+       try {
+            String sql = "INSERT INTO petugas (username, nama,alamat, level,no_telepon, password) Values ('"+usernameAkun.getText()+"', '"+namaAkun.getText()+"', '"+
+                    alamatAkun.getText()+"', '"+pilihanAkun.getSelectedItem()+"', '"+noHpAkun.getText()+"','"+PasswordAkun.getText()+"');";
+            java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+          
+            Tabel_Akun();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
+        } 
     }//GEN-LAST:event_simpanAkunActionPerformed
 
     private void editAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAkunActionPerformed
         // TODO add your handling code here:
+               try {
+            String sql = "UPDATE petugas SET `username` ='"+usernameAkun.getText()+"',`nama`='"+namaAkun.getText()+"',`no_telepon`='"+noHpAkun.getText()+
+                    "',`password`='" +PasswordAkun.getText()+"',`level`='"
+                    + pilihanAkun.getSelectedItem()+"' WHERE `petugas`.`username`='"
+                    +usernameAkun.getText()+"';" ;
+            java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Berhasil diubah ");
+          
+            Tabel_Akun();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data Tidak berhasil diubah");
+        } 
     }//GEN-LAST:event_editAkunActionPerformed
 
     private void hapusAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusAkunActionPerformed
         // TODO add your handling code here:
+                try {
+            
+            String sql = "DELETE FROM petugas WHERE username='"+usernameAkun.getText()+"';";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+            Tabel_Akun();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
+        } 
     }//GEN-LAST:event_hapusAkunActionPerformed
 
     private void noHpAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noHpAkunActionPerformed
@@ -1422,6 +1512,11 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Hapus4ActionPerformed
 
+    private void cariAkunKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariAkunKeyReleased
+    // TODO add your handling code here:
+    Tabel_Akun();    
+    }//GEN-LAST:event_cariAkunKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -1476,6 +1571,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel MENUSAMPING;
     private javax.swing.JTextField NamaBarang2;
     private javax.swing.JPanel OWNER;
+    private javax.swing.JPasswordField PasswordAkun;
     private javax.swing.JPanel Profil;
     private javax.swing.JButton Simpan1;
     private javax.swing.JButton Simpan2;
@@ -1524,6 +1620,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
