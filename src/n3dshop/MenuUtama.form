@@ -92,7 +92,7 @@
                                   </Group>
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="91" max="32767" attributes="0"/>
+                              <EmptySpace pref="60" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -342,6 +342,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="cari">
                   <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cariActionPerformed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cariKeyReleased"/>
                   </Events>
                 </Component>
@@ -685,6 +686,9 @@
               </Layout>
             </Container>
             <Component class="javax.swing.JTextField" name="mencari">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mencariActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField2">
               <Properties>
@@ -815,6 +819,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="BATAL"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
@@ -890,13 +897,13 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="kembali3" max="32767" attributes="0"/>
-                          <Component id="kembali1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="bayar1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jumlah_barang1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="id_transaksi1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jComboBox1" alignment="1" pref="243" max="32767" attributes="0"/>
-                          <Component id="kembali2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="harga1" max="32767" attributes="0"/>
+                          <Component id="jumlah1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jenis1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="namabarang1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="id_barangi1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="satuan1" alignment="1" pref="243" max="32767" attributes="0"/>
+                          <Component id="namasatuan1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="804" max="-2" attributes="0"/>
@@ -953,30 +960,30 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="id_transaksi1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="id_barangi1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                           <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jumlah_barang1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="namabarang1" min="-2" pref="38" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="bayar1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="jenis1" min="-2" pref="38" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="kembali1" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="jumlah1" min="-2" pref="38" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="satuan1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="kembali2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="namasatuan1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="kembali3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="harga1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1073,10 +1080,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="mencari1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mencari1ActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mencari1KeyReleased"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="bayar1">
+            <Component class="javax.swing.JTextField" name="jenis1">
             </Component>
-            <Component class="javax.swing.JTextField" name="kembali1">
+            <Component class="javax.swing.JTextField" name="jumlah1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -1100,9 +1111,9 @@
                 <Property name="text" type="java.lang.String" value="JENIS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="id_transaksi1">
+            <Component class="javax.swing.JTextField" name="id_barangi1">
             </Component>
-            <Component class="javax.swing.JTextField" name="jumlah_barang1">
+            <Component class="javax.swing.JTextField" name="namabarang1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
@@ -1136,6 +1147,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="PRINT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tambahprd">
               <Properties>
@@ -1161,6 +1175,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="BATAL"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btlprdActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="scbtl">
               <Properties>
@@ -1184,7 +1201,7 @@
                 <Property name="text" type="java.lang.String" value="SATUAN"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="satuan1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
@@ -1198,7 +1215,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="kembali2">
+            <Component class="javax.swing.JTextField" name="namasatuan1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
@@ -1222,7 +1239,7 @@
                 <Property name="text" type="java.lang.String" value="HARGA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="kembali3">
+            <Component class="javax.swing.JTextField" name="harga1">
             </Component>
           </SubComponents>
         </Container>
