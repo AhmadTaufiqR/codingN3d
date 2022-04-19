@@ -100,9 +100,39 @@ public void tampil_data(){
         }
         list_barang.setModel(model);
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Data tidak muncul");
+       
     }
 }
+public void tabel_barang (){
+        DefaultTableModel model=new DefaultTableModel();
+        model.addColumn("ID BARANG");
+        model.addColumn("NAMA BARANG");
+        model.addColumn("JENIS");
+        model.addColumn("JUMLAH");
+        model.addColumn("SATUAN ECERAN");
+        model.addColumn("SATUAN GROSIR ");
+        model.addColumn("NAMA SATUAN");
+        model.addColumn("HARGA");
+
+        try {
+            String sql = "SELECT * FROM barang;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()){
+                model.addRow
+                (new Object[]
+                {res.getString("id_barang"),res.getString("nama_barang"),res.getString("jenis_barang"),
+                    res.getString("stok"),res.getString("eceran"),res.getString("grosir"),res.getString("harga_eceran"),res.getString("harga_grosir")});
+               }
+             table_barang.setModel(model);
+                } catch (Exception e) {
+
+        }
+    }
+    
+
+
 
 
     /**
@@ -165,7 +195,7 @@ public void tampil_data(){
         jPanel6 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblebrg = new javax.swing.JTable();
+        table_barang = new javax.swing.JTable();
         hargaTotal = new javax.swing.JTextField();
         mencari1 = new javax.swing.JTextField();
         bayar1 = new javax.swing.JTextField();
@@ -203,7 +233,6 @@ public void tampil_data(){
 
         btn_tjual.setBackground(new java.awt.Color(252, 242, 6));
         btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tjual.setForeground(new java.awt.Color(0, 0, 0));
         btn_tjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
         btn_tjual.setText("TRANSAKSI JUAL");
         btn_tjual.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -216,7 +245,6 @@ public void tampil_data(){
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
         btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tpembelian.setForeground(new java.awt.Color(0, 0, 0));
         btn_tpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icons8_buy.png"))); // NOI18N
         btn_tpembelian.setText("TRANSAKSI BELI");
         btn_tpembelian.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -324,7 +352,6 @@ public void tampil_data(){
 
         tambah.setBackground(new java.awt.Color(252, 242, 6));
         tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tambah.setForeground(new java.awt.Color(0, 0, 0));
         tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Group 10.png"))); // NOI18N
         tambah.setText("TAMBAH");
         tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +375,6 @@ public void tampil_data(){
 
         batal.setBackground(new java.awt.Color(252, 242, 6));
         batal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        batal.setForeground(new java.awt.Color(0, 0, 0));
         batal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-1.png"))); // NOI18N
         batal.setText("BATAL");
         batal.addActionListener(new java.awt.event.ActionListener() {
@@ -362,6 +388,11 @@ public void tampil_data(){
         jLabel21.setText("SATUAN");
 
         satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
+        satuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                satuanActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -409,7 +440,7 @@ public void tampil_data(){
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jumlah, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addComponent(jLabel6))
-                        .addContainerGap(56, Short.MAX_VALUE))))
+                        .addContainerGap(54, Short.MAX_VALUE))))
         );
         CariLayout.setVerticalGroup(
             CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +502,6 @@ public void tampil_data(){
 
         jTextField2.setBackground(new java.awt.Color(255, 232, 22));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -507,7 +537,6 @@ public void tampil_data(){
         jLabel14.setText("KEMBALI");
 
         jButton1.setBackground(new java.awt.Color(255, 232, 22));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         jButton1.setText("TAMBAH");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -517,19 +546,21 @@ public void tampil_data(){
         });
 
         jButton2.setBackground(new java.awt.Color(255, 232, 22));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         jButton2.setText("PRINT");
 
         jButton3.setBackground(new java.awt.Color(255, 232, 22));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         jButton3.setText("BATAL");
 
         jButton4.setBackground(new java.awt.Color(255, 232, 22));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         jButton4.setText("  SCAN");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         tanggalreal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tanggalreal.setForeground(new java.awt.Color(255, 255, 255));
@@ -570,7 +601,7 @@ public void tampil_data(){
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
             .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -663,7 +694,7 @@ public void tampil_data(){
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("CARI");
 
-        tblebrg.setModel(new javax.swing.table.DefaultTableModel(
+        table_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -674,11 +705,10 @@ public void tampil_data(){
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tblebrg);
+        jScrollPane3.setViewportView(table_barang);
 
         hargaTotal.setBackground(new java.awt.Color(255, 232, 22));
         hargaTotal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        hargaTotal.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -697,12 +727,10 @@ public void tampil_data(){
         jLabel24.setText("ID BARANG");
 
         print.setBackground(new java.awt.Color(255, 232, 22));
-        print.setForeground(new java.awt.Color(0, 0, 0));
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         print.setText("PRINT");
 
         tambahprd.setBackground(new java.awt.Color(255, 232, 22));
-        tambahprd.setForeground(new java.awt.Color(0, 0, 0));
         tambahprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         tambahprd.setText("TAMBAH");
         tambahprd.addActionListener(new java.awt.event.ActionListener() {
@@ -712,12 +740,10 @@ public void tampil_data(){
         });
 
         btlprd.setBackground(new java.awt.Color(255, 232, 22));
-        btlprd.setForeground(new java.awt.Color(0, 0, 0));
         btlprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         btlprd.setText("BATAL");
 
         scbtl.setBackground(new java.awt.Color(255, 232, 22));
-        scbtl.setForeground(new java.awt.Color(0, 0, 0));
         scbtl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         scbtl.setText("  SCAN");
 
@@ -745,11 +771,11 @@ public void tampil_data(){
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 543, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 568, Short.MAX_VALUE)
                         .addComponent(hargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 970, Short.MAX_VALUE)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -774,8 +800,8 @@ public void tampil_data(){
                     .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 243, Short.MAX_VALUE)
                     .addComponent(kembali2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                     .addGap(85, 85, 85)
@@ -786,7 +812,7 @@ public void tampil_data(){
                     .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(47, 47, 47)
                     .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(572, Short.MAX_VALUE)))
+                    .addContainerGap(601, Short.MAX_VALUE)))
         );
         TransaksiPembelianLayout.setVerticalGroup(
             TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1030,6 +1056,14 @@ public void tampil_data(){
         Kasir.revalidate();
     }//GEN-LAST:event_tambahprdActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void satuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_satuanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1133,10 +1167,10 @@ public void tampil_data(){
     private javax.swing.JButton print;
     private javax.swing.JComboBox<String> satuan;
     private javax.swing.JButton scbtl;
+    private javax.swing.JTable table_barang;
     private javax.swing.JButton tambah;
     private javax.swing.JButton tambahprd;
     private javax.swing.JLabel tanggalreal;
-    private javax.swing.JTable tblebrg;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
