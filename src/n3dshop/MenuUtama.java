@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class MenuUtama extends javax.swing.JFrame {
 
     int a;
-    String hrg_ecer, hrg_grosir, Id, No_faktur;
+    String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar;
     String Id_barang;
     PreparedStatement pst;
 
@@ -209,7 +209,8 @@ public void tabel_barang (){
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             res.next();
-            HargaBayar.setText("Rp. "+res.getString("total"));
+            totalmembayar = res.getString("total");
+            HargaBayar.setText("Rp. "+ totalmembayar);
         } catch (Exception e) {
         }
     }
@@ -633,6 +634,11 @@ public void tabel_barang (){
         bayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bayarActionPerformed(evt);
+            }
+        });
+        bayar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                bayarKeyReleased(evt);
             }
         });
 
@@ -1125,8 +1131,8 @@ public void tabel_barang (){
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah, harga) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+
-                    satuan.getSelectedItem()+"', '"+jumlah.getText()+"', '"+harga.getText()+"')";
+            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah, harga, keterangan) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+
+                    satuan.getSelectedItem()+"', '"+jumlah.getText()+"', '"+harga.getText()+"', 'PENJUALAN')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -1191,13 +1197,6 @@ public void tabel_barang (){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
         }        // TODO add your handling code here:
-        Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-        
-        Kasir.add(Cari);
-        Kasir.repaint();
-        Kasir.revalidate();
     }//GEN-LAST:event_tambahprdActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1287,6 +1286,21 @@ public void tabel_barang (){
     private void bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bayarActionPerformed
+
+    private void bayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarKeyReleased
+        // TODO add your handling code here:
+        kembali.setText("");
+        if (bayar.getText() == "") {
+            kembali.setText("");
+        } else {
+            
+        int membayar = Integer.parseInt(bayar.getText());
+        int Hargatt = Integer.parseInt(totalmembayar);
+        
+        int totalkembali = membayar - Hargatt;
+        kembali.setText(String.valueOf(totalkembali));
+        }
+    }//GEN-LAST:event_bayarKeyReleased
 
     /**
      * @param args the command line arguments
