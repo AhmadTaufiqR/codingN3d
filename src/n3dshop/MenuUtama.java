@@ -325,7 +325,7 @@ public void tabel_barang (){
                 btn_tjualActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_tjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 156, 59));
+        jPanel2.add(btn_tjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 170, 59));
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
         btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -338,7 +338,7 @@ public void tabel_barang (){
                 btn_tpembelianActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_tpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 32, 156, 59));
+        jPanel2.add(btn_tpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 32, 170, 59));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
