@@ -336,7 +336,6 @@ public void tabel_barang (){
 
         btn_tjual.setBackground(new java.awt.Color(252, 242, 6));
         btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tjual.setForeground(new java.awt.Color(0, 0, 0));
         btn_tjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
         btn_tjual.setText("TRANSAKSI JUAL");
         btn_tjual.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -349,7 +348,6 @@ public void tabel_barang (){
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
         btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tpembelian.setForeground(new java.awt.Color(0, 0, 0));
         btn_tpembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icons8_buy.png"))); // NOI18N
         btn_tpembelian.setText("TRANSAKSI BELI");
         btn_tpembelian.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -462,7 +460,6 @@ public void tabel_barang (){
 
         tambah.setBackground(new java.awt.Color(252, 242, 6));
         tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tambah.setForeground(new java.awt.Color(0, 0, 0));
         tambah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Group 10.png"))); // NOI18N
         tambah.setText("TAMBAH");
         tambah.addActionListener(new java.awt.event.ActionListener() {
@@ -486,7 +483,6 @@ public void tabel_barang (){
 
         batal.setBackground(new java.awt.Color(252, 242, 6));
         batal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        batal.setForeground(new java.awt.Color(0, 0, 0));
         batal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-1.png"))); // NOI18N
         batal.setText("BATAL");
         batal.addActionListener(new java.awt.event.ActionListener() {
@@ -625,6 +621,11 @@ public void tabel_barang (){
 
         HargaBayar.setBackground(new java.awt.Color(255, 232, 22));
         HargaBayar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        HargaBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HargaBayarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -671,7 +672,6 @@ public void tabel_barang (){
         jLabel14.setText("KEMBALI");
 
         jButton1.setBackground(new java.awt.Color(255, 232, 22));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         jButton1.setText("TAMBAH");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -681,12 +681,10 @@ public void tabel_barang (){
         });
 
         jButton2.setBackground(new java.awt.Color(255, 232, 22));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         jButton2.setText("CETAK");
 
         bataltrn.setBackground(new java.awt.Color(255, 232, 22));
-        bataltrn.setForeground(new java.awt.Color(0, 0, 0));
         bataltrn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         bataltrn.setText("BATAL");
         bataltrn.addActionListener(new java.awt.event.ActionListener() {
@@ -696,7 +694,6 @@ public void tabel_barang (){
         });
 
         scan.setBackground(new java.awt.Color(255, 232, 22));
-        scan.setForeground(new java.awt.Color(0, 0, 0));
         scan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         scan.setText("  SCAN");
         scan.addActionListener(new java.awt.event.ActionListener() {
@@ -710,7 +707,6 @@ public void tabel_barang (){
         tanggalreal.setText("tanggal");
 
         kembalikecari.setBackground(new java.awt.Color(255, 232, 22));
-        kembalikecari.setForeground(new java.awt.Color(0, 0, 0));
         kembalikecari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
         kembalikecari.setText("KEMBALI");
         kembalikecari.addActionListener(new java.awt.event.ActionListener() {
@@ -720,7 +716,6 @@ public void tabel_barang (){
         });
 
         logout.setBackground(new java.awt.Color(255, 232, 22));
-        logout.setForeground(new java.awt.Color(0, 0, 0));
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
         logout.setText(" KELUAR");
         logout.addActionListener(new java.awt.event.ActionListener() {
@@ -906,7 +901,6 @@ public void tabel_barang (){
         jLabel24.setText("ID BARANG");
 
         print.setBackground(new java.awt.Color(255, 232, 22));
-        print.setForeground(new java.awt.Color(0, 0, 0));
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         print.setText("PRINT");
         print.addActionListener(new java.awt.event.ActionListener() {
@@ -916,7 +910,6 @@ public void tabel_barang (){
         });
 
         tambahprd.setBackground(new java.awt.Color(255, 232, 22));
-        tambahprd.setForeground(new java.awt.Color(0, 0, 0));
         tambahprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         tambahprd.setText("TAMBAH");
         tambahprd.addActionListener(new java.awt.event.ActionListener() {
@@ -926,7 +919,6 @@ public void tabel_barang (){
         });
 
         btlprd.setBackground(new java.awt.Color(255, 232, 22));
-        btlprd.setForeground(new java.awt.Color(0, 0, 0));
         btlprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         btlprd.setText("BATAL");
         btlprd.addActionListener(new java.awt.event.ActionListener() {
@@ -936,9 +928,13 @@ public void tabel_barang (){
         });
 
         scbtl.setBackground(new java.awt.Color(255, 232, 22));
-        scbtl.setForeground(new java.awt.Color(0, 0, 0));
         scbtl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         scbtl.setText("  SCAN");
+        scbtl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scbtlActionPerformed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -960,7 +956,6 @@ public void tabel_barang (){
         jLabel27.setText("HARGA");
 
         kembalikecari1.setBackground(new java.awt.Color(255, 232, 22));
-        kembalikecari1.setForeground(new java.awt.Color(0, 0, 0));
         kembalikecari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
         kembalikecari1.setText("KEMBALI");
         kembalikecari1.addActionListener(new java.awt.event.ActionListener() {
@@ -970,7 +965,6 @@ public void tabel_barang (){
         });
 
         logout1.setBackground(new java.awt.Color(255, 232, 22));
-        logout1.setForeground(new java.awt.Color(0, 0, 0));
         logout1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
         logout1.setText(" KELUAR");
         logout1.addActionListener(new java.awt.event.ActionListener() {
@@ -1439,6 +1433,14 @@ public void tabel_barang (){
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_logout1ActionPerformed
+
+    private void scbtlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scbtlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scbtlActionPerformed
+
+    private void HargaBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HargaBayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HargaBayarActionPerformed
 
     /**
      * @param args the command line arguments
