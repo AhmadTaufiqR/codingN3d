@@ -137,18 +137,21 @@ private void Banyak(){
 public void tampil_barang(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Satuan");
-        model.addColumn("Jumlah");
-        model.addColumn("Harga");
+        model.addColumn("Nama barang");
+        model.addColumn("Stok");
+        model.addColumn("Eceran");
+        model.addColumn("Grosir");
+        model.addColumn("Harga Ecer");
+        model.addColumn("Harga Grosir");
 
         try {
             String sql = "Select * From barang where tanggal = '"+tgl+"';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()) {
-                model.addRow(new Object[]{res.getString("Id_barang"), res.getString("nama_barang"), res.getString("satuan"), res.getString("jumlah"), res.getString("harga")});
+            while (res.next()){
+                model.addRow(new Object[]{res.getString("id_barang"),
+                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
 
             table_barang.setModel(model);
@@ -1301,6 +1304,7 @@ public void tampil_barang(){
         Kasir.add(TransaksiPembelian);
         Kasir.repaint();
         Kasir.revalidate();
+        tampil_barang();
     }//GEN-LAST:event_btn_tpembelianActionPerformed
 
     private void tambahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprdActionPerformed
@@ -1316,6 +1320,10 @@ public void tampil_barang(){
                     pst.setString(5, harga1.getText());
                     pst.setString(6, tgl);
                     pst.executeUpdate();
+                    tampil_barang();
+                    satuan1.setSelectedItem("PILIH SATUAN");
+                    namasatuan1.setText("");
+                    harga1.setText("");
                     JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
                 } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
@@ -1333,6 +1341,9 @@ public void tampil_barang(){
                     pst.setString(6, tgl);
                     pst.executeUpdate();
                     tampil_barang();
+                    satuan1.setSelectedItem("PILIH SATUAN");
+                    namasatuan1.setText("");
+                    harga1.setText("");
                     JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
                 } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
@@ -1377,14 +1388,20 @@ public void tampil_barang(){
     private void btlprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprdActionPerformed
         try {
             
-            String sql = "DELETE FROM barang WHERE id_barang='"+id_barangi1.getText()+"';";
+            String sql = "DELETE FROM barang WHERE id_barang='"+id_barangi1.getText()+"' + tanggal = '"+tgl+"';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
             hapus();
             tampil_barang();
-            
+            nama_suplier.setSelectedItem("PILIH SUPLIER");
+            id_barangi1.setText("");
+                    namabarang1.setText("");
+                    jumlah.setText("");
+            satuan1.setSelectedItem("PILIH SATUAN");
+                    namasatuan1.setText("");
+                    harga1.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
         }        // TODO add your handling code here:
