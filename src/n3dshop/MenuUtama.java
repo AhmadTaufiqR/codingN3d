@@ -53,7 +53,6 @@ public class MenuUtama extends javax.swing.JFrame {
         Tampil_Jam();
         PilihSatuan();
         notransaksi();
-        tampil_combo();
         Tampil_Tanggal();
         
     }
@@ -251,9 +250,6 @@ public void tampil_barang(){
         }
     }
 
-    public void tampil_combo(){
-        
-    }
 
 
     /**
@@ -1546,18 +1542,21 @@ public void tampil_barang(){
 
     private void namaSupplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namaSupplierKeyReleased
         // TODO add your handling code here:
-        try {
+            try {
             String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
-            while (res.next()) {
+                    while (res.next()) {
             namaSupplier.setText(res.getString("nama_supplier"));
                 
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
+        
     }//GEN-LAST:event_namaSupplierKeyReleased
 
 
