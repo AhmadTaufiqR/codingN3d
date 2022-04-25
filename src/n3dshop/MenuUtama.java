@@ -1435,10 +1435,10 @@ public void tampil_barang(){
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID BARANG");
-        model.addColumn("Nama Barang");
-        model.addColumn("Satuan");
-        model.addColumn("Jumlah");
-        model.addColumn("Harga");
+        model.addColumn("NAMA BARANG");
+        model.addColumn("SATUAN");
+        model.addColumn("JUMLAH");
+        model.addColumn("HARGA");
 
         try {
             String sql = "Select * From keranjang where keterangan = 'PEMBELIAN' + nama_barang LIKE '%"+mencari1.getText()+"%';";
