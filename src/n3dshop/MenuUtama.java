@@ -1434,7 +1434,7 @@ public void tampil_barang(){
     private void mencari1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencari1KeyReleased
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Id barang");
+        model.addColumn("ID BARANG");
         model.addColumn("Nama Barang");
         model.addColumn("Satuan");
         model.addColumn("Jumlah");
