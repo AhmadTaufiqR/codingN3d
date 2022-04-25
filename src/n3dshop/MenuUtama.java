@@ -1386,7 +1386,10 @@ public void tampil_barang(){
     }//GEN-LAST:event_bataltrnActionPerformed
 
     private void btlprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprdActionPerformed
-        try {
+                // TODO add your handling code here:
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Anda Menghapus Data ini???","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(ok==0){
+            try {
             
             String sql = "DELETE FROM barang WHERE id_barang='"+id_barangi1.getText()+"' + tanggal = '"+tgl+"';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
@@ -1394,7 +1397,6 @@ public void tampil_barang(){
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
             hapus();
-            tampil_barang();
             nama_suplier.setSelectedItem("PILIH SUPLIER");
             id_barangi1.setText("");
                     namabarang1.setText("");
@@ -1404,7 +1406,9 @@ public void tampil_barang(){
                     harga1.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
-        }        // TODO add your handling code here:
+        }
+            tampil_barang();
+        }
     }//GEN-LAST:event_btlprdActionPerformed
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
@@ -1454,12 +1458,12 @@ public void tampil_barang(){
     private void mencariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariKeyReleased
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Id barang");
-        model.addColumn("Nama Barang");
-        model.addColumn("Satuan");
-        model.addColumn("Jumlah");
-        model.addColumn("Harga");
-        model.addColumn("Action");
+        model.addColumn("ID BARANG");
+        model.addColumn("NAMA BARANG");
+        model.addColumn("SATUAN");
+        model.addColumn("JUMLAH");
+        model.addColumn("HARGA");
+        model.addColumn("ACTION");
 
         try {
             String sql = "Select * From keranjang where nama_barang LIKE '%"+mencari.getText()+"%';";
