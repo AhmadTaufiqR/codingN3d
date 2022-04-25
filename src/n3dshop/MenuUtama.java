@@ -252,18 +252,7 @@ public void tampil_barang(){
     }
 
     public void tampil_combo(){
-        try {
-            String sql1 = "SELECT * FROM supplier;";
-            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st = conn.createStatement();
-            java.sql.ResultSet res = st.executeQuery(sql1);
-            while (res.next()) {
-                 nama_suplier.addItem(res.getString("nama_supplier"));
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 
@@ -298,7 +287,7 @@ public void tampil_barang(){
         jPanel4 = new javax.swing.JPanel();
         batal = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        satuan = new javax.swing.JComboBox<>();
+        satuan = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
         jumlahprd = new javax.swing.JTextField();
         TransaksiPenjualan = new javax.swing.JPanel();
@@ -344,14 +333,14 @@ public void tampil_barang(){
         btlprd = new javax.swing.JButton();
         scbtl = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        satuan1 = new javax.swing.JComboBox<>();
+        satuan1 = new javax.swing.JComboBox<String>();
         namasatuan1 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         harga1 = new javax.swing.JTextField();
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
-        nama_suplier = new javax.swing.JComboBox<>();
+        namaSupplier = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -528,7 +517,7 @@ public void tampil_barang(){
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("SATUAN");
 
-        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
+        satuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
         satuan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satuanActionPerformed(evt);
@@ -879,7 +868,7 @@ public void tampil_barang(){
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1270, Short.MAX_VALUE)
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -973,7 +962,7 @@ public void tampil_barang(){
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("SATUAN");
 
-        satuan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
+        satuan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
         satuan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satuan1ActionPerformed(evt);
@@ -1006,10 +995,9 @@ public void tampil_barang(){
             }
         });
 
-        nama_suplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SUPLIER" }));
-        nama_suplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nama_suplierActionPerformed(evt);
+        namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                namaSupplierKeyReleased(evt);
             }
         });
 
@@ -1029,36 +1017,32 @@ public void tampil_barang(){
                 .addGap(12, 12, 12)
                 .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel24))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel23))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel13))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel25))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel26))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel27)))
-                .addGap(17, 17, 17)
-                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nama_suplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel24))
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPembelianLayout.createSequentialGroup()
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel23)
+                                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel13)))
+                            .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel27)
+                                .addComponent(jLabel26)))
+                        .addGap(18, 18, 18)))
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(id_barangi1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(namabarang1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(jumlah, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(satuan1, 0, 243, Short.MAX_VALUE)
+                    .addComponent(namasatuan1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(harga1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(namaSupplier))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(TransaksiPembelianLayout.createSequentialGroup()
@@ -1095,37 +1079,36 @@ public void tampil_barang(){
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel22)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel24)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel23)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel13)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel25)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel26)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel27))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(nama_suplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22))
                         .addGap(18, 18, 18)
-                        .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24))
                         .addGap(18, 18, 18)
-                        .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23))
                         .addGap(18, 18, 18)
-                        .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))
                         .addGap(23, 23, 23)
-                        .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
                         .addGap(18, 18, 18)
-                        .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))
                         .addGap(18, 18, 18)
-                        .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66)
+                .addGap(72, 72, 72)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1133,7 +1116,7 @@ public void tampil_barang(){
                     .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         Kasir.add(TransaksiPembelian, "card3");
@@ -1397,7 +1380,7 @@ public void tampil_barang(){
             st.executeUpdate(sql);
             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
             hapus();
-            nama_suplier.setSelectedItem("PILIH SUPLIER");
+            namaSupplier.setText("");
             id_barangi1.setText("");
                     namabarang1.setText("");
                     jumlah.setText("");
@@ -1561,9 +1544,21 @@ public void tampil_barang(){
         // TODO add your handling code here:
     }//GEN-LAST:event_HargaBayarActionPerformed
 
-    private void nama_suplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_suplierActionPerformed
+    private void namaSupplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namaSupplierKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_nama_suplierActionPerformed
+        try {
+            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet res = st.executeQuery(sql1);
+            while (res.next()) {
+            namaSupplier.setText(res.getString("nama_supplier"));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_namaSupplierKeyReleased
 
 
     /**
@@ -1665,7 +1660,7 @@ public void tampil_barang(){
     private javax.swing.JButton logout1;
     private javax.swing.JTextField mencari;
     private javax.swing.JTextField mencari1;
-    private javax.swing.JComboBox<String> nama_suplier;
+    private javax.swing.JTextField namaSupplier;
     private javax.swing.JTextField namabarang1;
     private javax.swing.JTextField namaprd;
     private javax.swing.JTextField namasatuan1;
