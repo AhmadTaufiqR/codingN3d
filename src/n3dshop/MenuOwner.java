@@ -918,6 +918,7 @@ private void Tabel_Akun(){
         });
         Profil.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 259, 245, 29));
 
+        jButton5.setBackground(new java.awt.Color(240, 225, 89));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/edit.png"))); // NOI18N
         jButton5.setText(" EDIT");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -927,6 +928,7 @@ private void Tabel_Akun(){
         });
         Profil.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 557, 120, 43));
 
+        jButton6.setBackground(new java.awt.Color(240, 225, 89));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/diskette.png"))); // NOI18N
         jButton6.setText(" SIMPAN");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
