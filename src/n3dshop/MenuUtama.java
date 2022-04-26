@@ -283,7 +283,7 @@ public void tampil_barang(){
         jPanel4 = new javax.swing.JPanel();
         batal = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        satuan = new javax.swing.JComboBox<String>();
+        satuan = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jumlahprd = new javax.swing.JTextField();
         TransaksiPenjualan = new javax.swing.JPanel();
@@ -329,7 +329,7 @@ public void tampil_barang(){
         btlprd = new javax.swing.JButton();
         scbtl = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        satuan1 = new javax.swing.JComboBox<String>();
+        satuan1 = new javax.swing.JComboBox<>();
         namasatuan1 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -513,7 +513,7 @@ public void tampil_barang(){
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("SATUAN");
 
-        satuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
+        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SATUAN", "ECERAN", "GROSIR" }));
         satuan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satuanActionPerformed(evt);
@@ -701,6 +701,11 @@ public void tampil_barang(){
         jButton2.setBackground(new java.awt.Color(255, 232, 22));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         jButton2.setText("CETAK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         bataltrn.setBackground(new java.awt.Color(255, 232, 22));
         bataltrn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
@@ -958,7 +963,7 @@ public void tampil_barang(){
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("SATUAN");
 
-        satuan1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
+        satuan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
         satuan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satuan1ActionPerformed(evt);
@@ -1558,6 +1563,17 @@ public void tampil_barang(){
         }
         
     }//GEN-LAST:event_namaSupplierKeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:MessageFormat judul= new MessageFormat("Data Barang Bulan Ini");
+        MessageFormat judul= new MessageFormat("Data Barang Bulan Ini");
+        MessageFormat footer= new MessageFormat("page(0,number,integer");
+        
+        try { 
+            list_barang.print(JTable.PrintMode.FIT_WIDTH,judul,footer);
+        } catch (PrinterException ex) {
+        }System.err.print("Error Printer");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     /**
