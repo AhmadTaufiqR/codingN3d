@@ -54,7 +54,6 @@ public class MenuUtama extends javax.swing.JFrame {
         PilihSatuan();
         notransaksi();
         Tampil_Tanggal();
-        
     }
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
@@ -249,9 +248,70 @@ public void tampil_barang(){
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+public void print() {
+        String IDT = id_transaksi.getText();
+        String hrgt = HargaBayar.getText();
+        
+        DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
+        
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
+        
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        
+        for (int i = 0; i < tabmodel.getRowCount(); i++) {
+            String bk = (String) tabmodel.getValueAt(i, 0);
+            String nm = (String) tabmodel.getValueAt(i, 1);
+            String st = (String) tabmodel.getValueAt(i, 2);
+            String jm = (String) tabmodel.getValueAt(i, 3);
+            String hgt = (String) tabmodel.getValueAt(i, 4);
+            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
+        }
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Bayar : " + bayar.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
+    }
 
-
-
+public void print1() {
+        String IDT = id_transaksi.getText();
+        String hrgt = HargaBayar.getText();
+        
+        DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
+        
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        
+        for (int i = 0; i < tabmodel.getRowCount(); i++) {
+            String bk = (String) tabmodel.getValueAt(i, 0);
+            String nm = (String) tabmodel.getValueAt(i, 1);
+            String st = (String) tabmodel.getValueAt(i, 2);
+            String jm = (String) tabmodel.getValueAt(i, 3);
+            String hgt = (String) tabmodel.getValueAt(i, 4);
+            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
+        }
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,6 +321,10 @@ public void tampil_barang(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        strukpnj = new javax.swing.JScrollPane();
+        strukpeminjaman = new javax.swing.JTextArea();
+        strukpemb = new javax.swing.JScrollPane();
+        strukpembelian = new javax.swing.JTextArea();
         Kasir = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -303,7 +367,7 @@ public void tampil_barang(){
         jLabel14 = new javax.swing.JLabel();
         kembali = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CETAK = new javax.swing.JButton();
         bataltrn = new javax.swing.JButton();
         scan = new javax.swing.JButton();
         tanggalreal = new javax.swing.JLabel();
@@ -337,6 +401,14 @@ public void tampil_barang(){
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
+
+        strukpeminjaman.setColumns(20);
+        strukpeminjaman.setRows(5);
+        strukpnj.setViewportView(strukpeminjaman);
+
+        strukpembelian.setColumns(20);
+        strukpembelian.setRows(5);
+        strukpemb.setViewportView(strukpembelian);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -698,12 +770,12 @@ public void tampil_barang(){
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 232, 22));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
-        jButton2.setText("CETAK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CETAK.setBackground(new java.awt.Color(255, 232, 22));
+        CETAK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
+        CETAK.setText("CETAK");
+        CETAK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CETAKActionPerformed(evt);
             }
         });
 
@@ -776,7 +848,7 @@ public void tampil_barang(){
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                         .addComponent(kembalikecari, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CETAK, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -847,7 +919,7 @@ public void tampil_barang(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kembalikecari, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CETAK, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bataltrn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1564,16 +1636,14 @@ public void tampil_barang(){
         
     }//GEN-LAST:event_namaSupplierKeyReleased
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:MessageFormat judul= new MessageFormat("Data Barang Bulan Ini");
-        MessageFormat judul= new MessageFormat("Data Barang Bulan Ini");
-        MessageFormat footer= new MessageFormat("page(0,number,integer");
-        
-        try { 
-            list_barang.print(JTable.PrintMode.FIT_WIDTH,judul,footer);
-        } catch (PrinterException ex) {
-        }System.err.print("Error Printer");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
+        print();
+        try {
+                strukpeminjaman.print();
+            } catch (java.awt.print.PrinterException e) {
+                System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
+            }
+    }//GEN-LAST:event_CETAKActionPerformed
 
 
     /**
@@ -1613,6 +1683,7 @@ public void tampil_barang(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CETAK;
     public javax.swing.JPanel Cari;
     private javax.swing.JTextField HargaBayar;
     private javax.swing.JPanel Kasir;
@@ -1632,7 +1703,6 @@ public void tampil_barang(){
     private javax.swing.JTextField id_barangi1;
     private javax.swing.JTextField id_transaksi;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1684,6 +1754,10 @@ public void tampil_barang(){
     private javax.swing.JComboBox<String> satuan1;
     private javax.swing.JButton scan;
     private javax.swing.JButton scbtl;
+    public javax.swing.JScrollPane strukpemb;
+    public static javax.swing.JTextArea strukpembelian;
+    public static javax.swing.JTextArea strukpeminjaman;
+    public javax.swing.JScrollPane strukpnj;
     private javax.swing.JTable table_barang;
     private javax.swing.JButton tambah;
     private javax.swing.JButton tambahprd;
