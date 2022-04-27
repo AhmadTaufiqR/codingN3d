@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "SELECT username, password, level from petugas WHERE username='" + Username.getText()
+            String sql = "SELECT username, password, level, nama from petugas WHERE username='" + Username.getText()
                     + "'AND password='" + txt_password.getText()
                     + "'AND level='"+ Level.getSelectedItem()+"'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -161,6 +161,7 @@ public class Login extends javax.swing.JFrame {
             java.sql.ResultSet rs = pst.executeQuery(sql);
 
             if (rs.next()) {
+                MenuUtama.NamaKasir.setText(rs.getString("nama"));
                 if (Username.getText().equals(rs.getString("username"))
                         && txt_password.getText().equals(rs.getString("password"))
                         && Level.getSelectedItem().equals(rs.getString("level"))) {

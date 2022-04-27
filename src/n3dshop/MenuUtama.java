@@ -251,6 +251,8 @@ public void tampil_barang(){
 public void print() {
         String IDT = id_transaksi.getText();
         String hrgt = HargaBayar.getText();
+        String byr = bayar.getText();
+        String kmbl = kembali.getText();
         
         DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
         
@@ -259,11 +261,11 @@ public void print() {
         strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
-        
+        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI : " + IDT + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal       : " + tgl + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Kasir         : " + NamaKasir.getText() + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
         
         for (int i = 0; i < tabmodel.getRowCount(); i++) {
             String bk = (String) tabmodel.getValueAt(i, 0);
@@ -273,10 +275,15 @@ public void print() {
             String hgt = (String) tabmodel.getValueAt(i, 4);
             strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
         }
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Bayar : " + bayar.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "Bayar : " + byr + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "KEMBALI :" + kmbl + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
     }
@@ -285,7 +292,7 @@ public void print1() {
         String IDT = id_transaksi.getText();
         String hrgt = HargaBayar.getText();
         
-        DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
+        DefaultTableModel tabmodel = (DefaultTableModel) table_barang.getModel();
         
         strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
@@ -1473,13 +1480,12 @@ public void print1() {
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
-        MessageFormat judul= new MessageFormat("Data Barang Bulan Ini");
-        MessageFormat footer= new MessageFormat("page(0,number,integer");
-        
-        try { 
-            table_barang.print(JTable.PrintMode.FIT_WIDTH,judul,footer);
-        } catch (PrinterException ex) {
-        }System.err.print("Error Printer");
+        print1();
+        try {
+                strukpembelian.print();
+            } catch (java.awt.print.PrinterException e) {
+                System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
+            }
     }//GEN-LAST:event_printActionPerformed
 
     private void mencari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mencari1ActionPerformed
@@ -1687,6 +1693,7 @@ public void print1() {
     public javax.swing.JPanel Cari;
     private javax.swing.JTextField HargaBayar;
     private javax.swing.JPanel Kasir;
+    public static final javax.swing.JTextField NamaKasir = new javax.swing.JTextField();
     private javax.swing.JPanel TransaksiPembelian;
     private javax.swing.JPanel TransaksiPenjualan;
     private javax.swing.JTable barang_barang;
