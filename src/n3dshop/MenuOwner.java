@@ -172,6 +172,31 @@ public void Tampil_Tanggal() {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         Simpan5 = new javax.swing.JButton();
+        Akun = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        cariAkun = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        namaAkun = new javax.swing.JTextField();
+        usernameAkun = new javax.swing.JTextField();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabelAkun = new javax.swing.JTable();
+        simpanAkun = new javax.swing.JButton();
+        editAkun = new javax.swing.JButton();
+        hapusAkun = new javax.swing.JButton();
+        pilihanAkun = new javax.swing.JComboBox<>();
+        noHpAkun = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        gambar = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel40 = new javax.swing.JLabel();
+        alamatAkun = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        PasswordAkun = new javax.swing.JTextField();
+        btn_unggah = new javax.swing.JButton();
+        txt_filename = new javax.swing.JTextField();
         Profil = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -202,31 +227,6 @@ public void Tampil_Tanggal() {
         Simpan6 = new javax.swing.JButton();
         Edit4 = new javax.swing.JButton();
         Hapus4 = new javax.swing.JButton();
-        Akun = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        cariAkun = new javax.swing.JTextField();
-        jLabel36 = new javax.swing.JLabel();
-        namaAkun = new javax.swing.JTextField();
-        usernameAkun = new javax.swing.JTextField();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tabelAkun = new javax.swing.JTable();
-        simpanAkun = new javax.swing.JButton();
-        editAkun = new javax.swing.JButton();
-        hapusAkun = new javax.swing.JButton();
-        pilihanAkun = new javax.swing.JComboBox<>();
-        noHpAkun = new javax.swing.JTextField();
-        jLabel39 = new javax.swing.JLabel();
-        gambar = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel40 = new javax.swing.JLabel();
-        alamatAkun = new javax.swing.JTextField();
-        jLabel41 = new javax.swing.JLabel();
-        PasswordAkun = new javax.swing.JTextField();
-        btn_unggah = new javax.swing.JButton();
-        txt_filename = new javax.swing.JTextField();
         DataReturn = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -889,6 +889,253 @@ public void Tampil_Tanggal() {
             }
         });
 
+        jLabel34.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/akun.png"))); // NOI18N
+        jLabel34.setText(" AKUN");
+        jLabel34.setToolTipText("");
+
+        jLabel35.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel35.setText("USERNAME");
+
+        cariAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariAkunActionPerformed(evt);
+            }
+        });
+        cariAkun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariAkunKeyReleased(evt);
+            }
+        });
+
+        jLabel36.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel36.setText("Cari : ");
+
+        namaAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaAkunActionPerformed(evt);
+            }
+        });
+
+        usernameAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameAkunActionPerformed(evt);
+            }
+        });
+
+        jLabel37.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel37.setText("NAMA");
+
+        jLabel38.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel38.setText("LEVEL");
+
+        tabelAkun.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(tabelAkun);
+
+        simpanAkun.setBackground(new java.awt.Color(240, 225, 89));
+        simpanAkun.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        simpanAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/diskette.png"))); // NOI18N
+        simpanAkun.setText("SIMPAN");
+        simpanAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simpanAkunActionPerformed(evt);
+            }
+        });
+
+        editAkun.setBackground(new java.awt.Color(240, 225, 89));
+        editAkun.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        editAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/edit.png"))); // NOI18N
+        editAkun.setText("EDIT");
+        editAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editAkunActionPerformed(evt);
+            }
+        });
+
+        hapusAkun.setBackground(new java.awt.Color(240, 225, 89));
+        hapusAkun.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        hapusAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
+        hapusAkun.setText("HAPUS");
+        hapusAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusAkunActionPerformed(evt);
+            }
+        });
+
+        pilihanAkun.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Salah Satu", "OWNER", "KASIR" }));
+
+        noHpAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noHpAkunActionPerformed(evt);
+            }
+        });
+
+        jLabel39.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel39.setText("NO HP");
+
+        gambar.setForeground(new java.awt.Color(255, 255, 255));
+        gambar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FOTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 10), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jButton2.setText("UNGGAH");
+
+        jLabel40.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel40.setText("ALAMAT");
+
+        alamatAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alamatAkunActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel41.setText("PASSWORD");
+
+        PasswordAkun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordAkunActionPerformed(evt);
+            }
+        });
+
+        btn_unggah.setBackground(new java.awt.Color(240, 225, 89));
+        btn_unggah.setText("UNGGAH");
+        btn_unggah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_unggahActionPerformed(evt);
+            }
+        });
+
+        txt_filename.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_filenameActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AkunLayout = new javax.swing.GroupLayout(Akun);
+        Akun.setLayout(AkunLayout);
+        AkunLayout.setHorizontalGroup(
+            AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AkunLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(472, 472, 472)
+                .addComponent(jLabel36)
+                .addGap(6, 6, 6)
+                .addComponent(cariAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(AkunLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 956, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(AkunLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(simpanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(editAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(hapusAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(AkunLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel37)
+                    .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel39)
+                        .addComponent(jLabel38)))
+                .addGap(39, 39, 39)
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(namaAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(AkunLayout.createSequentialGroup()
+                                .addComponent(jLabel40)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(alamatAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(AkunLayout.createSequentialGroup()
+                                .addComponent(jLabel41)
+                                .addGap(18, 18, 18)
+                                .addComponent(PasswordAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AkunLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(264, 264, 264))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_unggah)
+                                .addGap(317, 317, 317)))
+                        .addComponent(jButton2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(373, 373, 373))))
+        );
+        AkunLayout.setVerticalGroup(
+            AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AkunLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(usernameAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35)
+                            .addComponent(alamatAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel40))
+                        .addGap(20, 20, 20)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namaAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PasswordAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel41))
+                        .addGap(20, 20, 20)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel39))
+                            .addComponent(jButton2)))
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_unggah, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(simpanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hapusAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
         javax.swing.GroupLayout DataLaporanLayout = new javax.swing.GroupLayout(DataLaporan);
         DataLaporan.setLayout(DataLaporanLayout);
         DataLaporanLayout.setHorizontalGroup(
@@ -917,7 +1164,12 @@ public void Tampil_Tanggal() {
                 .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 289, Short.MAX_VALUE))
+            .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DataLaporanLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Akun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         DataLaporanLayout.setVerticalGroup(
             DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -937,6 +1189,11 @@ public void Tampil_Tanggal() {
                 .addGap(18, 18, 18)
                 .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(DataLaporanLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(Akun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         KONTEN.add(DataLaporan, "card8");

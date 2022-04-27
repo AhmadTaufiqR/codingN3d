@@ -86,6 +86,28 @@ public void Tampil_Tanggal() {
     tgl = smpdtfmt.format(tglsekarang);
     
 }
+private void tabel_return (){
+    //membuat tampilan tabel
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id Return");
+        model.addColumn("Id Barang");
+        model.addColumn("Nama Suplier");
+        model.addColumn("Jumlah");
+
+        //menampilkan database dalam tabel
+        try {
+            String sql = "SELECT id_return,";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()){
+                model.addRow(new Object[]{res.getString("id_barang"),
+                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+            }
+            tabel_return.setModel(model);
+        } catch (Exception e) {
+        }
+    }
 private void load_table (){
     //membuat tampilan tabel
         DefaultTableModel model = new DefaultTableModel();
