@@ -302,6 +302,7 @@ public void print1() {
         strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Suplier :" + namaSupplier.getText() + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
         
@@ -1625,21 +1626,20 @@ public void print1() {
 
     private void namaSupplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namaSupplierKeyReleased
         // TODO add your handling code here:
-            try {
+       try {
             String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
-                    while (res.next()) {
-            namaSupplier.setText(res.getString("nama_supplier"));
-                
+            while (res.next()) {
+            res.getString("nama_supplier");
             }
-            
+                if (namaSupplier.getText() == null) {
+                    namaSupplier.setText("");
+                }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
-        
-        }
-        
+        } 
     }//GEN-LAST:event_namaSupplierKeyReleased
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
@@ -1771,4 +1771,20 @@ public void print1() {
     private javax.swing.JLabel tanggalreal;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
+public void namaSup(){ 
+            try {
+            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet res = st.executeQuery(sql1);
+            while (res.next()) {
+            res.getString("nama_supplier");
+            }
+                if (namaSupplier.getText() == null) {
+                    namaSupplier.setText("");
+                }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }   
 }
