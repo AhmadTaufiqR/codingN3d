@@ -1078,10 +1078,10 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                        <StringItem index="0" value="PILIH WAKTU"/>
+                        <StringItem index="1" value="HARI"/>
+                        <StringItem index="2" value="BULAN"/>
+                        <StringItem index="3" value="TAHUN"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -1303,7 +1303,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="215" y="557" width="120" height="43"/>
+                      <AbsoluteConstraints x="60" y="330" width="120" height="43"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1313,16 +1313,16 @@
                       <Color blue="59" green="e1" red="f0" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/FIleGambar/diskette.png"/>
+                      <Image iconType="3" name="/FIleGambar/delete (1).png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value=" SIMPAN"/>
+                    <Property name="text" type="java.lang.String" value=" HAPUS"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="54" y="557" width="120" height="43"/>
+                      <AbsoluteConstraints x="210" y="330" width="120" height="43"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1354,11 +1354,17 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="59" green="e1" red="f0" type="rgb"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/FIleGambar/upload.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="UNGGAH"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="680" y="310" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="680" y="310" width="120" height="43"/>
                     </Constraint>
                   </Constraints>
                 </Component>

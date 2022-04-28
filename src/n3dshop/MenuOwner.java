@@ -812,7 +812,7 @@ private void load_table (){
         jLabel22.setText("Pilih");
 
         jComboBox1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH WAKTU", "HARI", "BULAN", "TAHUN" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -968,17 +968,17 @@ private void load_table (){
                 jButton5ActionPerformed(evt);
             }
         });
-        Profil.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 557, 120, 43));
+        Profil.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 120, 43));
 
         jButton6.setBackground(new java.awt.Color(240, 225, 89));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/diskette.png"))); // NOI18N
-        jButton6.setText(" SIMPAN");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
+        jButton6.setText(" HAPUS");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        Profil.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 557, 120, 43));
+        Profil.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 43));
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("foto");
@@ -992,8 +992,10 @@ private void load_table (){
         });
         Profil.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 180, -1));
 
+        jButton4.setBackground(new java.awt.Color(240, 225, 89));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/upload.png"))); // NOI18N
         jButton4.setText("UNGGAH");
-        Profil.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
+        Profil.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 120, 43));
 
         KONTEN.add(Profil, "card9");
 
@@ -1720,10 +1722,6 @@ private void load_table (){
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_filenameActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -1794,6 +1792,10 @@ private void load_table (){
     private void HargaDataBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HargaDataBarangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HargaDataBarangActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
