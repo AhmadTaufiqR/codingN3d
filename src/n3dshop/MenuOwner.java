@@ -5,6 +5,7 @@
  */
 package n3dshop;
 
+import com.mysql.jdbc.Statement;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,6 +17,8 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -31,7 +34,7 @@ import sun.security.util.Password;
  */
 public class MenuOwner extends javax.swing.JFrame {
 
-    public String SATUAN;
+    public String SATUAN, tgl;
     /**
      * Creates new form MenuOwner
      */
@@ -39,6 +42,7 @@ public class MenuOwner extends javax.swing.JFrame {
         initComponents();
         Tabel_Akun();
         load_table();
+        Tampil_Tanggal();
     }
 private void Tabel_Akun(){
         DefaultTableModel model=new DefaultTableModel();
@@ -92,6 +96,13 @@ private void load_table (){
         } catch (Exception e) {
         }
     }
+
+public void Tampil_Tanggal() {
+    java.util.Date tglsekarang = new java.util.Date();
+    SimpleDateFormat smpdtfmt = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+    tgl = smpdtfmt.format(tglsekarang);
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1479,6 +1490,18 @@ private void load_table (){
 
     private void hapusdatabarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusdatabarangActionPerformed
         // TODO add your handling code here:
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Anda Menghapus Data ini???","Confirmation",JOptionPane.YES_NO_OPTION);
+        
+        if(ok==0){
+            try {
+                Statement statement=(Statement)Koneksi.getkoneksi().createStatement();
+                statement.executeUpdate("DELETE from barang where Id_barang = '"+IdBarang.getText()+"'");
+                JOptionPane.showMessageDialog(null, "Data berhasil di HAPUS");
+                load_table();
+                } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Data gagal di HAPUS");
+            }
+        }
         
     }//GEN-LAST:event_hapusdatabarangActionPerformed
 
