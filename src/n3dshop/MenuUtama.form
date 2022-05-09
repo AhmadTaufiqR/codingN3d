@@ -10,7 +10,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="strukpenjualan">
+        <Component class="javax.swing.JTextArea" name="strukpeminjaman">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -106,7 +106,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" pref="1280" max="32767" attributes="0"/>
                   <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -130,14 +130,14 @@
                                           <Component id="satuan" alignment="0" pref="319" max="32767" attributes="0"/>
                                           <Component id="namaprd" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="hargaprd" alignment="0" pref="319" max="32767" attributes="0"/>
                                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jumlahprd" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jumlahprd" min="-2" pref="319" max="-2" attributes="0"/>
+                                  <Component id="hargaprduk" min="-2" pref="319" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="48" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -161,18 +161,18 @@
                               <Component id="satuan" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="jumlahprd" min="-2" pref="39" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="hargaprd" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="hargaprduk" min="-2" pref="39" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="tambah" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="batal" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="107" max="32767" attributes="0"/>
+                              <EmptySpace pref="111" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -210,7 +210,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="btn_return">
+                <Component class="javax.swing.JButton" name="btn_tjual">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="6" green="f2" red="fc" type="rgb"/>
@@ -218,7 +218,10 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="RETURN BARANG"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/FIleGambar/Vector-2.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="TRANSAKSI JUAL"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder/>
@@ -226,11 +229,11 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_returnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_tjualActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="710" y="30" width="170" height="59"/>
+                      <AbsoluteConstraints x="901" y="32" width="170" height="59"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -258,33 +261,6 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="1087" y="32" width="170" height="59"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="javax.swing.JButton" name="btn_tjual1">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="6" green="f2" red="fc" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/FIleGambar/Vector-2.png"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="TRANSAKSI JUAL"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                        <EmptyBorder/>
-                      </Border>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_tjual1ActionPerformed"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="901" y="32" width="170" height="59"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -340,7 +316,7 @@
                               <Component id="cari" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="421" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -468,14 +444,6 @@
                 <Property name="text" type="java.lang.String" value="HARGA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="hargaprd">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hargaprdActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="tambah">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -571,9 +539,17 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jumlahprd">
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jumlahprdKeyPressed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlahprdActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jumlahprdKeyReleased"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jumlahprdKeyTyped"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="hargaprduk">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hargaprdukActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="hargaprdukKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
@@ -610,7 +586,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="mencari" min="-2" pref="235" max="-2" attributes="0"/>
+                              <Component id="mencariPenjualan" min="-2" pref="235" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="tanggalreal" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
@@ -654,7 +630,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="kembali" alignment="1" min="-2" pref="294" max="-2" attributes="0"/>
-                                  <Component id="bayar" alignment="1" min="-2" pref="294" max="-2" attributes="0"/>
+                                  <Component id="bayar1" alignment="1" min="-2" pref="294" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -681,14 +657,14 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="mencari" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="mencariPenjualan" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <Component id="tanggalreal" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="223" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -703,7 +679,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="bayar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="bayar1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -722,7 +698,7 @@
                           <Component id="scan" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="logout" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -759,12 +735,6 @@
                 </DimensionLayout>
               </Layout>
             </Container>
-            <Component class="javax.swing.JTextField" name="mencari">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mencariActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mencariKeyReleased"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="HargaBayar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -847,10 +817,10 @@
                 <Property name="text" type="java.lang.String" value="BAYAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="bayar">
+            <Component class="javax.swing.JTextField" name="bayar1">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bayarActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="bayarKeyReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bayar1ActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="bayar1KeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
@@ -925,7 +895,7 @@
             <Component class="javax.swing.JLabel" name="tanggalreal">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="16" style="0"/>
+                  <Font name="Segoe UI" size="16" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -959,6 +929,11 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="mencariPenjualan">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mencariPenjualanKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>
@@ -1021,7 +996,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="id_barangi1" pref="243" max="32767" attributes="0"/>
                           <Component id="namabarang1" pref="243" max="32767" attributes="0"/>
-                          <Component id="jumlah" pref="243" max="32767" attributes="0"/>
+                          <Component id="jumlah_pembelian" pref="243" max="32767" attributes="0"/>
                           <Component id="satuan1" pref="243" max="32767" attributes="0"/>
                           <Component id="namasatuan1" pref="243" max="32767" attributes="0"/>
                           <Component id="harga1" pref="243" max="32767" attributes="0"/>
@@ -1087,7 +1062,7 @@
                               </Group>
                               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jumlah" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="jumlah_pembelian" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
@@ -1183,9 +1158,6 @@
                       </Table>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="table_barangMouseClicked"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1205,7 +1177,7 @@
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mencari1KeyReleased"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jumlah">
+            <Component class="javax.swing.JTextField" name="jumlah_pembelian">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -1263,7 +1235,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/FIleGambar/flat-color-icons_print (1).png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CETAK"/>
+                <Property name="text" type="java.lang.String" value="PRINT"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printActionPerformed"/>
