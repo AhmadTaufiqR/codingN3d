@@ -40,7 +40,6 @@ public class MenuUtama extends javax.swing.JFrame {
     /**
      * Creates new form jam_digital
      */
-
     /**
      * Creates new form MenuUtama
      */
@@ -78,7 +77,8 @@ public void Tampil_Jam(){
             }
         };
     new Timer(1000, taskPerformer).start();
-    }
+    }  
+ 
 
 public void Tampil_Tanggal() {
     java.util.Date tglsekarang = new java.util.Date();
@@ -102,9 +102,9 @@ private void load_table (){
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()){
+            while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("stok"), res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             barang_barang.setModel(model);
         } catch (Exception e) {
@@ -114,13 +114,13 @@ private void load_table (){
 private void hapus(){
     namaprd.setText("");
     jumlahprd.setText("");
-    hargaprd.setText("");
+    hargaprduk.setText("");
     cari.setText("");
     satuan.setSelectedItem("SATUAN");
 }
 
-private void Banyak(){
-    try {
+    private void Banyak() {
+        try {
             String sql = "SELECT COUNT(Id_barang) AS total FROM barang";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
@@ -251,21 +251,21 @@ public void tampil_barang(){
 public void print() {
         String IDT = id_transaksi.getText();
         String hrgt = HargaBayar.getText();
-        String byr = bayar.getText();
+        String byr = bayar1.getText();
         String kmbl = kembali.getText();
         
         DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
         
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "***********************************************************************************************************************" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "ID TRANSAKSI : " + IDT + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Tanggal       : " + tgl + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Kasir         : " + NamaKasir.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "***********************************************************************************************************************" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Id Barang" + "\t" + "Nama" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI : " + IDT + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal       : " + tgl + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Kasir         : " + NamaKasir.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
         
         for (int i = 0; i < tabmodel.getRowCount(); i++) {
             String bk = (String) tabmodel.getValueAt(i, 0);
@@ -273,19 +273,19 @@ public void print() {
             String st = (String) tabmodel.getValueAt(i, 2);
             String jm = (String) tabmodel.getValueAt(i, 3);
             String hgt = (String) tabmodel.getValueAt(i, 4);
-            strukpenjualan.setText(strukpenjualan.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
+            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
         }
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "\t" + "Bayar : " + byr + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "\t" + "KEMBALI :" + kmbl + "\n" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "Bayar : " + byr + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "KEMBALI :" + kmbl + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
     }
 
 public void print1() {
@@ -294,17 +294,17 @@ public void print1() {
         
         DefaultTableModel tabmodel = (DefaultTableModel) table_barang.getModel();
         
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "***********************************************************************************************************************" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "ID TRANSAKSI :" + IDT + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Tanggal :" + tgl + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Suplier :" + namaSupplier.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "***********************************************************************************************************************" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Suplier :" + namaSupplier.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
         
         for (int i = 0; i < tabmodel.getRowCount(); i++) {
             String bk = (String) tabmodel.getValueAt(i, 0);
@@ -312,13 +312,13 @@ public void print1() {
             String st = (String) tabmodel.getValueAt(i, 2);
             String jm = (String) tabmodel.getValueAt(i, 3);
             String hgt = (String) tabmodel.getValueAt(i, 4);
-            strukpenjualan.setText(strukpenjualan.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
+            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
         }
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpenjualan.setText(strukpenjualan.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -330,16 +330,15 @@ public void print1() {
     private void initComponents() {
 
         strukpnj = new javax.swing.JScrollPane();
-        strukpenjualan = new javax.swing.JTextArea();
+        strukpeminjaman = new javax.swing.JTextArea();
         strukpemb = new javax.swing.JScrollPane();
         strukpembelian = new javax.swing.JTextArea();
         Kasir = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        btn_return = new javax.swing.JButton();
+        btn_tjual = new javax.swing.JButton();
         btn_tpembelian = new javax.swing.JButton();
-        btn_tjual1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -351,7 +350,6 @@ public void print1() {
         jLabel5 = new javax.swing.JLabel();
         namaprd = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        hargaprd = new javax.swing.JTextField();
         tambah = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         batal = new javax.swing.JButton();
@@ -359,10 +357,10 @@ public void print1() {
         satuan = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jumlahprd = new javax.swing.JTextField();
+        hargaprduk = new javax.swing.JTextField();
         TransaksiPenjualan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        mencari = new javax.swing.JTextField();
         HargaBayar = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -372,7 +370,7 @@ public void print1() {
         id_transaksi = new javax.swing.JTextField();
         jumlah_barang = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        bayar = new javax.swing.JTextField();
+        bayar1 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         kembali = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -382,6 +380,7 @@ public void print1() {
         tanggalreal = new javax.swing.JLabel();
         kembalikecari = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        mencariPenjualan = new javax.swing.JTextField();
         TransaksiPembelian = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -390,7 +389,7 @@ public void print1() {
         table_barang = new javax.swing.JTable();
         hargaTotal = new javax.swing.JTextField();
         mencari1 = new javax.swing.JTextField();
-        jumlah = new javax.swing.JTextField();
+        jumlah_pembelian = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         id_barangi1 = new javax.swing.JTextField();
@@ -410,28 +409,14 @@ public void print1() {
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
-        ReturnBarang = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        mencari2 = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tabel_return = new javax.swing.JTable();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jumlahbarang_return = new javax.swing.JTextField();
-        Id_return = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        id_barang3 = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        bataltrn1 = new javax.swing.JButton();
-        scan1 = new javax.swing.JButton();
-        kembalikecari2 = new javax.swing.JButton();
-        logout2 = new javax.swing.JButton();
-        tanggalreal2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+
+        strukpeminjaman.setColumns(20);
+        strukpeminjaman.setRows(5);
+        strukpnj.setViewportView(strukpeminjaman);
+
+        strukpembelian.setColumns(20);
+        strukpembelian.setRows(5);
+        strukpemb.setViewportView(strukpembelian);
 
         strukpenjualan.setColumns(20);
         strukpenjualan.setRows(5);
@@ -455,16 +440,17 @@ public void print1() {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Angkringan__1_-removebg-preview 1.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 291, 164));
 
-        btn_return.setBackground(new java.awt.Color(252, 242, 6));
-        btn_return.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_return.setText("RETURN BARANG");
-        btn_return.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_return.addActionListener(new java.awt.event.ActionListener() {
+        btn_tjual.setBackground(new java.awt.Color(252, 242, 6));
+        btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_tjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
+        btn_tjual.setText("TRANSAKSI JUAL");
+        btn_tjual.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_tjual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_returnActionPerformed(evt);
+                btn_tjualActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_return, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 170, 59));
+        jPanel2.add(btn_tjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 170, 59));
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
         btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -477,18 +463,6 @@ public void print1() {
             }
         });
         jPanel2.add(btn_tpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 32, 170, 59));
-
-        btn_tjual1.setBackground(new java.awt.Color(252, 242, 6));
-        btn_tjual1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tjual1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
-        btn_tjual1.setText("TRANSAKSI JUAL");
-        btn_tjual1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_tjual1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tjual1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_tjual1, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 170, 59));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -571,7 +545,7 @@ public void print1() {
                     .addComponent(total)
                     .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -582,13 +556,6 @@ public void print1() {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HARGA");
-
-        hargaprd.setEditable(false);
-        hargaprd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hargaprdActionPerformed(evt);
-            }
-        });
 
         tambah.setBackground(new java.awt.Color(252, 242, 6));
         tambah.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -638,15 +605,26 @@ public void print1() {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("JUMLAH BARANG");
 
-        jumlahprd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jumlahprdKeyPressed(evt);
+        jumlahprd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jumlahprdActionPerformed(evt);
             }
+        });
+        jumlahprd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jumlahprdKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jumlahprdKeyTyped(evt);
+        });
+
+        hargaprduk.setEditable(false);
+        hargaprduk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hargaprdukActionPerformed(evt);
+            }
+        });
+        hargaprduk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                hargaprdukKeyReleased(evt);
             }
         });
 
@@ -654,7 +632,7 @@ public void print1() {
         Cari.setLayout(CariLayout);
         CariLayout.setHorizontalGroup(
             CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CariLayout.createSequentialGroup()
                 .addContainerGap()
@@ -676,11 +654,11 @@ public void print1() {
                                     .addComponent(satuan, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE)
                                     .addComponent(namaprd, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(hargaprd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jumlahprd, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(jLabel6))
-                        .addContainerGap(48, Short.MAX_VALUE))))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(jLabel6)
+                            .addComponent(jumlahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hargaprduk, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         CariLayout.setVerticalGroup(
             CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -700,17 +678,17 @@ public void print1() {
                         .addComponent(satuan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(7, 7, 7)
                         .addComponent(jumlahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hargaprd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hargaprduk, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(107, Short.MAX_VALUE))
+                        .addContainerGap(111, Short.MAX_VALUE))
                     .addGroup(CariLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -739,17 +717,6 @@ public void print1() {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-
-        mencari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mencariActionPerformed(evt);
-            }
-        });
-        mencari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                mencariKeyReleased(evt);
-            }
-        });
 
         HargaBayar.setBackground(new java.awt.Color(255, 232, 22));
         HargaBayar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -788,14 +755,14 @@ public void print1() {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("BAYAR");
 
-        bayar.addActionListener(new java.awt.event.ActionListener() {
+        bayar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bayarActionPerformed(evt);
+                bayar1ActionPerformed(evt);
             }
         });
-        bayar.addKeyListener(new java.awt.event.KeyAdapter() {
+        bayar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                bayarKeyReleased(evt);
+                bayar1KeyReleased(evt);
             }
         });
 
@@ -839,7 +806,7 @@ public void print1() {
             }
         });
 
-        tanggalreal.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        tanggalreal.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         tanggalreal.setForeground(new java.awt.Color(255, 255, 255));
         tanggalreal.setText("tanggal");
 
@@ -858,6 +825,12 @@ public void print1() {
         logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutActionPerformed(evt);
+            }
+        });
+
+        mencariPenjualan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mencariPenjualanKeyReleased(evt);
             }
         });
 
@@ -880,7 +853,7 @@ public void print1() {
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mencariPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tanggalreal)
                         .addGap(76, 76, 76))))
@@ -916,7 +889,7 @@ public void print1() {
                         .addGap(18, 18, 18)
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(bayar1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(303, Short.MAX_VALUE))
         );
         TransaksiPenjualanLayout.setVerticalGroup(
@@ -935,12 +908,12 @@ public void print1() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(mencari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9))
+                        .addComponent(jLabel9)
+                        .addComponent(mencariPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tanggalreal))
-                .addGap(24, 24, 24)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -952,7 +925,7 @@ public void print1() {
                             .addComponent(jumlah_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bayar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addGap(18, 18, 18)
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -966,7 +939,7 @@ public void print1() {
                     .addComponent(bataltrn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(scan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         Kasir.add(TransaksiPenjualan, "card3");
@@ -1005,11 +978,6 @@ public void print1() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        table_barang.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table_barangMouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(table_barang);
 
         hargaTotal.setBackground(new java.awt.Color(255, 232, 22));
@@ -1044,7 +1012,7 @@ public void print1() {
 
         print.setBackground(new java.awt.Color(255, 232, 22));
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
-        print.setText("CETAK");
+        print.setText("PRINT");
         print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printActionPerformed(evt);
@@ -1158,7 +1126,7 @@ public void print1() {
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(id_barangi1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(namabarang1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(jumlah, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(jumlah_pembelian, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(satuan1, 0, 243, Short.MAX_VALUE)
                     .addComponent(namasatuan1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(harga1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
@@ -1213,7 +1181,7 @@ public void print1() {
                             .addComponent(jLabel23))
                         .addGap(18, 18, 18)
                         .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addGap(23, 23, 23)
                         .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1241,243 +1209,6 @@ public void print1() {
 
         Kasir.add(TransaksiPembelian, "card3");
 
-        ReturnBarang.setBackground(new java.awt.Color(0, 9, 87));
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("RETURN BARANG ");
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        mencari2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mencari2ActionPerformed(evt);
-            }
-        });
-        mencari2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                mencari2KeyReleased(evt);
-            }
-        });
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("CARI");
-
-        tabel_return.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(tabel_return);
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("ID BARANG");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("NAMA SUPLIER");
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("JUMLAH");
-
-        id_barang3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_barang3ActionPerformed(evt);
-            }
-        });
-        id_barang3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                id_barang3KeyReleased(evt);
-            }
-        });
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setText("ID RETURN");
-
-        jButton3.setBackground(new java.awt.Color(255, 232, 22));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
-        jButton3.setText("TAMBAH");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setBackground(new java.awt.Color(255, 232, 22));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
-        jButton4.setText("CETAK");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        bataltrn1.setBackground(new java.awt.Color(255, 232, 22));
-        bataltrn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
-        bataltrn1.setText("BATAL");
-        bataltrn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bataltrn1ActionPerformed(evt);
-            }
-        });
-
-        scan1.setBackground(new java.awt.Color(255, 232, 22));
-        scan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
-        scan1.setText("  SCAN");
-        scan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scan1ActionPerformed(evt);
-            }
-        });
-
-        kembalikecari2.setBackground(new java.awt.Color(255, 232, 22));
-        kembalikecari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
-        kembalikecari2.setText("KEMBALI");
-        kembalikecari2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembalikecari2ActionPerformed(evt);
-            }
-        });
-
-        logout2.setBackground(new java.awt.Color(255, 232, 22));
-        logout2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
-        logout2.setText(" KELUAR");
-        logout2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logout2ActionPerformed(evt);
-            }
-        });
-
-        tanggalreal2.setBackground(new java.awt.Color(255, 232, 22));
-        tanggalreal2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tanggalreal2.setText("Tanggal");
-        tanggalreal2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tanggalreal2ActionPerformed(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout ReturnBarangLayout = new javax.swing.GroupLayout(ReturnBarang);
-        ReturnBarang.setLayout(ReturnBarangLayout);
-        ReturnBarangLayout.setHorizontalGroup(
-            ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(ReturnBarangLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(45, 1027, Short.MAX_VALUE))
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addGap(18, 18, 18)
-                        .addComponent(mencari2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tanggalreal2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))))
-            .addGroup(ReturnBarangLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel29)
-                    .addComponent(kembalikecari2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bataltrn1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(scan1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addComponent(Id_return, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel28))
-                        .addGap(81, 81, 81)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(id_barang3, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jumlahbarang_return, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(366, Short.MAX_VALUE))
-            .addGroup(ReturnBarangLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4)
-                .addContainerGap())
-        );
-        ReturnBarangLayout.setVerticalGroup(
-            ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ReturnBarangLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel17)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(mencari2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18))
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(Id_return, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29)
-                            .addComponent(id_barang3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20))
-                        .addGap(18, 18, 18)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jumlahbarang_return, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addGroup(ReturnBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(kembalikecari2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bataltrn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(scan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73))
-                    .addGroup(ReturnBarangLayout.createSequentialGroup()
-                        .addComponent(tanggalreal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-
-        Kasir.add(ReturnBarang, "card3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1493,17 +1224,20 @@ public void print1() {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
+    private void btn_tjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjualActionPerformed
         // TODO add your handling code here:
         Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
-        
-        Kasir.add(ReturnBarang);
+
+        Kasir.add(TransaksiPenjualan);
         Kasir.repaint();
         Kasir.revalidate();
-
-    }//GEN-LAST:event_btn_returnActionPerformed
+        tampil_data();
+        jumlahbarang();
+        notransaksi();
+        HargaTot();
+    }//GEN-LAST:event_btn_tjualActionPerformed
 
     private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
         // TODO add your handling code here:
@@ -1517,13 +1251,13 @@ public void print1() {
         model.addColumn("Harga Grosir");
         //menampilkan database dalam tabel
         try {
-            String sql = "SELECT id_barang, nama_barang, stok, eceran, grosir, harga_eceran, harga_grosir FROM barang where nama_barang LIKE '%"+cari.getText()+"%';";
+            String sql = "SELECT id_barang, nama_barang, stok, eceran, grosir, harga_eceran, harga_grosir FROM barang where nama_barang LIKE '%" + cari.getText() + "%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()){
+            while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("stok"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("stok"), res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             barang_barang.setModel(model);
         } catch (Exception e) {
@@ -1532,7 +1266,7 @@ public void print1() {
 
     private void totalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_totalPropertyChange
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_totalPropertyChange
 
     private void barang_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barang_barangMouseClicked
@@ -1540,59 +1274,29 @@ public void print1() {
         a = barang_barang.rowAtPoint(evt.getPoint());
         String NamaBr = (String) barang_barang.getValueAt(a, 1);
         namaprd.setText(NamaBr);
-        
+
         hrg_ecer = (String) barang_barang.getValueAt(a, 5);
         hrg_grosir = (String) barang_barang.getValueAt(a, 6);
-        
-        
+
         Id_barang = (String) barang_barang.getValueAt(a, 0);
 
     }//GEN-LAST:event_barang_barangMouseClicked
 
-    private void hargaprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaprdActionPerformed
+    private void hargaprdActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_hargaprdActionPerformed
 
-    private void jumlahprdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahprdKeyReleased
-       hargaprd.setText("");
-       String pilihan = satuan.getSelectedItem().toString();
-           if (pilihan == "ECERAN") {
-                String jl = jumlahprd.getText();
-                double jm = Double.parseDouble(jl);
-                double st = Double.parseDouble(hrg_ecer);
+    }                                     
 
-                double tt = jm*st;
-                String hsl = String.format("%.2f", tt);
-                hargaprd.setText(hsl);
-           } else if (pilihan == "GROSIR"){
-               String jl = jumlahprd.getText();
-                double jm = Double.parseDouble(jl);
-                double st = Double.parseDouble(hrg_grosir);
-
-                double tt = jm*st;
-                String hsl = String.format("%.2f", tt);
-                hargaprd.setText(hsl);
-           } else {
-               hargaprd.setText("");
-           }
-       
-    }//GEN-LAST:event_jumlahprdKeyReleased
-
-    private void jumlahprdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahprdKeyTyped
+    private void jumlahprdKeyTyped(java.awt.event.KeyEvent evt) {                                   
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jumlahprdKeyTyped
 
-    private void jumlahprdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahprdKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jumlahprdKeyPressed
+    }                               
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         try {
             PilihSatuan();
-            String sql = "INSERT INTO keranjang (no_faktur, Id_barang, nama_barang, satuan, jumlah, harga, keterangan) Values ('"+No_faktur+"','"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprd.getText()+"', 'PENJUALAN')";
+            String sql = "INSERT INTO keranjang (no_faktur, Id_barang, nama_barang, satuan, jumlah, harga, keterangan) Values ('"+No_faktur+"','"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"', 'PENJUALAN')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
@@ -1626,7 +1330,7 @@ public void print1() {
         Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
-        
+
         Kasir.add(Cari);
         Kasir.repaint();
         Kasir.revalidate();
@@ -1637,7 +1341,7 @@ public void print1() {
         Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
-        
+
         Kasir.add(TransaksiPembelian);
         Kasir.repaint();
         Kasir.revalidate();
@@ -1645,14 +1349,14 @@ public void print1() {
     }//GEN-LAST:event_btn_tpembelianActionPerformed
 
     private void tambahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprdActionPerformed
-                    if (satuan1.getSelectedItem() == "ECERAN") {
-                    try {
+            if (satuan1.getSelectedItem() == "ECERAN") {
+                try {
                     String sql = "INSERT INTO barang (Id_barang, nama_barang, stok, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";
                     java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
                     pst.setString(1, id_barangi1.getText());
                     pst.setString(2, namabarang1.getText());
-                    pst.setString(3, jumlah.getText());
+                    pst.setString(3, jumlah_pembelian.getText());
                     pst.setString(4, namasatuan1.getText());
                     pst.setString(5, harga1.getText());
                     pst.setString(6, tgl);
@@ -1663,35 +1367,7 @@ public void print1() {
                     harga1.setText("");
                     JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
                 } catch (Exception e) {
-                    
-                    
-                    
-                    int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Untuk Update Record ini???","Confirmation",JOptionPane.YES_NO_OPTION);
-                try
-                  {
-                String sql="update barang SET eceran = ?, harga_eceran = ? where Id_barang = '"+id_barangi1.getText()+"'";
-                java.sql.Connection conn=(Connection)Koneksi.getkoneksi();
-                PreparedStatement st=conn.prepareStatement(sql);
-                if(ok==0)
-                {
-                try
-                    {
-                        st.setString(1, namasatuan1.getText());
-                        st.setString(2, harga1.getText());
-                        
-                        st.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"Update Data Sukses");
-                    }catch (Exception t)
-                    {
-                        JOptionPane.showMessageDialog(null, "Update Data Gagal");
-                    }
-                }
-                tampil_barang();
-                    }catch (Exception t){}
-                
-                
-                
-                
+            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
         }
             } else if (satuan1.getSelectedItem() == "GROSIR"){
                 try {
@@ -1700,7 +1376,7 @@ public void print1() {
                     java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
                     pst.setString(1, id_barangi1.getText());
                     pst.setString(2, namabarang1.getText());
-                    pst.setString(3, jumlah.getText());
+                    pst.setString(3, jumlah_pembelian.getText());
                     pst.setString(4, namasatuan1.getText());
                     pst.setString(5, harga1.getText());
                     pst.setString(6, tgl);
@@ -1710,31 +1386,10 @@ public void print1() {
                     namasatuan1.setText("");
                     harga1.setText("");
                     JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
-                } catch (Exception e) {int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Untuk Update Record ini???","Confirmation",JOptionPane.YES_NO_OPTION);
-                try
-                  {
-                String sql="update barang SET grosir = ?, harga_grosir = ? where Id_barang = '"+id_barangi1.getText()+"'";
-                java.sql.Connection conn=(Connection)Koneksi.getkoneksi();
-                PreparedStatement st=conn.prepareStatement(sql);
-                if(ok==0)
-                {
-                try
-                    {
-                        st.setString(1, namasatuan1.getText());
-                        st.setString(2, harga1.getText());
-                        
-                        st.executeUpdate();
-                        JOptionPane.showMessageDialog(null,"Update Data Sukses");
-                    }catch (Exception f)
-                    {
-                        JOptionPane.showMessageDialog(null, "Update Data Gagal");
-                    }
-                }
-                tampil_barang();
-                    }catch (Exception f){} 
-        
-                }
-              }
+                } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
+        }
+            }
             
 // TODO add your handling code here:
     }//GEN-LAST:event_tambahprdActionPerformed
@@ -1786,7 +1441,7 @@ public void print1() {
             namaSupplier.setText("");
             id_barangi1.setText("");
                     namabarang1.setText("");
-                    jumlah.setText("");
+                    jumlah_pembelian.setText("");
             satuan1.setSelectedItem("PILIH SATUAN");
                     namasatuan1.setText("");
                     harga1.setText("");
@@ -1802,16 +1457,13 @@ public void print1() {
     }//GEN-LAST:event_cariActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-        // TODO add your handling code here
+        // TODO add your handling code here:
+        print1();
         try {
-                print1();
                 strukpembelian.print();
-                strukpembelian.setText(null);
-                
             } catch (java.awt.print.PrinterException e) {
                 System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
             }
-        
     }//GEN-LAST:event_printActionPerformed
 
     private void mencari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mencari1ActionPerformed
@@ -1843,7 +1495,7 @@ public void print1() {
         }
     }//GEN-LAST:event_mencari1KeyReleased
 
-    private void mencariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariKeyReleased
+    private void mencariKeyReleased(java.awt.event.KeyEvent evt) {                                    
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID BARANG");
@@ -1854,7 +1506,7 @@ public void print1() {
         model.addColumn("ACTION");
 
         try {
-            String sql = "Select * From keranjang where nama_barang LIKE '%"+mencari.getText()+"%';";
+            String sql = "Select * From keranjang where nama_barang LIKE '%"+mencariPenjualan.getText()+"%';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
@@ -1867,26 +1519,26 @@ public void print1() {
             JOptionPane.showMessageDialog(null, "Data tidak muncul");
         
     }
-    }//GEN-LAST:event_mencariKeyReleased
+    }                                   
 
-    private void bayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarActionPerformed
+    private void bayar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bayarActionPerformed
+    }//GEN-LAST:event_bayar1ActionPerformed
 
-    private void bayarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarKeyReleased
+    private void bayarKeyReleased(java.awt.event.KeyEvent evt) {                                  
         // TODO add your handling code here:
         kembali.setText("");
-        if (bayar.getText() == "") {
+        if (bayar1.getText() == "") {
             kembali.setText("");
         } else {
             
-        int membayar = Integer.parseInt(bayar.getText());
+        int membayar = Integer.parseInt(bayar1.getText());
         int Hargatt = Integer.parseInt(totalmembayar);
         
         int totalkembali = membayar - Hargatt;
         kembali.setText("Rp. "+String.valueOf(totalkembali));
         }
-    }//GEN-LAST:event_bayarKeyReleased
+    }                                 
 
     private void satuan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan1ActionPerformed
         // TODO add your handling code here:
@@ -1918,7 +1570,7 @@ public void print1() {
         Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
-        
+
         Kasir.add(Cari);
         Kasir.repaint();
         Kasir.revalidate();
@@ -1968,88 +1620,93 @@ public void print1() {
     }//GEN-LAST:event_namaSupplierKeyReleased
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
-        
+        print();
         try {
-            print();
-                strukpenjualan.print();
-                strukpenjualan.setText(null);
+                strukpeminjaman.print();
             } catch (java.awt.print.PrinterException e) {
                 System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
             }
     }//GEN-LAST:event_CETAKActionPerformed
 
-    private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
+
+    private void bayar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayar1KeyReleased
         // TODO add your handling code here:
-        a = table_barang.rowAtPoint(evt.getPoint());
-        String idbrang = (String) table_barang.getValueAt(a, 0);
-        id_barangi1.setText(idbrang);
+        if (bayar1.getText() == "") {
+            kembali.setText("");
+        } else {
+            String byr = bayar1.getText();
+            double byr1 = Double.parseDouble(byr);
+            double hbyr = Double.parseDouble(HargaBayar.getText());
+
+            double tt = byr1 - hbyr;
+            String hsl = String.format("%.2f", tt);
+            kembali.setText(hsl);
+        }
+            
+            
         
-    }//GEN-LAST:event_table_barangMouseClicked
+    }//GEN-LAST:event_bayar1KeyReleased
 
-    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+    private void jumlahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahprdActionPerformed
         // TODO add your handling code here:
-        id_barangi1.setText("");
-        namabarang1.setText("");
-        jumlah.setText("");
-        satuan1.setSelectedItem("PILIH SATUAN");
-        namasatuan1.setText("");
-        harga1.setText("");
-    }//GEN-LAST:event_clearActionPerformed
+    }//GEN-LAST:event_jumlahprdActionPerformed
 
-    private void mencari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mencari2ActionPerformed
+    private void jumlahprdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahprdKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_mencari2ActionPerformed
+        hargaprduk.setText("");
+        String pilihan = satuan.getSelectedItem().toString();
+        if (pilihan == "ECERAN") {
+            String jl = jumlahprd.getText();
+            double jm = Double.parseDouble(jl);
+            double st = Double.parseDouble(hrg_ecer);
 
-    private void mencari2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencari2KeyReleased
+            double tt = jm * st;
+            String hsl = String.format("%.2f", tt);
+            hargaprduk.setText(hsl);
+        } else if (pilihan == "GROSIR") {
+            String jl = jumlahprd.getText();
+            double jm = Double.parseDouble(jl);
+            double st = Double.parseDouble(hrg_grosir);
+
+            double tt = jm * st;
+            String hsl = String.format("%.2f", tt);
+            hargaprduk.setText(hsl);
+        } else {
+            hargaprduk.setText("");
+        }
+    }//GEN-LAST:event_jumlahprdKeyReleased
+
+    private void hargaprdukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hargaprdukActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mencari2KeyReleased
+    }//GEN-LAST:event_hargaprdukActionPerformed
 
-    private void id_barang3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_barang3ActionPerformed
+    private void hargaprdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hargaprdukKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_id_barang3ActionPerformed
+    }//GEN-LAST:event_hargaprdukKeyReleased
 
-    private void id_barang3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barang3KeyReleased
+    private void mencariPenjualanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariPenjualanKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_id_barang3KeyReleased
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Id barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Satuan");
+        model.addColumn("Jumlah");
+        model.addColumn("Harga");
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        try {
+            String sql = "Select * From keranjang where nama_barang LIKE '%" + mencariPenjualan.getText() + "%';";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = cn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("Id_barang"), res.getString("nama_barang"), res.getString("satuan"), res.getString("jumlah"), res.getString("harga")});
+            }
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void bataltrn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bataltrn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bataltrn1ActionPerformed
-
-    private void scan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scan1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_scan1ActionPerformed
-
-    private void kembalikecari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikecari2ActionPerformed
-        Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-        
-        Kasir.add(Cari);
-        Kasir.repaint();
-        Kasir.revalidate();        // TODO add your handling code here:
-    }//GEN-LAST:event_kembalikecari2ActionPerformed
-
-    private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logout2ActionPerformed
-
-    private void tanggalreal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggalreal2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tanggalreal2ActionPerformed
-
-    private void btn_tjual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjual1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tjual1ActionPerformed
-
+            list_barang.setModel(model);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data tidak muncul");
+        }
+    }//GEN-LAST:event_mencariPenjualanKeyReleased
 
     /**
      * @param args the command line arguments
@@ -2078,6 +1735,12 @@ public void print1() {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -2091,32 +1754,24 @@ public void print1() {
     private javax.swing.JButton CETAK;
     public javax.swing.JPanel Cari;
     private javax.swing.JTextField HargaBayar;
-    private javax.swing.JTextField Id_return;
     private javax.swing.JPanel Kasir;
     public static final javax.swing.JTextField NamaKasir = new javax.swing.JTextField();
-    private javax.swing.JPanel ReturnBarang;
     private javax.swing.JPanel TransaksiPembelian;
     private javax.swing.JPanel TransaksiPenjualan;
     private javax.swing.JTable barang_barang;
     private javax.swing.JButton batal;
     private javax.swing.JButton bataltrn;
-    private javax.swing.JButton bataltrn1;
-    private javax.swing.JTextField bayar;
+    private javax.swing.JTextField bayar1;
     private javax.swing.JButton btlprd;
-    private javax.swing.JButton btn_return;
-    private javax.swing.JButton btn_tjual1;
+    private javax.swing.JButton btn_tjual;
     private javax.swing.JButton btn_tpembelian;
     private javax.swing.JTextField cari;
     private javax.swing.JTextField harga1;
     private javax.swing.JTextField hargaTotal;
-    private javax.swing.JTextField hargaprd;
-    private javax.swing.JTextField id_barang3;
+    private javax.swing.JTextField hargaprduk;
     private javax.swing.JTextField id_barangi1;
     private javax.swing.JTextField id_transaksi;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2125,11 +1780,7 @@ public void print1() {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -2137,8 +1788,6 @@ public void print1() {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2151,26 +1800,20 @@ public void print1() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jumlah;
     private javax.swing.JTextField jumlah_barang;
-    private javax.swing.JTextField jumlahbarang_return;
+    private javax.swing.JTextField jumlah_pembelian;
     private javax.swing.JTextField jumlahprd;
     private javax.swing.JTextField kembali;
     private javax.swing.JButton kembalikecari;
     private javax.swing.JButton kembalikecari1;
-    private javax.swing.JButton kembalikecari2;
     private javax.swing.JTable list_barang;
     private javax.swing.JButton logout;
     private javax.swing.JButton logout1;
-    private javax.swing.JButton logout2;
-    private javax.swing.JTextField mencari;
     private javax.swing.JTextField mencari1;
-    private javax.swing.JTextField mencari2;
+    private javax.swing.JTextField mencariPenjualan;
     private javax.swing.JTextField namaSupplier;
     private javax.swing.JTextField namabarang1;
     private javax.swing.JTextField namaprd;
@@ -2179,18 +1822,16 @@ public void print1() {
     private javax.swing.JComboBox<String> satuan;
     private javax.swing.JComboBox<String> satuan1;
     private javax.swing.JButton scan;
-    private javax.swing.JButton scan1;
     private javax.swing.JButton scbtl;
     public javax.swing.JScrollPane strukpemb;
     public static javax.swing.JTextArea strukpembelian;
-    public static javax.swing.JTextArea strukpenjualan;
+    public static javax.swing.JTextArea strukpeminjaman;
     public javax.swing.JScrollPane strukpnj;
     private javax.swing.JTable tabel_return;
     private javax.swing.JTable table_barang;
     private javax.swing.JButton tambah;
     private javax.swing.JButton tambahprd;
     private javax.swing.JLabel tanggalreal;
-    private javax.swing.JTextField tanggalreal2;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 public void namaSup(){ 
