@@ -34,7 +34,8 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a;
     String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar;
-    String Id_barang, SATUAN, SATUANpmb, tgl;
+    String Id_barang, SATUAN, SATUANpmb, tgl, kode;
+    Date tglsekarang;
     PreparedStatement pst;
 
     /**
@@ -81,7 +82,7 @@ public void Tampil_Jam(){
  
 
 public void Tampil_Tanggal() {
-    java.util.Date tglsekarang = new java.util.Date();
+    tglsekarang = new Date();
     SimpleDateFormat smpdtfmt = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
     tgl = smpdtfmt.format(tglsekarang);
     
@@ -320,6 +321,7 @@ public void print1() {
         strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
         strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -715,7 +717,7 @@ public void print1() {
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(113, Short.MAX_VALUE))
+                        .addContainerGap(129, Short.MAX_VALUE))
                     .addGroup(CariLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -972,9 +974,9 @@ public void print1() {
         Kasir.add(TransaksiPenjualan, "card3");
 
         TransaksiPembelian.setBackground(new java.awt.Color(0, 9, 87));
-        TransaksiPembelian.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clear1.setBackground(new java.awt.Color(255, 232, 22));
+        clear1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         clear1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/clear.png"))); // NOI18N
         clear1.setText(" HAPUS");
         clear1.addActionListener(new java.awt.event.ActionListener() {
@@ -982,12 +984,10 @@ public void print1() {
                 clear1ActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(clear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 150, 50));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("TRANSAKSI PEMBELIAN");
-        TransaksiPembelian.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 27, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1002,12 +1002,9 @@ public void print1() {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        TransaksiPembelian.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 93, -1, -1));
-
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("CARI");
-        TransaksiPembelian.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(939, 120, -1, -1));
 
         table_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1020,13 +1017,15 @@ public void print1() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        table_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_barangMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(table_barang);
-
-        TransaksiPembelian.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 164, 620, 385));
 
         hargaTotal.setBackground(new java.awt.Color(255, 232, 22));
         hargaTotal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        TransaksiPembelian.add(hargaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 21, 284, 60));
 
         mencari1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1038,32 +1037,25 @@ public void print1() {
                 mencari1KeyReleased(evt);
             }
         });
-        TransaksiPembelian.add(mencari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(981, 116, 235, 30));
-        TransaksiPembelian.add(jumlah_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 342, 243, 38));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("SUPPLIER");
-        TransaksiPembelian.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 181, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("JUMLAH");
-        TransaksiPembelian.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
-        TransaksiPembelian.add(id_barangi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 230, 243, 38));
-        TransaksiPembelian.add(namabarang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 286, 243, 38));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("NAMA BARANG");
-        TransaksiPembelian.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 294, -1, -1));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("ID BARANG");
-        TransaksiPembelian.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 238, -1, -1));
 
         print.setBackground(new java.awt.Color(255, 232, 22));
+        print.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         print.setText("PRINT");
         print.addActionListener(new java.awt.event.ActionListener() {
@@ -1071,9 +1063,9 @@ public void print1() {
                 printActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 622, 123, 50));
 
         tambahprd.setBackground(new java.awt.Color(255, 232, 22));
+        tambahprd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tambahprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         tambahprd.setText("TAMBAH");
         tambahprd.addActionListener(new java.awt.event.ActionListener() {
@@ -1081,9 +1073,9 @@ public void print1() {
                 tambahprdActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(tambahprd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 150, 50));
 
         btlprd.setBackground(new java.awt.Color(255, 232, 22));
+        btlprd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btlprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         btlprd.setText("BATAL");
         btlprd.addActionListener(new java.awt.event.ActionListener() {
@@ -1091,9 +1083,9 @@ public void print1() {
                 btlprdActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(btlprd, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, 150, 50));
 
         scbtl.setBackground(new java.awt.Color(255, 232, 22));
+        scbtl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         scbtl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         scbtl.setText("  SCAN");
         scbtl.addActionListener(new java.awt.event.ActionListener() {
@@ -1101,12 +1093,10 @@ public void print1() {
                 scbtlActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(scbtl, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 620, 123, 50));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("SATUAN");
-        TransaksiPembelian.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 409, -1, -1));
 
         satuan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
         satuan1.addActionListener(new java.awt.event.ActionListener() {
@@ -1114,21 +1104,17 @@ public void print1() {
                 satuan1ActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(satuan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 403, 243, 35));
-        TransaksiPembelian.add(namasatuan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 456, 243, 38));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("NAMA SATUAN");
-        TransaksiPembelian.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 464, -1, -1));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("HARGA");
-        TransaksiPembelian.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 520, -1, -1));
-        TransaksiPembelian.add(harga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 512, 243, 38));
 
         kembalikecari1.setBackground(new java.awt.Color(255, 232, 22));
+        kembalikecari1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         kembalikecari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
         kembalikecari1.setText("KEMBALI");
         kembalikecari1.addActionListener(new java.awt.event.ActionListener() {
@@ -1136,9 +1122,9 @@ public void print1() {
                 kembalikecari1ActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(kembalikecari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 622, 123, 50));
 
         logout1.setBackground(new java.awt.Color(255, 232, 22));
+        logout1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         logout1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
         logout1.setText(" KELUAR");
         logout1.addActionListener(new java.awt.event.ActionListener() {
@@ -1146,7 +1132,6 @@ public void print1() {
                 logout1ActionPerformed(evt);
             }
         });
-        TransaksiPembelian.add(logout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, 123, 50));
 
         namaSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1158,7 +1143,136 @@ public void print1() {
                 namaSupplierKeyReleased(evt);
             }
         });
-        TransaksiPembelian.add(namaSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 173, 243, 38));
+
+        javax.swing.GroupLayout TransaksiPembelianLayout = new javax.swing.GroupLayout(TransaksiPembelian);
+        TransaksiPembelian.setLayout(TransaksiPembelianLayout);
+        TransaksiPembelianLayout.setHorizontalGroup(
+            TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel15)
+                .addGap(533, 533, 533)
+                .addComponent(hargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                .addGap(939, 939, 939)
+                .addComponent(jLabel16)
+                .addGap(12, 12, 12)
+                .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel22))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel24))
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel13)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel25))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel26))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel27)))
+                .addGap(18, 18, 18)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        TransaksiPembelianLayout.setVerticalGroup(
+            TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel15))
+                    .addComponent(hargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel16))
+                    .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel22)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel24)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel23)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel13)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel25)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel26)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel27))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
 
         Kasir.add(TransaksiPembelian, "card3");
 
@@ -1418,9 +1532,14 @@ public void print1() {
         Kasir.repaint();
         Kasir.revalidate();
 
-        Kasir.add(Return);
+        Kasir.add(TransaksiPenjualan);
         Kasir.repaint();
         Kasir.revalidate();
+        tampil_data();
+        jumlahbarang();
+        notransaksi();
+        HargaTot();
+    //GEN-LAST:event_btn_tjualActionPerformed
 
     }//GEN-LAST:event_btn_returnActionPerformed
 
@@ -1481,10 +1600,13 @@ public void print1() {
         // TODO add your handling code here:
         try {
             PilihSatuan();
-            String sql = "INSERT INTO keranjang (no_faktur, Id_barang, nama_barang, satuan, jumlah, harga, keterangan) Values ('"+No_faktur+"','"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"', 'PENJUALAN')";
+            String sql = "INSERT INTO keranjang (no_faktur, Id_barang, nama_barang, satuan, jumlah, harga) Values ('"+No_faktur+"','"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"')";
+            String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah, satuan, harga, tanggal) Values ('"+No_faktur+"','"+Id_barang+"', '"+jumlahprd.getText()+"', '"+SATUAN+"', '"+hargaprduk.getText()+"', '"+tgl+"')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            java.sql.PreparedStatement pst1=conn.prepareStatement(sql1);
             pst.execute();
+            pst1.execute();
             JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
             hapus();
             load_table();
@@ -1549,8 +1671,7 @@ public void print1() {
     private void bataltrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bataltrnActionPerformed
         // TODO add your handling code here:
         try {
-            
-            String sql = "DELETE FROM keranjang WHERE keterangan = 'PENJUALAN';";
+            String sql = "DELETE FROM keranjang;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             st.executeUpdate(sql);
@@ -1652,11 +1773,11 @@ public void print1() {
         } else {
             String byr = bayar1.getText();
             double byr1 = Double.parseDouble(byr);
-            double hbyr = Double.parseDouble(HargaBayar.getText());
+            double hbyr = Double.parseDouble(totalmembayar);
 
             double tt = byr1 - hbyr;
             String hsl = String.format("%.2f", tt);
-            kembali.setText(hsl);
+            kembali.setText("Rp. "+hsl);
         }
             
             
@@ -1808,25 +1929,36 @@ public void print1() {
     }//GEN-LAST:event_btlprdActionPerformed
 
     private void tambahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprdActionPerformed
+        String IDBRG = id_barangi1.getText();
         if (satuan1.getSelectedItem() == "ECERAN") {
             try {
-                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";
-                java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
-                java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
-                pst.setString(1, id_barangi1.getText());
-                pst.setString(2, namabarang1.getText());
-                pst.setString(3, jumlah_pembelian.getText());
-                pst.setString(4, namasatuan1.getText());
-                pst.setString(5, harga1.getText());
-                pst.setString(6, tgl);
-                pst.executeUpdate();
-                tampil_barang();
-                satuan1.setSelectedItem("PILIH SATUAN");
-                namasatuan1.setText("");
-                harga1.setText("");
-                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";
+                    java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
+                    java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
+                    pst.setString(1, id_barangi1.getText());
+                    pst.setString(2, namabarang1.getText());
+                    pst.setString(3, jumlah_pembelian.getText());
+                    pst.setString(4, namasatuan1.getText());
+                    pst.setString(5, harga1.getText());
+                    pst.setString(6, tgl);
+                    pst.executeUpdate();
+                    tampil_barang();
+                    satuan1.setSelectedItem("PILIH SATUAN");
+                    namasatuan1.setText("");
+                    harga1.setText("");
+                    JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+                
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
+                try {
+                    String sql = "UPDATE barang SET eceran = '"+namasatuan1.getText()+"', harga_eceran='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    tampil_barang();
+                    JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else if (satuan1.getSelectedItem() == "GROSIR"){
             try {
@@ -1846,7 +1978,16 @@ public void print1() {
                 harga1.setText("");
                 JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Disimpan");
+                try {
+                    String sql = "UPDATE barang SET grosir = '"+namasatuan1.getText()+"', harga_grosir='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                    java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    tampil_barang();
+                    JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
@@ -1894,6 +2035,12 @@ public void print1() {
 
     private void clear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear1ActionPerformed
         // TODO add your handling code here:
+        id_barangi1.setText("");
+        namabarang1.setText("");
+        jumlah_pembelian.setText("");
+        satuan1.setSelectedItem("PILIH SATUAN");
+        namasatuan1.setText("");
+        harga1.setText("");
     }//GEN-LAST:event_clear1ActionPerformed
 
     private void jumlahBarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahBarang1ActionPerformed
@@ -1961,6 +2108,17 @@ public void print1() {
     private void namaSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_namaSupplierActionPerformed
+
+    private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
+        // TODO add your handling code here:
+        int b = table_barang.rowAtPoint(evt.getPoint());
+        String IDtransaksi = (String) table_barang.getValueAt(b, 0);
+        id_barangi1.setText(IDtransaksi);
+        
+        String NAMApembelian = (String) table_barang.getValueAt(b, 1);
+        namabarang1.setText(NAMApembelian);
+
+    }//GEN-LAST:event_table_barangMouseClicked
 
     /**
      * @param args the command line arguments
