@@ -231,6 +231,35 @@ public void tampil_barang(){
         } catch (Exception e) {
         }
     }
+    
+    private void TotalPembelian(){
+   
+        try {
+            String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from barang where tanggal = '"+tgl+"';";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(sql);
+            rs.next();
+            String totalecr = rs.getString("totalEceran");
+            String totalgsr = rs.getString("totalGrosir");
+            
+            if (totalecr == null && totalgsr == null) {
+                hargaTotal.setText("Rp. ");
+            }
+            else if (totalecr == null) {
+                int totalkeseluruhan = 0 + Integer.valueOf(totalgsr);
+            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
+            } else if (totalgsr == null){
+                int totalkeseluruhan = Integer.valueOf(totalecr) + 0;
+            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
+            }else {
+            int totalkeseluruhan = Integer.valueOf(totalecr) + Integer.valueOf(totalgsr);
+            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void PilihSatuan(){
         try {
@@ -1653,6 +1682,7 @@ public void print1() {
         Kasir.repaint();
         Kasir.revalidate();
         tampil_barang();
+        TotalPembelian();
     }//GEN-LAST:event_btn_tpembelianActionPerformed
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
@@ -1848,15 +1878,17 @@ public void print1() {
     private void namaSupplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namaSupplierKeyReleased
         // TODO add your handling code here:
         try {
-            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
+            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
-            while (res.next()) {
-                res.getString("nama_supplier");
-            }
-            if (namaSupplier.getText() == null) {
+            res.next();
+              String nmsp =  res.getString("nama_supplier");
+            
+            if (nmsp == null) {
                 namaSupplier.setText("");
+            } else {
+                namaSupplier.setText(nmsp);
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
@@ -1908,7 +1940,7 @@ public void print1() {
         int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Anda Menghapus Data ini???","Confirmation",JOptionPane.YES_NO_OPTION);
         if(ok==0){
             try {
-                String sql = "DELETE FROM barang WHERE id_barang='"+id_barangi1.getText()+"' + tanggal = '"+tgl+"';";
+                String sql = "DELETE FROM barang WHERE tanggal = '"+tgl+"'";
                 java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = cn.createStatement();
                 st.executeUpdate(sql);
@@ -1925,6 +1957,7 @@ public void print1() {
                 JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
             }
             tampil_barang();
+            TotalPembelian();
         }
     }//GEN-LAST:event_btlprdActionPerformed
 
@@ -1943,6 +1976,7 @@ public void print1() {
                     pst.setString(6, tgl);
                     pst.executeUpdate();
                     tampil_barang();
+                    TotalPembelian();
                     satuan1.setSelectedItem("PILIH SATUAN");
                     namasatuan1.setText("");
                     harga1.setText("");
@@ -1955,6 +1989,7 @@ public void print1() {
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
                     pst.execute();
                     tampil_barang();
+                    TotalPembelian();
                     JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
                 } catch (SQLException ex) {
                     Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
@@ -1973,6 +2008,7 @@ public void print1() {
                 pst.setString(6, tgl);
                 pst.executeUpdate();
                 tampil_barang();
+                TotalPembelian();
                 satuan1.setSelectedItem("PILIH SATUAN");
                 namasatuan1.setText("");
                 harga1.setText("");
@@ -1984,6 +2020,7 @@ public void print1() {
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
                     pst.execute();
                     tampil_barang();
+                    TotalPembelian();
                     JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
                 } catch (SQLException ex) {
                     Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
@@ -2014,7 +2051,7 @@ public void print1() {
         model.addColumn("HARGA");
 
         try {
-            String sql = "Select * From keranjang where keterangan = 'PEMBELIAN' + nama_barang LIKE '%"+mencari1.getText()+"%';";
+            String sql = "SELECT Id_barang, nama_barang, ecer, grosir, harga_ecer, harga_grosir where barang nama_barang LIKE '%"+mencari1.getText()+"%';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
