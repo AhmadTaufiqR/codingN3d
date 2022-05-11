@@ -337,8 +337,9 @@ public void print1() {
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        btn_tjual = new javax.swing.JButton();
+        btn_return = new javax.swing.JButton();
         btn_tpembelian = new javax.swing.JButton();
+        btn_tjual1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -410,6 +411,28 @@ public void print1() {
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
+        Return = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        list_barang1 = new javax.swing.JTable();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        id_pembelian = new javax.swing.JTextField();
+        namaSuplier1 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jumlahBarang1 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        namaBarang1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        CETAK1 = new javax.swing.JButton();
+        bataltrn1 = new javax.swing.JButton();
+        scan1 = new javax.swing.JButton();
+        tanggalreal1 = new javax.swing.JLabel();
+        kembalikecari2 = new javax.swing.JButton();
+        logout2 = new javax.swing.JButton();
+        mencariBarang1 = new javax.swing.JTextField();
 
         strukpeminjaman.setColumns(20);
         strukpeminjaman.setRows(5);
@@ -433,17 +456,16 @@ public void print1() {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Angkringan__1_-removebg-preview 1.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 291, 164));
 
-        btn_tjual.setBackground(new java.awt.Color(252, 242, 6));
-        btn_tjual.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_tjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
-        btn_tjual.setText("TRANSAKSI JUAL");
-        btn_tjual.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btn_tjual.addActionListener(new java.awt.event.ActionListener() {
+        btn_return.setBackground(new java.awt.Color(252, 242, 6));
+        btn_return.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_return.setText("RETURN BARANG");
+        btn_return.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_return.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tjualActionPerformed(evt);
+                btn_returnActionPerformed(evt);
             }
         });
-        jPanel2.add(btn_tjual, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 170, 59));
+        jPanel2.add(btn_return, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 170, 59));
 
         btn_tpembelian.setBackground(new java.awt.Color(252, 242, 6));
         btn_tpembelian.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -456,6 +478,18 @@ public void print1() {
             }
         });
         jPanel2.add(btn_tpembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1087, 32, 170, 59));
+
+        btn_tjual1.setBackground(new java.awt.Color(252, 242, 6));
+        btn_tjual1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_tjual1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Vector-2.png"))); // NOI18N
+        btn_tjual1.setText("TRANSAKSI JUAL");
+        btn_tjual1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btn_tjual1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tjual1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_tjual1, new org.netbeans.lib.awtextra.AbsoluteConstraints(901, 32, 170, 59));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -681,7 +715,7 @@ public void print1() {
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(111, Short.MAX_VALUE))
+                        .addContainerGap(113, Short.MAX_VALUE))
                     .addGroup(CariLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1114,6 +1148,11 @@ public void print1() {
         });
         TransaksiPembelian.add(logout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, 123, 50));
 
+        namaSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaSupplierActionPerformed(evt);
+            }
+        });
         namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 namaSupplierKeyReleased(evt);
@@ -1122,6 +1161,241 @@ public void print1() {
         TransaksiPembelian.add(namaSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 173, 243, 38));
 
         Kasir.add(TransaksiPembelian, "card3");
+
+        Return.setBackground(new java.awt.Color(0, 9, 87));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("RETURN BARANG ");
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("CARI");
+
+        list_barang1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(list_barang1);
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("ID PEMBELIAN");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("NAMA BARANG");
+
+        namaSuplier1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaSuplier1ActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("JUMLAH");
+
+        jumlahBarang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jumlahBarang1ActionPerformed(evt);
+            }
+        });
+        jumlahBarang1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jumlahBarang1KeyReleased(evt);
+            }
+        });
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("NAMA SUPLIER");
+
+        jButton2.setBackground(new java.awt.Color(255, 232, 22));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
+        jButton2.setText("TAMBAH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        CETAK1.setBackground(new java.awt.Color(255, 232, 22));
+        CETAK1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
+        CETAK1.setText("CETAK");
+        CETAK1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CETAK1ActionPerformed(evt);
+            }
+        });
+
+        bataltrn1.setBackground(new java.awt.Color(255, 232, 22));
+        bataltrn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
+        bataltrn1.setText("BATAL");
+        bataltrn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bataltrn1ActionPerformed(evt);
+            }
+        });
+
+        scan1.setBackground(new java.awt.Color(255, 232, 22));
+        scan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
+        scan1.setText("  SCAN");
+        scan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scan1ActionPerformed(evt);
+            }
+        });
+
+        tanggalreal1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        tanggalreal1.setForeground(new java.awt.Color(255, 255, 255));
+        tanggalreal1.setText("tanggal");
+
+        kembalikecari2.setBackground(new java.awt.Color(255, 232, 22));
+        kembalikecari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
+        kembalikecari2.setText("KEMBALI");
+        kembalikecari2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembalikecari2ActionPerformed(evt);
+            }
+        });
+
+        logout2.setBackground(new java.awt.Color(255, 232, 22));
+        logout2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
+        logout2.setText(" KELUAR");
+        logout2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logout2ActionPerformed(evt);
+            }
+        });
+
+        mencariBarang1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mencariBarang1KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ReturnLayout = new javax.swing.GroupLayout(Return);
+        Return.setLayout(ReturnLayout);
+        ReturnLayout.setHorizontalGroup(
+            ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ReturnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReturnLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tanggalreal1)
+                        .addGap(140, 140, 140))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addComponent(mencariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))))
+            .addGroup(ReturnLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReturnLayout.createSequentialGroup()
+                        .addComponent(kembalikecari2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CETAK1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(bataltrn1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(scan1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel19)
+                    .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(id_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jumlahBarang1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
+                                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel29))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(namaSuplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(namaBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(397, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+        );
+        ReturnLayout.setVerticalGroup(
+            ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ReturnLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(tanggalreal1))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mencariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addGap(21, 21, 21)
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReturnLayout.createSequentialGroup()
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(id_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(namaBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(namaSuplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jumlahBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ReturnLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)))
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kembalikecari2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CETAK1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bataltrn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scan1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        Kasir.add(Return, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1138,20 +1412,17 @@ public void print1() {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_tjualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjualActionPerformed
+    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
         // TODO add your handling code here:
         Kasir.removeAll();
         Kasir.repaint();
         Kasir.revalidate();
 
-        Kasir.add(TransaksiPenjualan);
+        Kasir.add(Return);
         Kasir.repaint();
         Kasir.revalidate();
-        tampil_data();
-        jumlahbarang();
-        notransaksi();
-        HargaTot();
-    }//GEN-LAST:event_btn_tjualActionPerformed
+
+    }//GEN-LAST:event_btn_returnActionPerformed
 
     private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
         // TODO add your handling code here:
@@ -1625,6 +1896,72 @@ public void print1() {
         // TODO add your handling code here:
     }//GEN-LAST:event_clear1ActionPerformed
 
+    private void jumlahBarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahBarang1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jumlahBarang1ActionPerformed
+
+    private void jumlahBarang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlahBarang1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jumlahBarang1KeyReleased
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CETAK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAK1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CETAK1ActionPerformed
+
+    private void bataltrn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bataltrn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bataltrn1ActionPerformed
+
+    private void scan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scan1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scan1ActionPerformed
+
+    private void kembalikecari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikecari2ActionPerformed
+        // TODO add your handling code here:
+        Kasir.removeAll();
+        Kasir.repaint();
+        Kasir.revalidate();
+
+        Kasir.add(Cari);
+        Kasir.repaint();
+        Kasir.revalidate();
+    }//GEN-LAST:event_kembalikecari2ActionPerformed
+
+    private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_logout2ActionPerformed
+
+    private void mencariBarang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariBarang1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mencariBarang1KeyReleased
+
+    private void namaSuplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaSuplier1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaSuplier1ActionPerformed
+
+    private void btn_tjual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjual1ActionPerformed
+        // TODO add your handling code here:
+                Kasir.removeAll();
+        Kasir.repaint();
+        Kasir.revalidate();
+
+        Kasir.add(TransaksiPenjualan);
+        Kasir.repaint();
+        Kasir.revalidate();
+        tampil_data();
+        jumlahbarang();
+        notransaksi();
+        HargaTot();
+    }//GEN-LAST:event_btn_tjual1ActionPerformed
+
+    private void namaSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaSupplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaSupplierActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1669,18 +2006,22 @@ public void print1() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CETAK;
+    private javax.swing.JButton CETAK1;
     public javax.swing.JPanel Cari;
     private javax.swing.JTextField HargaBayar;
     private javax.swing.JPanel Kasir;
     public static final javax.swing.JTextField NamaKasir = new javax.swing.JTextField();
+    private javax.swing.JPanel Return;
     private javax.swing.JPanel TransaksiPembelian;
     private javax.swing.JPanel TransaksiPenjualan;
     private javax.swing.JTable barang_barang;
     private javax.swing.JButton batal;
     private javax.swing.JButton bataltrn;
+    private javax.swing.JButton bataltrn1;
     private javax.swing.JTextField bayar1;
     private javax.swing.JButton btlprd;
-    private javax.swing.JButton btn_tjual;
+    private javax.swing.JButton btn_return;
+    private javax.swing.JButton btn_tjual1;
     private javax.swing.JButton btn_tpembelian;
     private javax.swing.JTextField cari;
     private javax.swing.JButton clear1;
@@ -1688,8 +2029,10 @@ public void print1() {
     private javax.swing.JTextField hargaTotal;
     private javax.swing.JTextField hargaprduk;
     private javax.swing.JTextField id_barangi1;
+    private javax.swing.JTextField id_pembelian;
     private javax.swing.JTextField id_transaksi;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1698,7 +2041,11 @@ public void print1() {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1706,6 +2053,8 @@ public void print1() {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1718,20 +2067,29 @@ public void print1() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField jumlahBarang1;
     private javax.swing.JTextField jumlah_barang;
     private javax.swing.JTextField jumlah_pembelian;
     private javax.swing.JTextField jumlahprd;
     private javax.swing.JTextField kembali;
     private javax.swing.JButton kembalikecari;
     private javax.swing.JButton kembalikecari1;
+    private javax.swing.JButton kembalikecari2;
     private javax.swing.JTable list_barang;
+    private javax.swing.JTable list_barang1;
     private javax.swing.JButton logout;
     private javax.swing.JButton logout1;
+    private javax.swing.JButton logout2;
     private javax.swing.JTextField mencari1;
+    private javax.swing.JTextField mencariBarang1;
     private javax.swing.JTextField mencariPenjualan;
+    private javax.swing.JTextField namaBarang1;
+    private javax.swing.JTextField namaSuplier1;
     private javax.swing.JTextField namaSupplier;
     private javax.swing.JTextField namabarang1;
     private javax.swing.JTextField namaprd;
@@ -1740,6 +2098,7 @@ public void print1() {
     private javax.swing.JComboBox<String> satuan;
     private javax.swing.JComboBox<String> satuan1;
     private javax.swing.JButton scan;
+    private javax.swing.JButton scan1;
     private javax.swing.JButton scbtl;
     public javax.swing.JScrollPane strukpemb;
     public static javax.swing.JTextArea strukpembelian;
@@ -1749,6 +2108,7 @@ public void print1() {
     private javax.swing.JButton tambah;
     private javax.swing.JButton tambahprd;
     private javax.swing.JLabel tanggalreal;
+    private javax.swing.JLabel tanggalreal1;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 public void namaSup(){ 
