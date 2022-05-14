@@ -189,20 +189,29 @@ public void tampil_barang(){
             int total = 0;
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
-            java.sql.ResultSet rs = st.executeQuery("select sum(jumlah) AS d from keranjang;");
-            while (rs.next()) {
-                Long a = rs.getLong(1);
-                if (a == 0) {
-                    jumlah_barang.setText("");
-                } else {
-                    total = total + Integer.parseInt(rs.getString("d"));
-                    jumlah_barang.setText("" + total);
-                }
+            java.sql.ResultSet rs = st.executeQuery("select sum(jumlah_ecer) AS jmecr, SUM(jumlah_grosir) AS jmgsr from keranjang;");
+            
+            rs.next();
+            String totalecr = rs.getString("jmecr");
+            String totalgsr = rs.getString("jmgsr");
+            
+            if (totalecr == null && totalgsr == null) {
+                jumlah_barang.setText("");
             }
-
+            else if (totalecr == null) {
+                int totalkeseluruhan = 0 + Integer.valueOf(totalgsr);
+            jumlah_barang.setText(String.valueOf(totalkeseluruhan));
+            } else if (totalgsr == null){
+                int totalkeseluruhan = Integer.valueOf(totalecr) + 0;
+            jumlah_barang.setText(String.valueOf(totalkeseluruhan));
+            }else {
+            int totalkeseluruhan = Integer.valueOf(totalecr) + Integer.valueOf(totalgsr);
+            jumlah_barang.setText(String.valueOf(totalkeseluruhan));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
 
     public void notransaksi() {
@@ -445,6 +454,7 @@ public void print1() {
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         Return = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -492,6 +502,7 @@ public void print1() {
 
         btn_return.setBackground(new java.awt.Color(252, 242, 6));
         btn_return.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_return.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/returning.png"))); // NOI18N
         btn_return.setText("RETURN BARANG");
         btn_return.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_return.addActionListener(new java.awt.event.ActionListener() {
@@ -693,7 +704,7 @@ public void print1() {
         Cari.setLayout(CariLayout);
         CariLayout.setHorizontalGroup(
             CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CariLayout.createSequentialGroup()
                 .addContainerGap()
@@ -1017,7 +1028,6 @@ public void print1() {
         TransaksiPembelian.setBackground(new java.awt.Color(0, 9, 87));
 
         clear1.setBackground(new java.awt.Color(255, 232, 22));
-        clear1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         clear1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/clear.png"))); // NOI18N
         clear1.setText(" HAPUS");
         clear1.addActionListener(new java.awt.event.ActionListener() {
@@ -1096,7 +1106,6 @@ public void print1() {
         jLabel24.setText("ID BARANG");
 
         print.setBackground(new java.awt.Color(255, 232, 22));
-        print.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_print (1).png"))); // NOI18N
         print.setText("PRINT");
         print.addActionListener(new java.awt.event.ActionListener() {
@@ -1106,7 +1115,6 @@ public void print1() {
         });
 
         tambahprd.setBackground(new java.awt.Color(255, 232, 22));
-        tambahprd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         tambahprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/ant-design_plus-circle-outlined.png"))); // NOI18N
         tambahprd.setText("TAMBAH");
         tambahprd.addActionListener(new java.awt.event.ActionListener() {
@@ -1116,7 +1124,6 @@ public void print1() {
         });
 
         btlprd.setBackground(new java.awt.Color(255, 232, 22));
-        btlprd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btlprd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/flat-color-icons_cancel.png"))); // NOI18N
         btlprd.setText("BATAL");
         btlprd.addActionListener(new java.awt.event.ActionListener() {
@@ -1126,7 +1133,6 @@ public void print1() {
         });
 
         scbtl.setBackground(new java.awt.Color(255, 232, 22));
-        scbtl.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         scbtl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
         scbtl.setText("  SCAN");
         scbtl.addActionListener(new java.awt.event.ActionListener() {
@@ -1155,7 +1161,6 @@ public void print1() {
         jLabel27.setText("HARGA");
 
         kembalikecari1.setBackground(new java.awt.Color(255, 232, 22));
-        kembalikecari1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         kembalikecari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/KEMBALI.png"))); // NOI18N
         kembalikecari1.setText("KEMBALI");
         kembalikecari1.addActionListener(new java.awt.event.ActionListener() {
@@ -1165,7 +1170,6 @@ public void print1() {
         });
 
         logout1.setBackground(new java.awt.Color(255, 232, 22));
-        logout1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         logout1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logout.png"))); // NOI18N
         logout1.setText(" KELUAR");
         logout1.addActionListener(new java.awt.event.ActionListener() {
@@ -1182,6 +1186,15 @@ public void print1() {
         namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 namaSupplierKeyReleased(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(255, 232, 22));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/LISTPRODUCT.png"))); // NOI18N
+        jButton3.setText("LIST PRODUCT");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -1204,45 +1217,36 @@ public void print1() {
                 .addGap(20, 20, 20)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel22))
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel24))
-                            .addComponent(jLabel23)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel26))
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel27)))
-                        .addGap(18, 18, 18)
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel22))
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(117, 117, 117)
-                                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(41, 41, 41)
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel24))
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel13)
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel26))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel27)))
+                .addGap(18, 18, 18)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(TransaksiPembelianLayout.createSequentialGroup()
@@ -1274,50 +1278,46 @@ public void print1() {
                     .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel22)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel24)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel23))
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                        .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                        .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel25))))))
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel22)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel24)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel23)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel25)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel13)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel26)
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel27))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(id_barangi1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel26)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel27))
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(namabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(satuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jumlah_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1582,7 +1582,7 @@ public void print1() {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
+    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Kasir.removeAll();
         Kasir.repaint();
@@ -1595,9 +1595,9 @@ public void print1() {
         jumlahbarang();
         notransaksi();
         HargaTot();
-    //GEN-LAST:event_btn_tjualActionPerformed
+                                             
 
-    }//GEN-LAST:event_btn_returnActionPerformed
+    }                                          
 
     private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
         // TODO add your handling code here:
@@ -1718,6 +1718,7 @@ public void print1() {
         Kasir.add(Cari);
         Kasir.repaint();
         Kasir.revalidate();
+        load_table();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_tpembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tpembelianActionPerformed
@@ -1828,6 +1829,7 @@ public void print1() {
         Kasir.add(Cari);
         Kasir.repaint();
         Kasir.revalidate();
+        load_table();
     }//GEN-LAST:event_kembalikecariActionPerformed
 
     private void HargaBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HargaBayarActionPerformed
@@ -1846,9 +1848,8 @@ public void print1() {
 
     private void bayar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayar1KeyReleased
         // TODO add your handling code here:
-        if (bayar1.getText() == "") {
+        
             kembali.setText("");
-        } else {
             String byr = bayar1.getText();
             double byr1 = Double.parseDouble(byr);
             double hbyr = Double.parseDouble(totalmembayar);
@@ -1856,7 +1857,7 @@ public void print1() {
             double tt = byr1 - hbyr;
             String hsl = String.format("%.2f", tt);
             kembali.setText("Rp. "+hsl);
-        }
+        
             
             
         
@@ -1958,6 +1959,7 @@ public void print1() {
         Kasir.add(Cari);
         Kasir.repaint();
         Kasir.revalidate();
+        load_table();
     }//GEN-LAST:event_kembalikecari1ActionPerformed
 
     private void satuan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan1ActionPerformed
@@ -2209,6 +2211,18 @@ public void print1() {
         // TODO add your handling code here:
     }//GEN-LAST:event_mencariPenjualanActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Kasir.removeAll();
+        Kasir.repaint();
+        Kasir.revalidate();
+
+        Kasir.add(Cari);
+        Kasir.repaint();
+        Kasir.revalidate();
+        load_table();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2280,6 +2294,7 @@ public void print1() {
     private javax.swing.JTextField id_transaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
