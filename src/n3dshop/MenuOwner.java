@@ -293,7 +293,8 @@ private void load_table (){
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("  DATA RETURN");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/return-box 1.png"))); // NOI18N
+        jLabel7.setText("DATA RETURN");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
