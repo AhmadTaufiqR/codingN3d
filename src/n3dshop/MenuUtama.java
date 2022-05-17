@@ -34,7 +34,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a;
     String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar;
-    String Id_barang, SATUAN, SATUANpmb, tgl, kode;
+    String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian;
     Date tglsekarang;
     PreparedStatement pst;
 
@@ -55,6 +55,7 @@ public class MenuUtama extends javax.swing.JFrame {
         notransaksi();
         Tampil_Tanggal();
         tampil_combo();
+        transaksi_pembelian_id();
     }
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
@@ -81,6 +82,33 @@ public void Tampil_Jam(){
     new Timer(1000, taskPerformer).start();
     }  
  
+private void transaksi_pembelian_id(){
+        try {
+            String sql = "SELECT MAX(RIGHT(Id_pembelian, 1)) AS ttl_id from transaksi_pembelian";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(sql);
+            rs.next();
+            id_trpembelian = rs.getString("ttl_id");
+            if (id_trpembelian == null) {
+                txt_IDT.setText("T-1");
+                String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('"+txt_IDT.getText()+"')";
+                java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
+                pst1.execute();
+            } else {
+                String sql1 = "SELECT MAX(Id_pembelian) AS ttl_id from transaksi_pembelian";
+            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st1 = cn1.createStatement();
+            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+            rs1.next();
+            txt_IDT.setText(rs1.getString("ttl_id"));
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
 public void Tampil_Tanggal() {
     tglsekarang = new Date();
@@ -298,7 +326,7 @@ public void tampil_barang(){
     public void PilihSatuan(){
         try {
             Object pilihan = satuan.getSelectedItem();
-            String sql1 = "SELECT eceran, grosir, harga_eceran, harga_grosir FROM barang WHERE  Id_barang = '"+Id_barang+"';";
+            String sql1 = "SELECT eceran, grosir FROM barang WHERE  Id_barang = '"+Id_barang+"';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
@@ -358,17 +386,17 @@ public void print1() {
         
         DefaultTableModel tabmodel = (DefaultTableModel) table_barang.getModel();
         
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI :" + IDT + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal :" + tgl + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Suplier :" + namaSupplier.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
+        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "***********************************************************************************************************************" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "ID TRANSAKSI :" + IDT + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "Tanggal :" + tgl + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "Suplier :" + namaSupplier.getText() + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "***********************************************************************************************************************" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
         
         for (int i = 0; i < tabmodel.getRowCount(); i++) {
             String bk = (String) tabmodel.getValueAt(i, 0);
@@ -376,13 +404,13 @@ public void print1() {
             String st = (String) tabmodel.getValueAt(i, 2);
             String jm = (String) tabmodel.getValueAt(i, 3);
             String hgt = (String) tabmodel.getValueAt(i, 4);
-            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
+            strukpembelian.setText(strukpembelian.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
         }
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
+        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
+        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
     }
 
     /**
@@ -398,6 +426,7 @@ public void print1() {
         strukpeminjaman = new javax.swing.JTextArea();
         strukpemb = new javax.swing.JScrollPane();
         strukpembelian = new javax.swing.JTextArea();
+        txt_IDTOther = new javax.swing.JTextField();
         Kasir = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -477,6 +506,7 @@ public void print1() {
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        txt_IDT = new javax.swing.JLabel();
         Return = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -509,6 +539,8 @@ public void print1() {
         strukpembelian.setColumns(20);
         strukpembelian.setRows(5);
         strukpemb.setViewportView(strukpembelian);
+
+        txt_IDTOther.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -600,6 +632,9 @@ public void print1() {
         barang_barang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 barang_barangMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                barang_barangMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(barang_barang);
@@ -1242,6 +1277,9 @@ public void print1() {
             }
         });
 
+        txt_IDT.setForeground(new java.awt.Color(255, 255, 255));
+        txt_IDT.setText("jLabel31");
+
         javax.swing.GroupLayout TransaksiPembelianLayout = new javax.swing.GroupLayout(TransaksiPembelian);
         TransaksiPembelian.setLayout(TransaksiPembelianLayout);
         TransaksiPembelianLayout.setHorizontalGroup(
@@ -1263,9 +1301,6 @@ public void print1() {
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel22))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel24))
                     .addComponent(jLabel23)
                     .addComponent(jLabel25)
                     .addComponent(jLabel13)
@@ -1274,7 +1309,14 @@ public void print1() {
                         .addComponent(jLabel26))
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel27)))
+                        .addComponent(jLabel27))
+                    .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                            .addComponent(txt_IDT, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(14, 14, 14))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TransaksiPembelianLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addComponent(jLabel24))))
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1314,12 +1356,17 @@ public void print1() {
                     .addComponent(hargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel16))
-                    .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel16))
+                            .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_IDT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
@@ -1724,6 +1771,10 @@ public void tampil_combo(){
         hrg_grosir = (String) barang_barang.getValueAt(a, 7);
 
         Id_barang = (String) barang_barang.getValueAt(a, 0);
+        
+        stokBarangEcer = (String) barang_barang.getValueAt(a, 2);
+        stokBarangGrosir = (String) barang_barang.getValueAt(a, 3);
+        
 
     }//GEN-LAST:event_barang_barangMouseClicked
 
@@ -1739,10 +1790,10 @@ public void tampil_combo(){
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
-        if (satuan.getSelectedItem() == "ECREAN") {
+        if (satuan.getSelectedItem() == "ECERAN") {
             try {
                 PilihSatuan();
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah_eceran, harga) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"')";
+            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah_ecer, harga) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"')";
             String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('"+No_faktur+"','"+Id_barang+"', '"+jumlahprd.getText()+"', '"+SATUAN+"', '"+hargaprduk.getText()+"', '"+tgl+"')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
@@ -1816,6 +1867,7 @@ public void tampil_combo(){
         Kasir.revalidate();
         tampil_barang();
         TotalPembelian();
+        transaksi_pembelian_id();
     }//GEN-LAST:event_btn_tpembelianActionPerformed
 
     private void scanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scanActionPerformed
@@ -1824,6 +1876,7 @@ public void tampil_combo(){
 
     private void satuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuanActionPerformed
         // TODO add your handling code here:
+        jumlahprd.setText("");
     }//GEN-LAST:event_satuanActionPerformed
 
     private void mencariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mencariActionPerformed
@@ -1955,22 +2008,39 @@ public void tampil_combo(){
         // TODO add your handling code here:
         hargaprduk.setText("");
         String pilihan = satuan.getSelectedItem().toString();
+        
         if (pilihan == "ECERAN") {
+            int brgecr = Integer.valueOf(stokBarangEcer);
             String jl = jumlahprd.getText();
+            int jmlprdecr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_ecer);
-
+           
+            if (jmlprdecr > brgecr ){
+                JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
+            }
+            else{
             double tt = jm * st;
             String hsl = String.format("%.2f", tt);
             hargaprduk.setText(hsl);
+            }
+            
         } else if (pilihan == "GROSIR") {
+            int brggsr = Integer.valueOf(stokBarangGrosir);
             String jl = jumlahprd.getText();
+            int jmlprdgsr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_grosir);
-
-            double tt = jm * st;
+            
+            if (jmlprdgsr > brggsr){
+                JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
+            }
+            else {
+                double tt = jm * st;
             String hsl = String.format("%.2f", tt);
             hargaprduk.setText(hsl);
+            }
+            
         } else {
             hargaprduk.setText("");
         }
@@ -2099,7 +2169,7 @@ public void tampil_combo(){
 
         if (satuan1.getSelectedItem() == "ECERAN") {
             try {
-                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";
+                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";                      
                     java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
                     pst.setString(1, id_barangi1.getText());
@@ -2129,6 +2199,7 @@ public void tampil_combo(){
                     Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
         } else if (satuan1.getSelectedItem() == "GROSIR"){
             try {
                 String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_grosir, grosir, harga_grosir, tanggal) Values (?,?,?,?,?,?)";
@@ -2167,12 +2238,37 @@ public void tampil_combo(){
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
-        print1();
         try {
+            print1();
             strukpembelian.print();
+            try {
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet rss = st.executeQuery("select max(right(Id_pembelian,1)) as no_terakhir from transaksi_pembelian;");
+            
+            if (rss.next()) {
+                String kode = rss.getString("no_terakhir");
+                String AN = "" + (Integer.parseInt(kode) + 1);
+                String strip = "-";
+                
+                txt_IDT.setText("T" + strip + AN);
+                
+            } else {
+                txt_IDT.setText("T-1");
+            }
+            
+            String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('" + txt_IDT.getText() + "')";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            pst = cnn.prepareStatement(sql12);
+            pst.execute();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
         } catch (java.awt.print.PrinterException e) {
             System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
         }
+           
     }//GEN-LAST:event_printActionPerformed
 
     private void mencari1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencari1KeyReleased
@@ -2322,6 +2418,10 @@ public void tampil_combo(){
         // TODO add your handling code here:
         
     }//GEN-LAST:event_satuan3ActionPerformed
+
+    private void barang_barangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barang_barangMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barang_barangMouseEntered
 
     /**
      * @param args the command line arguments
@@ -2474,6 +2574,8 @@ public void tampil_combo(){
     private javax.swing.JLabel tanggalreal;
     private javax.swing.JLabel tanggalreal1;
     private javax.swing.JLabel total;
+    private javax.swing.JLabel txt_IDT;
+    private javax.swing.JTextField txt_IDTOther;
     // End of variables declaration//GEN-END:variables
 public void namaSup(){ 
             try {
