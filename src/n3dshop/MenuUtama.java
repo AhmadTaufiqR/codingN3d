@@ -54,6 +54,7 @@ public class MenuUtama extends javax.swing.JFrame {
         PilihSatuan();
         notransaksi();
         Tampil_Tanggal();
+        tampil_combo();
     }
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
@@ -109,6 +110,27 @@ private void load_table (){
                     res.getString("nama_barang"), res.getString("stok_ecer"), res.getString("stok_grosir"), res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             barang_barang.setModel(model);
+        } catch (Exception e) {
+        }
+    }
+public void tabel_return (){
+    //membuat tampilan tabel
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("NAMA BARANG ");
+        model.addColumn("NAMA SUPPLIER");
+        model.addColumn("JUMLAH");
+        model.addColumn("SATUAN");
+ 
+        //menampilkan database dalam tabel
+        try {
+            String sql = "select * from detail_return;";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("")});
+            }
+            list_barang1.setModel(model);
         } catch (Exception e) {
         }
     }
@@ -1492,7 +1514,7 @@ public void print1() {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("SATUAN");
 
-        satuan3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SATUAN", "ECERAN", "GROSIR" }));
+        satuan3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH SUPPLIER" }));
         satuan3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 satuan3ActionPerformed(evt);
@@ -1542,16 +1564,16 @@ public void print1() {
                                     .addComponent(jLabel28)
                                     .addComponent(jLabel29)
                                     .addComponent(jLabel30))
-                                .addGap(18, 18, 18)
                                 .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ReturnLayout.createSequentialGroup()
-                                        .addComponent(satuan3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(satuan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jumlahBarang1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGap(18, 23, Short.MAX_VALUE)
+                                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jumlahBarang1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                                            .addComponent(satuan2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(ReturnLayout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addComponent(satuan3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addGap(18, 18, 18)
@@ -1625,7 +1647,26 @@ public void print1() {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+public void tampil_combo(){
+       try{
+           String sql = "SELECT nama_supplier FROM supplier GROUP BY nama_supplier;";
+           java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+           java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+           java.sql.ResultSet rs = pst.executeQuery();
+           
+           while(rs.next()){
+               satuan3.addItem(rs.getString("nama_supplier"));
+               
+           }
+           
+           rs.last();
+           int jumlahdata = rs.getRow();
+           rs.first();
+           
+       }catch(Exception e){
+           
+       }
+   }
     private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         Kasir.removeAll();
@@ -2279,6 +2320,7 @@ public void print1() {
 
     private void satuan3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan3ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_satuan3ActionPerformed
 
     /**

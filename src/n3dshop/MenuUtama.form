@@ -1515,18 +1515,18 @@
                                           <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="satuan3" min="-2" pref="296" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="satuan2" alignment="1" min="-2" pref="296" max="-2" attributes="0"/>
-                                                  <Component id="jumlahBarang1" alignment="1" min="-2" pref="294" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace type="separate" pref="23" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jumlahBarang1" pref="294" max="32767" attributes="0"/>
+                                                  <Component id="satuan2" max="32767" attributes="0"/>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Component id="satuan3" min="-2" pref="291" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1855,10 +1855,8 @@
             <Component class="javax.swing.JComboBox" name="satuan3">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="PILIH SATUAN"/>
-                    <StringItem index="1" value="ECERAN"/>
-                    <StringItem index="2" value="GROSIR"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="PILIH SUPPLIER"/>
                   </StringArray>
                 </Property>
               </Properties>
