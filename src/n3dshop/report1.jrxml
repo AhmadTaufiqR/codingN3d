@@ -59,7 +59,7 @@ ON petugas.username = transaksi_penjualan.username;]]>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="153" y="62" width="29" height="9"/>
+				<reportElement x="153" y="62" width="13" height="9"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
