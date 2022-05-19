@@ -29,7 +29,7 @@ ON petugas.username = transaksi_penjualan.username;]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="88" splitType="Stretch">
+		<band height="81" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="11" width="200" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
