@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="200" pageHeight="100" columnWidth="200" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="4.594972986357232"/>
+	<property name="ireport.zoom" value="3.452271214393118"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="12"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama
 FROM transaksi_penjualan 
@@ -29,7 +29,7 @@ ON petugas.username = transaksi_penjualan.username;]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="100" splitType="Stretch">
+		<band height="88" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="11" width="200" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -42,7 +42,7 @@ ON petugas.username = transaksi_penjualan.username;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
-				<text><![CDATA[Jl. Khoiril Anwar, Badean]]></text>
+				<text><![CDATA[Jl. Khairil Anwar, RT:05 RW:01 Badean]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="1" y="44" width="199" height="10"/>
@@ -52,39 +52,53 @@ ON petugas.username = transaksi_penjualan.username;]]>
 				<text><![CDATA[Bondowoso, Jawa Timur]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="62" width="29" height="9"/>
-				<textElement>
-					<font size="6"/>
-				</textElement>
-				<text><![CDATA[Tanggal]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="153" y="62" width="13" height="9"/>
-				<textElement>
-					<font size="6"/>
-				</textElement>
-				<text><![CDATA[Jam]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="17" y="81" width="43" height="8"/>
+				<reportElement x="13" y="64" width="43" height="8"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
-				<text><![CDATA[Transaksi	:]]></text>
+				<text><![CDATA[Kode Transaksi	:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="89" width="43" height="8"/>
+				<reportElement x="13" y="72" width="43" height="8"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Kasir	:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="106" y="64" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Tanggal	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="72" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Jam 	:]]></text>
+			</staticText>
 			<line>
-				<reportElement x="0" y="294" width="218" height="1"/>
+				<reportElement x="1" y="54" width="199" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="56" y="64" width="31" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_faktur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="71" width="29" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -94,21 +108,92 @@ ON petugas.username = transaksi_penjualan.username;]]>
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="0" width="200" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="7" y="11" width="49" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="11" width="40" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah_ecer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="11" width="40" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah_grosir}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="68">
 			<line>
-				<reportElement x="0" y="25" width="200" height="1"/>
+				<reportElement x="0" y="2" width="200" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="92" y="14" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Total	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="22" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Bayar	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="30" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Kembalian	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="200" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="6"/>
+				</textElement>
+				<text><![CDATA[TERIMA KASIH ANDA SUDAH BERBELANJA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="30" width="29" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kembali}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="22" width="23" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="14" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Harga_Total}]]></textFieldExpression>
+			</textField>
 		</band>
-		<band height="68"/>
 	</detail>
 	<columnFooter>
 		<band splitType="Stretch"/>
