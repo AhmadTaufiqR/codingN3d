@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="226" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="6.72749994932561"/>
-	<property name="ireport.x" value="154"/>
-	<property name="ireport.y" value="207"/>
+	<property name="ireport.zoom" value="4.59497298635723"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="306"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama
 FROM transaksi_penjualan 
@@ -51,80 +51,68 @@ ON petugas.username = transaksi_penjualan.username;]]>
 				</textElement>
 				<text><![CDATA[Bondowoso, Jawa Timur]]></text>
 			</staticText>
-			<line>
-				<reportElement x="0" y="46" width="186" height="1"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="-3" y="-8" width="186" height="1"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="-3" y="-8" width="186" height="1"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<staticText>
-				<reportElement x="5" y="11" width="43" height="8"/>
+				<reportElement x="0" y="16" width="43" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<text><![CDATA[Kasir	:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="5" y="3" width="43" height="8"/>
+				<reportElement x="0" y="7" width="43" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<text><![CDATA[Kode Transaksi	:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="48" y="3" width="31" height="7"/>
+				<reportElement x="43" y="7" width="31" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{no_faktur}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="98" y="3" width="43" height="8"/>
+				<reportElement x="91" y="7" width="43" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<text><![CDATA[Tanggal	:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="48" y="10" width="29" height="8"/>
+				<reportElement x="43" y="16" width="29" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="98" y="11" width="43" height="8"/>
+				<reportElement x="91" y="16" width="43" height="8"/>
 				<textElement>
-					<font size="5"/>
+					<font size="4"/>
 				</textElement>
 				<text><![CDATA[Jam 	:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="30" width="186" height="1"/>
+				<reportElement x="0" y="24" width="186" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="186" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="100" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band splitType="Stretch"/>
