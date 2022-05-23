@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="200" pageHeight="100" columnWidth="200" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="3.452271214393118"/>
+	<property name="ireport.zoom" value="5.054470284992972"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="498"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama
 FROM transaksi_penjualan 
@@ -136,14 +136,14 @@ ON petugas.username = transaksi_penjualan.username;]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_grosir}]]></textFieldExpression>
 			</textField>
-		</band>
-		<band height="68">
 			<line>
-				<reportElement x="0" y="2" width="200" height="1"/>
+				<reportElement x="0" y="99" width="200" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+		</band>
+		<band height="68">
 			<staticText>
 				<reportElement x="92" y="14" width="43" height="8"/>
 				<textElement>

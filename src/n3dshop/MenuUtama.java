@@ -196,15 +196,14 @@ public void tampil_barang(){
         model.addColumn("Harga Grosir");
 
         try {
-            String sql = "Select * From barang where tanggal = '"+tgl+"';";
+            String sql = "Select * from detail_transaksi_pembelian;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()){
-                model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("stok_ecer"), res.getString("stok_grosir"),res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                model.addRow(new Object[]{res.getString("Id_pembelian"),
+                res.getString("tanggal"),res.getString("Id_barang"), res.getString("jumlah_ecer"),res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
-
             table_barang.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data tidak muncul");
@@ -297,7 +296,7 @@ public void tampil_barang(){
     private void TotalPembelian(){
    
         try {
-            String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from barang where tanggal = '"+tgl+"';";
+            String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from detail_transaksi_pembelian;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
@@ -340,78 +339,7 @@ public void tampil_barang(){
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-public void print() {
-        String IDT = id_transaksi.getText();
-        String hrgt = HargaBayar.getText();
-        String byr = bayar1.getText();
-        String kmbl = kembali.getText();
-        
-        DefaultTableModel tabmodel = (DefaultTableModel) list_barang.getModel();
-        
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "ID TRANSAKSI : " + IDT + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Tanggal       : " + tgl + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Kasir         : " + NamaKasir.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "***********************************************************************************************************************" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "Id Barang" + "\t" + "Nama" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
-        
-        for (int i = 0; i < tabmodel.getRowCount(); i++) {
-            String bk = (String) tabmodel.getValueAt(i, 0);
-            String nm = (String) tabmodel.getValueAt(i, 1);
-            String st = (String) tabmodel.getValueAt(i, 2);
-            String jm = (String) tabmodel.getValueAt(i, 3);
-            String hgt = (String) tabmodel.getValueAt(i, 4);
-            strukpeminjaman.setText(strukpeminjaman.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
-        }
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "Bayar : " + byr + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "\t" + "KEMBALI :" + kmbl + "\n" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpeminjaman.setText(strukpeminjaman.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
-    }
-
-public void print1() {
-        String IDT = id_transaksi.getText();
-        String hrgt = HargaBayar.getText();
-        
-        DefaultTableModel tabmodel = (DefaultTableModel) table_barang.getModel();
-        
-        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "              N3D-SHOP" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "        ANGKRINGAN N3D-SHOP" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "Jl. KHOIRIL ANWAR, BADEAN, BONDOWOSO" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "***********************************************************************************************************************" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "ID TRANSAKSI :" + IDT + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "Tanggal :" + tgl + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "Suplier :" + namaSupplier.getText() + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "***********************************************************************************************************************" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "Id Barang" + "\t" + "Nama Barang" + "\t" + "Satuan" + "\t" + "Jumlah" + "\t" + "Harga"+"\n");
-        
-        for (int i = 0; i < tabmodel.getRowCount(); i++) {
-            String bk = (String) tabmodel.getValueAt(i, 0);
-            String nm = (String) tabmodel.getValueAt(i, 1);
-            String st = (String) tabmodel.getValueAt(i, 2);
-            String jm = (String) tabmodel.getValueAt(i, 3);
-            String hgt = (String) tabmodel.getValueAt(i, 4);
-            strukpembelian.setText(strukpembelian.getText() + bk + "\t" + nm + "\t" + st + "\t" + jm + "\t" + hgt + "\n");
-        }
-        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "\t" + "HARGA TOTAL :" + hrgt + "\n" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "-----------------------------------------------------------------------------------------------------------------------" + "\n");
-        strukpembelian.setText(strukpembelian.getText() + "\t" + "\t" + "Terima Kasih Telah berbelanja di " + "\n" + "\t" + "\t" + "\t" + "MY BOOK");
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -427,6 +355,7 @@ public void print1() {
         strukpemb = new javax.swing.JScrollPane();
         strukpembelian = new javax.swing.JTextArea();
         txt_IDTOther = new javax.swing.JTextField();
+        txt_IDT = new javax.swing.JLabel();
         Kasir = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -506,7 +435,6 @@ public void print1() {
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        txt_IDT = new javax.swing.JLabel();
         Return = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -541,6 +469,9 @@ public void print1() {
         strukpemb.setViewportView(strukpembelian);
 
         txt_IDTOther.setText("jTextField1");
+
+        txt_IDT.setForeground(new java.awt.Color(255, 255, 255));
+        txt_IDT.setText("jLabel31");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -617,6 +548,8 @@ public void print1() {
         jLabel2.setText("DAFTAR PRODUK");
 
         jPanel3.setBackground(new java.awt.Color(116, 114, 203));
+
+        jScrollPane1.setBorder(null);
 
         barang_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1277,9 +1210,6 @@ public void print1() {
             }
         });
 
-        txt_IDT.setForeground(new java.awt.Color(255, 255, 255));
-        txt_IDT.setText("jLabel31");
-
         javax.swing.GroupLayout TransaksiPembelianLayout = new javax.swing.GroupLayout(TransaksiPembelian);
         TransaksiPembelian.setLayout(TransaksiPembelianLayout);
         TransaksiPembelianLayout.setHorizontalGroup(
@@ -1310,13 +1240,9 @@ public void print1() {
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jLabel27))
-                    .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                            .addComponent(txt_IDT, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(14, 14, 14))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, TransaksiPembelianLayout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(jLabel24))))
+                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel24)))
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1356,17 +1282,12 @@ public void print1() {
                     .addComponent(hargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel16))
-                            .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_IDT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel16))
+                    .addComponent(mencari1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPembelianLayout.createSequentialGroup()
@@ -1806,6 +1727,7 @@ public void tampil_combo(){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
         }
+            
         } else if (satuan.getSelectedItem() == "GROSIR"){
             
             try {
@@ -1974,12 +1896,7 @@ public void tampil_combo(){
     }//GEN-LAST:event_HargaBayarActionPerformed
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
-        print();
-        try {
-                strukpeminjaman.print();
-            } catch (java.awt.print.PrinterException e) {
-                System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
-            }
+      
     }//GEN-LAST:event_CETAKActionPerformed
 
 
@@ -2169,16 +2086,18 @@ public void tampil_combo(){
 
         if (satuan1.getSelectedItem() == "ECERAN") {
             try {
-                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran, tanggal) Values (?,?,?,?,?,?)";                      
+                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran) Values (?,?,?,?,?)"; 
+                    String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_ecer, harga_eceran) values ('"+txt_IDT.getText()+"', '"+tgl+"', '"+id_barangi1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"')";
                     java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
+                    java.sql.PreparedStatement pst2=conntt.prepareStatement(sql2);
                     pst.setString(1, id_barangi1.getText());
                     pst.setString(2, namabarang1.getText());
                     pst.setString(3, jumlah_pembelian.getText());
                     pst.setString(4, namasatuan1.getText());
                     pst.setString(5, harga1.getText());
-                    pst.setString(6, tgl);
                     pst.executeUpdate();
+                    pst2.executeUpdate();
                     tampil_barang();
                     TotalPembelian();
                     satuan1.setSelectedItem("PILIH SATUAN");
@@ -2189,9 +2108,12 @@ public void tampil_combo(){
             } catch (Exception e) {
                 try {
                     String sql = "UPDATE barang SET stok_ecer = '"+jumlah_pembelian.getText()+"',eceran = '"+namasatuan1.getText()+"', harga_eceran='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_ecer = '"+jumlah_pembelian.getText()+"', harga_eceran='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
                     pst.execute();
+                    pst2.execute();
                     tampil_barang();
                     TotalPembelian();
                     JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
@@ -2202,16 +2124,18 @@ public void tampil_combo(){
             
         } else if (satuan1.getSelectedItem() == "GROSIR"){
             try {
-                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_grosir, grosir, harga_grosir, tanggal) Values (?,?,?,?,?,?)";
+                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_grosir, grosir, harga_grosir) Values (?,?,?,?,?)";
+                String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_grosir, harga_grosir) values ('"+txt_IDT.getText()+"', '"+tgl+"', '"+id_barangi1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"')";
                 java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
                 java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
+                java.sql.PreparedStatement pst2=conntt.prepareStatement(sql2);
                 pst.setString(1, id_barangi1.getText());
                 pst.setString(2, namabarang1.getText());
                 pst.setString(3, jumlah_pembelian.getText());
                 pst.setString(4, namasatuan1.getText());
                 pst.setString(5, harga1.getText());
-                pst.setString(6, tgl);
                 pst.executeUpdate();
+                pst2.executeUpdate();
                 tampil_barang();
                 TotalPembelian();
                 satuan1.setSelectedItem("PILIH SATUAN");
@@ -2221,9 +2145,12 @@ public void tampil_combo(){
             } catch (Exception e) {
                 try {
                     String sql = "UPDATE barang SET stok_grosir = '"+jumlah_pembelian.getText()+"', grosir = '"+namasatuan1.getText()+"', harga_grosir='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_grosir = '"+jumlah_pembelian.getText()+"', harga_grosir='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                    java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
                     pst.execute();
+                    pst2.execute();
                     tampil_barang();
                     TotalPembelian();
                     JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
@@ -2238,9 +2165,6 @@ public void tampil_combo(){
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
-        try {
-            print1();
-            strukpembelian.print();
             try {
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
@@ -2264,11 +2188,7 @@ public void tampil_combo(){
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }
-        } catch (java.awt.print.PrinterException e) {
-            System.err.format("Tidak Ada Printer Yang Ditemukan", e.getMessage());
-        }
-           
+        } 
     }//GEN-LAST:event_printActionPerformed
 
     private void mencari1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencari1KeyReleased

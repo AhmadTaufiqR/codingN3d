@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="226" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="6.72749994932561"/>
+	<property name="ireport.x" value="154"/>
+	<property name="ireport.y" value="207"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama
+FROM transaksi_penjualan 
+JOIN detail_transaksi_penjualan 
+ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur 
+JOIN barang 
+ON barang.id_barang = detail_transaksi_penjualan.Id_barang
+JOIN petugas
+ON petugas.username = transaksi_penjualan.username;]]>
+	</queryString>
+	<field name="no_faktur" class="java.lang.String"/>
+	<field name="username" class="java.lang.String"/>
+	<field name="Harga_Total" class="java.lang.Integer"/>
+	<field name="bayar" class="java.lang.Integer"/>
+	<field name="kembali" class="java.lang.Integer"/>
+	<field name="Id_barang" class="java.lang.String"/>
+	<field name="jumlah_ecer" class="java.lang.Integer"/>
+	<field name="jumlah_grosir" class="java.lang.Integer"/>
+	<field name="satuan" class="java.lang.String"/>
+	<field name="Harga" class="java.lang.Integer"/>
+	<field name="nama_barang" class="java.lang.String"/>
+	<field name="nama" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="1" width="186" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans Mono" size="13"/>
+				</textElement>
+				<text><![CDATA[ANGKRINGAN N3D]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="21" width="187" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<text><![CDATA[Jl. Khairil Anwar, RT:05 RW:01 Badean]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="186" height="11"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Bondowoso, Jawa Timur]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="46" width="186" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="-3" y="-8" width="186" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="-3" y="-8" width="186" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="11" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Kasir	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="3" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Kode Transaksi	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="3" width="31" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_faktur}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="98" y="3" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Tanggal	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="48" y="10" width="29" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="98" y="11" width="43" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Jam 	:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="30" width="186" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
