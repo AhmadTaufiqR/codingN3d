@@ -196,7 +196,10 @@ public void tampil_barang(){
         model.addColumn("Harga Grosir");
 
         try {
-            String sql = "Select * from detail_transaksi_pembelian;";
+            String sql = "SELECT detail_transaksi_pembelian.Id_pembelian, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, "
+                    + "detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, "
+                    + "detail_transaksi_pembelian.harga_grosir FROM detail_transaksi_pembelian "
+                    + "JOIN transaksi_pembelian ON transaksi_pembelian.Id_pembelian = detail_transaksi_pembelian.Id_pembelian;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);

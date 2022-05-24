@@ -44,6 +44,13 @@ public class MenuOwner extends javax.swing.JFrame {
         Tabel_Supplier();
         Tabel_TransaksiPenjualan();
         Tabel_TransaksiPembelian();
+        DashboardMenu.setBackground(new Color(51,102,255));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
     }
 
     private void Tabel_TransaksiPembelian() {
@@ -187,13 +194,20 @@ public class MenuOwner extends javax.swing.JFrame {
         OWNER = new javax.swing.JPanel();
         MENUSAMPING = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        DashboardMenu = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        AKUNMENU = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        TRANSAKSIMENU = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        DATABARANGMENU = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        SUPPLIERMENU = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        DATALAPORANMENU = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
+        DATARETURNMENU = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         navbar = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         KONTEN = new javax.swing.JPanel();
@@ -320,14 +334,49 @@ public class MenuOwner extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Angkringan__1_-removebg-preview 1.png"))); // NOI18N
 
+        DashboardMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DashboardMenu.setEnabled(false);
+        DashboardMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DashboardMenuMouseClicked(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondashbord.png"))); // NOI18N
         jLabel2.setText("  DASHBOARD");
+        jLabel2.setToolTipText("");
+        jLabel2.setAutoscrolls(true);
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DashboardMenuLayout = new javax.swing.GroupLayout(DashboardMenu);
+        DashboardMenu.setLayout(DashboardMenuLayout);
+        DashboardMenuLayout.setHorizontalGroup(
+            DashboardMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardMenuLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DashboardMenuLayout.setVerticalGroup(
+            DashboardMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DashboardMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        AKUNMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AKUNMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AKUNMENUMouseClicked(evt);
             }
         });
 
@@ -335,10 +384,37 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/iconprofil.png"))); // NOI18N
-        jLabel3.setText("   AKUN");
+        jLabel3.setText("  AKUN");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setRequestFocusEnabled(false);
+        jLabel3.setVerifyInputWhenFocusTarget(false);
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AKUNMENULayout = new javax.swing.GroupLayout(AKUNMENU);
+        AKUNMENU.setLayout(AKUNMENULayout);
+        AKUNMENULayout.setHorizontalGroup(
+            AKUNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AKUNMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(165, 165, 165))
+        );
+        AKUNMENULayout.setVerticalGroup(
+            AKUNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AKUNMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        TRANSAKSIMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TRANSAKSIMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TRANSAKSIMENUMouseClicked(evt);
             }
         });
 
@@ -347,9 +423,34 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icontransaksi.png"))); // NOI18N
         jLabel4.setText("  TRANSAKSI");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TRANSAKSIMENULayout = new javax.swing.GroupLayout(TRANSAKSIMENU);
+        TRANSAKSIMENU.setLayout(TRANSAKSIMENULayout);
+        TRANSAKSIMENULayout.setHorizontalGroup(
+            TRANSAKSIMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TRANSAKSIMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(117, 117, 117))
+        );
+        TRANSAKSIMENULayout.setVerticalGroup(
+            TRANSAKSIMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TRANSAKSIMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        DATABARANGMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DATABARANGMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DATABARANGMENUMouseClicked(evt);
             }
         });
 
@@ -358,9 +459,34 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatabarang.png"))); // NOI18N
         jLabel5.setText("  DATA BARANG");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DATABARANGMENULayout = new javax.swing.GroupLayout(DATABARANGMENU);
+        DATABARANGMENU.setLayout(DATABARANGMENULayout);
+        DATABARANGMENULayout.setHorizontalGroup(
+            DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATABARANGMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(92, 92, 92))
+        );
+        DATABARANGMENULayout.setVerticalGroup(
+            DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATABARANGMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        SUPPLIERMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SUPPLIERMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SUPPLIERMENUMouseClicked(evt);
             }
         });
 
@@ -369,20 +495,34 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/iconsuplier.png"))); // NOI18N
         jLabel6.setText(" SUPLIER");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/return-box 1.png"))); // NOI18N
-        jLabel7.setText("DATA RETURN");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        javax.swing.GroupLayout SUPPLIERMENULayout = new javax.swing.GroupLayout(SUPPLIERMENU);
+        SUPPLIERMENU.setLayout(SUPPLIERMENULayout);
+        SUPPLIERMENULayout.setHorizontalGroup(
+            SUPPLIERMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SUPPLIERMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(140, 140, 140))
+        );
+        SUPPLIERMENULayout.setVerticalGroup(
+            SUPPLIERMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SUPPLIERMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        DATALAPORANMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DATALAPORANMENU.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                DATALAPORANMENUMouseClicked(evt);
             }
         });
 
@@ -391,54 +531,106 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatalaporan.png"))); // NOI18N
         jLabel33.setText("  DATA LAPORAN");
+        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel33MouseClicked(evt);
             }
         });
 
+        javax.swing.GroupLayout DATALAPORANMENULayout = new javax.swing.GroupLayout(DATALAPORANMENU);
+        DATALAPORANMENU.setLayout(DATALAPORANMENULayout);
+        DATALAPORANMENULayout.setHorizontalGroup(
+            DATALAPORANMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATALAPORANMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel33)
+                .addGap(86, 86, 86))
+        );
+        DATALAPORANMENULayout.setVerticalGroup(
+            DATALAPORANMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATALAPORANMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        DATARETURNMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DATARETURNMENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DATARETURNMENUMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/return-box 1.png"))); // NOI18N
+        jLabel7.setText("DATA RETURN");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DATARETURNMENULayout = new javax.swing.GroupLayout(DATARETURNMENU);
+        DATARETURNMENU.setLayout(DATARETURNMENULayout);
+        DATARETURNMENULayout.setHorizontalGroup(
+            DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATARETURNMENULayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(93, 93, 93))
+        );
+        DATARETURNMENULayout.setVerticalGroup(
+            DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATARETURNMENULayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout MENUSAMPINGLayout = new javax.swing.GroupLayout(MENUSAMPING);
         MENUSAMPING.setLayout(MENUSAMPINGLayout);
         MENUSAMPINGLayout.setHorizontalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1)
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createSequentialGroup()
-                        .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel33)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(68, 68, 68))))
+                    .addComponent(DashboardMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AKUNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DATABARANGMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DATARETURNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         MENUSAMPINGLayout.setVerticalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DashboardMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(AKUNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DATABARANGMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         OWNER.add(MENUSAMPING, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
@@ -1764,28 +1956,6 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(Dashboard);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(Akun);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void cariAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariAkunActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cariAkunActionPerformed
@@ -1851,50 +2021,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private void noHpAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noHpAkunActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_noHpAkunActionPerformed
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(TRANSAKSI);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(DataBarang);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(Suplier);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel6MouseClicked
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(DataReturn);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel7MouseClicked
 
     private void CariSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariSupplierActionPerformed
         // TODO add your handling code here:
@@ -2067,17 +2193,6 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Simpan7ActionPerformed
 
-    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(DataLaporan);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-    }//GEN-LAST:event_jLabel33MouseClicked
-
     private void cariTransaksiPembelianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiPembelianKeyReleased
         // TODO add your handling code here:
         Tabel_TransaksiPembelian();
@@ -2103,6 +2218,272 @@ public class MenuOwner extends javax.swing.JFrame {
     private void txt_nohpSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nohpSupplierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nohpSupplierActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Dashboard);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(51,102,255));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void DashboardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMenuMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Dashboard);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(51,102,255));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+
+    }//GEN-LAST:event_DashboardMenuMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Akun);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(51,102,255));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void AKUNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AKUNMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Akun);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(51,102,255));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_AKUNMENUMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(TRANSAKSI);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(51,102,255));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void TRANSAKSIMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TRANSAKSIMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(TRANSAKSI);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(51,102,255));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_TRANSAKSIMENUMouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataBarang);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(51,102,255));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void DATABARANGMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATABARANGMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataBarang);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(51,102,255));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_DATABARANGMENUMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Suplier);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(51,102,255));
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void SUPPLIERMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SUPPLIERMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(Suplier);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(51,102,255));
+    }//GEN-LAST:event_SUPPLIERMENUMouseClicked
+
+    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataLaporan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(51,102,255));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel33MouseClicked
+
+    private void DATALAPORANMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATALAPORANMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataLaporan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(51,102,255));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_DATALAPORANMENUMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataReturn);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(51,102,255));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void DATARETURNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENUMouseClicked
+        // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataReturn);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(51,102,255));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_DATARETURNMENUMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2143,11 +2524,16 @@ public class MenuOwner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AKUNMENU;
     private javax.swing.JPanel Akun;
     private javax.swing.JTextField Cari5;
     private javax.swing.JTextField CariReturn6;
     private javax.swing.JTextField CariSupplier;
+    private javax.swing.JPanel DATABARANGMENU;
+    private javax.swing.JPanel DATALAPORANMENU;
+    private javax.swing.JPanel DATARETURNMENU;
     private javax.swing.JPanel Dashboard;
+    private javax.swing.JPanel DashboardMenu;
     private javax.swing.JPanel DataBarang;
     private javax.swing.JPanel DataLaporan;
     private javax.swing.JPanel DataReturn;
@@ -2159,12 +2545,14 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel OWNER;
     private javax.swing.JTextField PasswordAkun;
     private javax.swing.JPanel Profil;
+    private javax.swing.JPanel SUPPLIERMENU;
     private javax.swing.JButton Simpan1;
     private javax.swing.JButton Simpan4;
     private javax.swing.JButton Simpan5;
     private javax.swing.JButton Simpan7;
     private javax.swing.JPanel Suplier;
     private javax.swing.JPanel TRANSAKSI;
+    private javax.swing.JPanel TRANSAKSIMENU;
     private javax.swing.JTable Tabel_suplier;
     private javax.swing.JPanel TransaksiPembelian1;
     private javax.swing.JPanel TransaksiPenjualan1;
