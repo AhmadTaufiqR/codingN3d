@@ -5,31 +5,22 @@
  */
 package n3dshop;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.print.PrinterException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import n3dshop.Koneksi;
-import n3dshop.Koneksi;
-import n3dshop.Login;
-import n3dshop.Login;
 
-/**
- *
- * @author HP
- */
 public class MenuUtama extends javax.swing.JFrame {
 
     int a;
@@ -56,7 +47,7 @@ public class MenuUtama extends javax.swing.JFrame {
         Tampil_Tanggal();
         tampil_combo();
         transaksi_pembelian_id();
-    }
+    }  
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
  
@@ -112,8 +103,9 @@ private void transaksi_pembelian_id(){
 
 public void Tampil_Tanggal() {
     tglsekarang = new Date();
-    SimpleDateFormat smpdtfmt = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+    SimpleDateFormat smpdtfmt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     tgl = smpdtfmt.format(tglsekarang);
+    
     
 }
 private void load_table (){
@@ -427,7 +419,6 @@ public void tampil_barang(){
         print = new javax.swing.JButton();
         tambahprd = new javax.swing.JButton();
         btlprd = new javax.swing.JButton();
-        scbtl = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         satuan1 = new javax.swing.JComboBox<>();
         namasatuan1 = new javax.swing.JTextField();
@@ -632,7 +623,7 @@ public void tampil_barang(){
                     .addComponent(total)
                     .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -723,28 +714,28 @@ public void tampil_barang(){
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(CariLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CariLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(CariLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CariLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(satuan, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE)
+                                .addComponent(namaprd, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CariLayout.createSequentialGroup()
                                     .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(satuan, javax.swing.GroupLayout.Alignment.LEADING, 0, 319, Short.MAX_VALUE)
-                                    .addComponent(namaprd, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(hargaprduk, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6)
-                            .addComponent(jumlahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hargaprduk, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jumlahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         CariLayout.setVerticalGroup(
@@ -775,13 +766,13 @@ public void tampil_barang(){
                         .addGroup(CariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(batal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(111, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(CariLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         Kasir.add(Cari, "card3");
@@ -1112,6 +1103,15 @@ public void tampil_barang(){
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("JUMLAH");
 
+        id_barangi1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                id_barangi1KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                id_barangi1KeyTyped(evt);
+            }
+        });
+
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("NAMA BARANG");
@@ -1144,15 +1144,6 @@ public void tampil_barang(){
         btlprd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btlprdActionPerformed(evt);
-            }
-        });
-
-        scbtl.setBackground(new java.awt.Color(255, 232, 22));
-        scbtl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/scan.png"))); // NOI18N
-        scbtl.setText("  SCAN");
-        scbtl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                scbtlActionPerformed(evt);
             }
         });
 
@@ -1269,9 +1260,7 @@ public void tampil_barang(){
                 .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         TransaksiPembelianLayout.setVerticalGroup(
@@ -1333,15 +1322,12 @@ public void tampil_barang(){
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(72, 72, 72)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scbtl, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TransaksiPembelianLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(kembalikecari1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logout1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -2055,10 +2041,6 @@ public void tampil_combo(){
             //        }
     }//GEN-LAST:event_satuan1ActionPerformed
 
-    private void scbtlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scbtlActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_scbtlActionPerformed
-
     private void btlprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprdActionPerformed
         // TODO add your handling code here:
         int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Anda Menghapus Data ini???","Confirmation",JOptionPane.YES_NO_OPTION);
@@ -2331,6 +2313,7 @@ public void tampil_combo(){
         Kasir.repaint();
         Kasir.revalidate();
         load_table();
+        tanggalreal1.setText(tgl);
     }//GEN-LAST:event_btn_tjual2ActionPerformed
 
     private void satuan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan2ActionPerformed
@@ -2345,6 +2328,18 @@ public void tampil_combo(){
     private void barang_barangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barang_barangMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_barang_barangMouseEntered
+
+    private void id_barangi1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barangi1KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_id_barangi1KeyTyped
+
+    private void id_barangi1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barangi1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           String IdpembelianBrg = id_barangi1.getText();
+        }
+    }//GEN-LAST:event_id_barangi1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -2486,7 +2481,6 @@ public void tampil_combo(){
     private javax.swing.JComboBox<String> satuan3;
     private javax.swing.JButton scan;
     private javax.swing.JButton scan1;
-    private javax.swing.JButton scbtl;
     public javax.swing.JScrollPane strukpemb;
     public static javax.swing.JTextArea strukpembelian;
     public static javax.swing.JTextArea strukpeminjaman;
