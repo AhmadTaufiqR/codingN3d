@@ -12,21 +12,21 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
 import java.awt.print.*;
 import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.MessageFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import sun.security.util.Password;
 
 /**
  *
@@ -132,6 +132,7 @@ public class MenuOwner extends javax.swing.JFrame {
     }
 
     private void Tabel_Akun() {
+        
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("USERNAME");
         model.addColumn("NAMA");
@@ -311,7 +312,6 @@ public class MenuOwner extends javax.swing.JFrame {
         noHpAkun = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         gambar = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
         passwordAkun = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
@@ -834,7 +834,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                 .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(DataBarangLayout.createSequentialGroup()
                                         .addComponent(jLabel14)
-                                        .addGap(18, 288, Short.MAX_VALUE))
+                                        .addGap(18, 311, Short.MAX_VALUE))
                                     .addGroup(DataBarangLayout.createSequentialGroup()
                                         .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(DataBarangLayout.createSequentialGroup()
@@ -888,9 +888,9 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(HargaDataBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18))
-                        .addContainerGap(313, Short.MAX_VALUE))
+                        .addContainerGap(321, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DataBarangLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -957,7 +957,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         KONTEN.add(TRANSAKSI, "card3");
@@ -1038,7 +1038,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(unduhTransaksiPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         KONTEN.add(TransaksiPenjualan1, "card4");
@@ -1221,7 +1221,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         KONTEN.add(DataLaporan, "card8");
@@ -1455,7 +1455,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGroup(SuplierLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jLabel46))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         SuplierLayout.setVerticalGroup(
             SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1487,7 +1487,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
                         .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 24, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1602,8 +1602,6 @@ public class MenuOwner extends javax.swing.JFrame {
         gambar.setForeground(new java.awt.Color(255, 255, 255));
         gambar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FOTO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 10), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton2.setText("UNGGAH");
-
         jLabel40.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         jLabel40.setText("ALAMAT");
 
@@ -1639,62 +1637,62 @@ public class MenuOwner extends javax.swing.JFrame {
         AkunLayout.setHorizontalGroup(
             AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AkunLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(472, 472, 472)
-                .addComponent(jLabel36)
-                .addGap(6, 6, 6)
-                .addComponent(cariAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(AkunLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 956, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(AkunLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel37)
-                    .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel39)
-                        .addComponent(jLabel38)))
-                .addGap(39, 39, 39)
-                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(AkunLayout.createSequentialGroup()
-                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(namaAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel41)
-                            .addComponent(jLabel40))
-                        .addGap(18, 18, 18)
-                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordAkun, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))))
                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(472, 472, 472)
+                        .addComponent(jLabel36)
+                        .addGap(6, 6, 6)
+                        .addComponent(cariAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 956, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel35)
+                            .addComponent(jLabel37)
+                            .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel39)
+                                .addComponent(jLabel38)))
+                        .addGap(39, 39, 39)
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(AkunLayout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(264, 264, 264))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_unggah)
-                                .addGap(321, 321, 321)))
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(373, 373, 373))))
-            .addGroup(AkunLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(simpanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(editAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(hapusAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(namaAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usernameAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(pilihanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel41)
+                                    .addComponent(jLabel40))
+                                .addGap(18, 18, 18)
+                                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(passwordAkun, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1))))
+                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(AkunLayout.createSequentialGroup()
+                                    .addGap(33, 33, 33)
+                                    .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(264, 264, 264))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AkunLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btn_unggah)
+                                    .addGap(321, 321, 321)))
+                            .addGroup(AkunLayout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(AkunLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(simpanAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(editAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hapusAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75))
         );
         AkunLayout.setVerticalGroup(
             AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1705,22 +1703,19 @@ public class MenuOwner extends javax.swing.JFrame {
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cariAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AkunLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AkunLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel39))
-                                    .addComponent(jButton2)))
-                            .addGroup(AkunLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_unggah, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(AkunLayout.createSequentialGroup()
+                            .addGap(194, 194, 194)
+                            .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(noHpAkun, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel39)))
+                        .addGroup(AkunLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(14, 14, 14)
+                            .addComponent(txt_filename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_unggah, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AkunLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1848,7 +1843,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Simpan7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         KONTEN.add(DataReturn, "card8");
@@ -1982,9 +1977,11 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void simpanAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanAkunActionPerformed
         // TODO add your handling code here:
-        try {
+        if (gambar.getIcon() == null) {
+           try {
+            FileInputStream fis=null;
             String sql = "INSERT INTO petugas (username, nama,alamat, level,no_telepon, password) Values ('" + usernameAkun.getText() + "', '" + namaAkun.getText() + "', '"
-                    + passwordAkun.getText() + "', '" + pilihanAkun .getSelectedItem() + "', '" + noHpAkun.getText() + "','" + alamatAkun.getText() +"');";
+                    + alamatAkun.getText() + "', '" + pilihanAkun .getSelectedItem() + "', '" + noHpAkun.getText() + "','" + passwordAkun.getText() +"');";
             java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
             pst.execute();
@@ -1994,14 +1991,30 @@ public class MenuOwner extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
         }
+        } else {       try {
+            FileInputStream fis=null;
+            String sql = "INSERT INTO petugas (username, nama,alamat, level,no_telepon, password,gambar) Values ('" + usernameAkun.getText() + "', '" + namaAkun.getText() + "', '"
+                    + alamatAkun.getText() + "', '" + pilihanAkun .getSelectedItem() + "', '" + noHpAkun.getText() + "','" + passwordAkun.getText() +"','"+fis+"' );";
+            java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+
+            Tabel_Akun();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
+        }
+        }
+  
     }//GEN-LAST:event_simpanAkunActionPerformed
 
     private void editAkunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAkunActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "UPDATE petugas SET `username` ='" + usernameAkun.getText() + "',`nama`='" + namaAkun.getText() + "',`no_telepon`='" + noHpAkun.getText()
-                    + "',`password`='" + alamatAkun.getText() + "',`level`='"
-                    + pilihanAkun.getSelectedItem() + "' WHERE `petugas`.`username`='"
+            FileInputStream fis=null;
+            String sql = "UPDATE petugas SET `username` ='" + usernameAkun.getText() + "',`nama` ='" + namaAkun.getText() + "',`no_telepon` ='" + noHpAkun.getText()
+                    + "',`password`='" + passwordAkun.getText() + "',`level`='"
+                    + pilihanAkun.getSelectedItem() +"', alamat= '"+alamatAkun.getText()+"',`gambar`='" + fis+"' WHERE `petugas`.`username`='"
                     + usernameAkun.getText() + "';";
             java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
@@ -2126,15 +2139,37 @@ public class MenuOwner extends javax.swing.JFrame {
     private void btn_unggahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_unggahActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        
+        FileNameExtensionFilter filter=new FileNameExtensionFilter("*.Image","jpg","png","jpeg");
+        chooser.addChoosableFileFilter(filter);
+        
+        int result=chooser.showSaveDialog(null);
+        
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
+       
+        if (filename.endsWith(".jpg")||filename.endsWith(".JPG")||filename.endsWith(".PNG")||filename.endsWith(".png")||filename.endsWith(".jpeg")||filename.endsWith(".JPEG")) {
+             if (result==JFileChooser.APPROVE_OPTION) {
+                  String path = f.getAbsolutePath();
+                  ImageIcon myImage = new ImageIcon(path);
+                  
+                  Image img =myImage.getImage();
+                  Image newImage=img.getScaledInstance(gambar.getWidth(), gambar.getHeight() , Image.SCALE_SMOOTH);
+                  
+                  ImageIcon icon = new ImageIcon(filename);
+                  gambar.setIcon(icon); 
+                  
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Masukkan jenis file jpg, png, jpeg", "PERINGATAN !", 1);
+        }
+            
+        
         txt_filename.setText(filename);
-        Image getAbsolutePath = null;
-        ImageIcon icon = new ImageIcon(filename);
-        Image image = icon.getImage().getScaledInstance(gambar.getWidth(), gambar.getHeight(), Image.SCALE_SMOOTH);
-        gambar.setIcon(icon);
-
+      
 
 
     }//GEN-LAST:event_btn_unggahActionPerformed
@@ -2270,8 +2305,10 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void tabelAkunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelAkunMouseClicked
         // TODO add your handling code here:
-        int a = tabelAkun.rowAtPoint(evt.getPoint());
+       
         
+        int a = tabelAkun.rowAtPoint(evt.getPoint());
+    
         String username = (String) tabelAkun.getValueAt(a, 0);
         usernameAkun.setText(username);
         
@@ -2286,6 +2323,30 @@ public class MenuOwner extends javax.swing.JFrame {
         
         String alamat = (String) tabelAkun.getValueAt(a, 4);
         alamatAkun.setText(alamat);
+        
+        try {
+            int row = tabelAkun.getSelectedRow();
+            java.sql.Statement st =(java.sql.Statement)Koneksi.getkoneksi().createStatement();
+            ResultSet rs = st.executeQuery("select * from petugas where username='"+username+"'");
+            while (rs.next()) {
+                Blob gambar= (com.mysql.jdbc.Blob)rs.getBlob("gambar");
+                int ukuran =(int) (gambar.length());
+                ImageIcon tampil= new ImageIcon(gambar.getBytes(1, ukuran));
+                this.gambar.setIcon(tampil);
+                        
+                
+                
+                
+            }
+        } catch (Exception e) {
+            
+        }
+       
+        
+        //String image = (String) tabelAkun.getValueAt(a, 6);
+        //this.gambar.setIcon();
+      
+      
         
        
         
@@ -2637,8 +2698,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel OWNER;
     private javax.swing.JPanel Profil;
     private javax.swing.JPanel SUPPLIERMENU;
-    private javax.swing.JButton Simpan1;
-    private javax.swing.JButton Simpan4;
     private javax.swing.JButton Simpan5;
     private javax.swing.JButton Simpan7;
     private javax.swing.JPanel Suplier;
@@ -2664,7 +2723,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton hapusAkun;
     private javax.swing.JButton hapusdatabarang;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
