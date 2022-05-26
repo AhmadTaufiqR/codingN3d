@@ -346,11 +346,11 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondashbord.png"))); // NOI18N
-        jLabel2.setText("  DASHBOARD");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/dasboardbarubaru.png"))); // NOI18N
+        jLabel2.setText(" DASHBOARD");
         jLabel2.setToolTipText("");
         jLabel2.setAutoscrolls(true);
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -365,16 +365,16 @@ public class MenuOwner extends javax.swing.JFrame {
         DashboardMenuLayout.setHorizontalGroup(
             DashboardMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardMenuLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         DashboardMenuLayout.setVerticalGroup(
             DashboardMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DashboardMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DashboardMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         AKUNMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -384,10 +384,10 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/iconprofil.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/baruuuuuuuuuuuuuu.png"))); // NOI18N
         jLabel3.setText("  AKUN");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setRequestFocusEnabled(false);
@@ -402,17 +402,17 @@ public class MenuOwner extends javax.swing.JFrame {
         AKUNMENU.setLayout(AKUNMENULayout);
         AKUNMENULayout.setHorizontalGroup(
             AKUNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AKUNMENULayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(AKUNMENULayout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addComponent(jLabel3)
-                .addGap(165, 165, 165))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         AKUNMENULayout.setVerticalGroup(
             AKUNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AKUNMENULayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AKUNMENULayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         TRANSAKSIMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -422,10 +422,10 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icontransaksi.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/dashboardbaru.png"))); // NOI18N
         jLabel4.setText("  TRANSAKSI");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -438,16 +438,16 @@ public class MenuOwner extends javax.swing.JFrame {
         TRANSAKSIMENU.setLayout(TRANSAKSIMENULayout);
         TRANSAKSIMENULayout.setHorizontalGroup(
             TRANSAKSIMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TRANSAKSIMENULayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(TRANSAKSIMENULayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addComponent(jLabel4)
-                .addGap(117, 117, 117))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         TRANSAKSIMENULayout.setVerticalGroup(
             TRANSAKSIMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TRANSAKSIMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -458,10 +458,10 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatabarang.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/dataBarangBruuuu.png"))); // NOI18N
         jLabel5.setText("  DATA BARANG");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -474,17 +474,17 @@ public class MenuOwner extends javax.swing.JFrame {
         DATABARANGMENU.setLayout(DATABARANGMENULayout);
         DATABARANGMENULayout.setHorizontalGroup(
             DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATABARANGMENULayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(DATABARANGMENULayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addComponent(jLabel5)
-                .addGap(92, 92, 92))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         DATABARANGMENULayout.setVerticalGroup(
             DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATABARANGMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         SUPPLIERMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -494,11 +494,11 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/iconsuplier.png"))); // NOI18N
-        jLabel6.setText(" SUPLIER");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/supplierbaruuuu.png"))); // NOI18N
+        jLabel6.setText("  SUPLIER");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -510,17 +510,17 @@ public class MenuOwner extends javax.swing.JFrame {
         SUPPLIERMENU.setLayout(SUPPLIERMENULayout);
         SUPPLIERMENULayout.setHorizontalGroup(
             SUPPLIERMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SUPPLIERMENULayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(SUPPLIERMENULayout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addComponent(jLabel6)
-                .addGap(140, 140, 140))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         SUPPLIERMENULayout.setVerticalGroup(
             SUPPLIERMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SUPPLIERMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel6)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         DATALAPORANMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -530,10 +530,10 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatalaporan.png"))); // NOI18N
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/datalaporanbaruuuuuuu.png"))); // NOI18N
         jLabel33.setText("  DATA LAPORAN");
         jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -546,17 +546,17 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setLayout(DATALAPORANMENULayout);
         DATALAPORANMENULayout.setHorizontalGroup(
             DATALAPORANMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATALAPORANMENULayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(DATALAPORANMENULayout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addComponent(jLabel33)
-                .addGap(86, 86, 86))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         DATALAPORANMENULayout.setVerticalGroup(
             DATALAPORANMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATALAPORANMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         DATARETURNMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -566,11 +566,11 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/return-box 1.png"))); // NOI18N
-        jLabel7.setText("DATA RETURN");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/returnbaruuuuu.png"))); // NOI18N
+        jLabel7.setText(" DATA RETURN");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -582,16 +582,16 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setLayout(DATARETURNMENULayout);
         DATARETURNMENULayout.setHorizontalGroup(
             DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DATARETURNMENULayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+            .addGroup(DATARETURNMENULayout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addComponent(jLabel7)
-                .addGap(93, 93, 93))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         DATARETURNMENULayout.setVerticalGroup(
             DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATARETURNMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -600,32 +600,42 @@ public class MenuOwner extends javax.swing.JFrame {
         MENUSAMPINGLayout.setHorizontalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DashboardMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AKUNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DATABARANGMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DATARETURNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                        .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel1))
+                            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DATABARANGMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DashboardMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AKUNMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
+
+        MENUSAMPINGLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AKUNMENU, DATABARANGMENU, DATALAPORANMENU, DATARETURNMENU, DashboardMenu, SUPPLIERMENU, TRANSAKSIMENU});
+
         MENUSAMPINGLayout.setVerticalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(DashboardMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AKUNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DashboardMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AKUNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATABARANGMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -634,8 +644,10 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(170, Short.MAX_VALUE))
         );
+
+        MENUSAMPINGLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AKUNMENU, DATABARANGMENU, DATALAPORANMENU, DATARETURNMENU, DashboardMenu, SUPPLIERMENU, TRANSAKSIMENU});
 
         OWNER.add(MENUSAMPING, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 720));
 
@@ -1670,7 +1682,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                     .addComponent(jLabel40))
                                 .addGap(18, 18, 18)
                                 .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(passwordAkun, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                    .addComponent(passwordAkun)
                                     .addComponent(jScrollPane1))))
                         .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AkunLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2333,10 +2345,6 @@ public class MenuOwner extends javax.swing.JFrame {
                 int ukuran =(int) (gambar.length());
                 ImageIcon tampil= new ImageIcon(gambar.getBytes(1, ukuran));
                 this.gambar.setIcon(tampil);
-                        
-                
-                
-                
             }
         } catch (Exception e) {
             
