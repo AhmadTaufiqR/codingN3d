@@ -2278,6 +2278,8 @@ public void tampil_combo(){
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
         // TODO add your handling code here:
+       this.setVisible(false);
+       new Login().setVisible(true);
     }//GEN-LAST:event_logout2ActionPerformed
 
     private void mencariBarang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariBarang1KeyReleased
