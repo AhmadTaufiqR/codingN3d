@@ -54,6 +54,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }
 
     private void Tabel_TransaksiPembelian() {
@@ -212,6 +213,8 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         DATARETURNMENU = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        KeluarMenu = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
         navbar = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         KONTEN = new javax.swing.JPanel();
@@ -475,16 +478,16 @@ public class MenuOwner extends javax.swing.JFrame {
         DATABARANGMENULayout.setHorizontalGroup(
             DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATABARANGMENULayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel5)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         DATABARANGMENULayout.setVerticalGroup(
             DATABARANGMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATABARANGMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         SUPPLIERMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -595,13 +598,60 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        KeluarMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        KeluarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KeluarMenuMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KeluarMenuMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KeluarMenuMouseExited(evt);
+            }
+        });
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/logoutdiowner.png"))); // NOI18N
+        jLabel42.setText("KELUAR");
+        jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel42MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel42MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel42MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout KeluarMenuLayout = new javax.swing.GroupLayout(KeluarMenu);
+        KeluarMenu.setLayout(KeluarMenuLayout);
+        KeluarMenuLayout.setHorizontalGroup(
+            KeluarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeluarMenuLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        KeluarMenuLayout.setVerticalGroup(
+            KeluarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(KeluarMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout MENUSAMPINGLayout = new javax.swing.GroupLayout(MENUSAMPING);
         MENUSAMPING.setLayout(MENUSAMPINGLayout);
         MENUSAMPINGLayout.setHorizontalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
-                .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createSequentialGroup()
+                .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MENUSAMPINGLayout.createSequentialGroup()
                         .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
                                 .addGap(39, 39, 39)
@@ -613,13 +663,17 @@ public class MenuOwner extends javax.swing.JFrame {
                                     .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MENUSAMPINGLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DashboardMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AKUNMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(KeluarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DashboardMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AKUNMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
 
@@ -644,7 +698,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(KeluarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         MENUSAMPINGLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {AKUNMENU, DATABARANGMENU, DATALAPORANMENU, DATARETURNMENU, DashboardMenu, SUPPLIERMENU, TRANSAKSIMENU});
@@ -2397,6 +2453,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void DashboardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMenuMouseClicked
@@ -2416,6 +2473,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
 
     }//GEN-LAST:event_DashboardMenuMouseClicked
 
@@ -2436,6 +2494,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void AKUNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AKUNMENUMouseClicked
@@ -2455,6 +2514,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_AKUNMENUMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -2473,6 +2533,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void TRANSAKSIMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TRANSAKSIMENUMouseClicked
@@ -2492,6 +2553,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_TRANSAKSIMENUMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -2511,6 +2573,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void DATABARANGMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATABARANGMENUMouseClicked
@@ -2530,6 +2593,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATABARANGMENUMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -2549,6 +2613,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void SUPPLIERMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SUPPLIERMENUMouseClicked
@@ -2568,6 +2633,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_SUPPLIERMENUMouseClicked
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
@@ -2587,6 +2653,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(51,102,255));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel33MouseClicked
 
     private void DATALAPORANMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATALAPORANMENUMouseClicked
@@ -2606,6 +2673,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(51,102,255));
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATALAPORANMENUMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -2625,6 +2693,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void DATARETURNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENUMouseClicked
@@ -2644,7 +2713,61 @@ public class MenuOwner extends javax.swing.JFrame {
         DATALAPORANMENU.setBackground(new Color(0,9,87));
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATARETURNMENUMouseClicked
+
+    private void KeluarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KeluarMenuMouseClicked
+        // TODO add your handling code here
+        
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(213,0,0));
+        
+        this.setVisible(false);
+        new Login().setVisible(true);
+        
+    }//GEN-LAST:event_KeluarMenuMouseClicked
+
+    private void jLabel42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseClicked
+        // TODO add your handling code here:
+       
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(213,0,0));
+        
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jLabel42MouseClicked
+
+    private void KeluarMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KeluarMenuMouseEntered
+        // TODO add your handling code here:
+        KeluarMenu.setBackground(new Color(213,0,0));
+    }//GEN-LAST:event_KeluarMenuMouseEntered
+
+    private void KeluarMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KeluarMenuMouseExited
+        // TODO add your handling code here:
+        KeluarMenu.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_KeluarMenuMouseExited
+
+    private void jLabel42MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseEntered
+        // TODO add your handling code here:
+        KeluarMenu.setBackground(new Color(213,0,0));
+    }//GEN-LAST:event_jLabel42MouseEntered
+
+    private void jLabel42MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseExited
+        // TODO add your handling code here:
+        KeluarMenu.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_jLabel42MouseExited
 
     /**
      * @param args the command line arguments
@@ -2701,6 +2824,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JTextField HargaDataBarang;
     private javax.swing.JTextField IdBarang;
     private javax.swing.JPanel KONTEN;
+    private javax.swing.JPanel KeluarMenu;
     private javax.swing.JPanel MENUSAMPING;
     private javax.swing.JTextField NamaDataBarang;
     private javax.swing.JPanel OWNER;
@@ -2771,6 +2895,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;

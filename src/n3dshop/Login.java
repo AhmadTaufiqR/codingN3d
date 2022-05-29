@@ -12,6 +12,9 @@ import java.awt.Graphics2D;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,6 +25,7 @@ import javax.swing.JPanel;
  */
 public class Login extends javax.swing.JFrame {
 
+    private String lvl;
     /**
      * Creates new form Login
      */
@@ -152,10 +156,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            String sql = "SELECT username, password, level, nama from petugas WHERE username='" + Username.getText()
-                    + "'AND password='" + txt_password.getText()
-                    + "'AND level='"+ Level.getSelectedItem()+"'";
+       try {
+            String sql = "SELECT username, password, level, nama from petugas WHERE username='" + Username.getText()+ "'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             java.sql.ResultSet rs = pst.executeQuery(sql);
@@ -177,9 +179,16 @@ public class Login extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "SILAHKAN PILIH LAVEL");
                         }
 
+                } else if (Username.getText() != rs.getString("username")){
+                    JOptionPane.showMessageDialog(null, "Username Salah, Silahkan Masukkan Kembali Username Anda");
+                }
+                 else if (txt_password.getText() != rs.getString("password")){
+                    JOptionPane.showMessageDialog(null, "Password Salah, Silahkan Masukkan Kembali Password Anda");
+                } else if (Level.getSelectedItem().toString() != rs.getString("level")){
+                    JOptionPane.showMessageDialog(null, "Level Salah, Silahkan Masukkan Kembali Level Anda");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Username atau Password salah");
+                JOptionPane.showMessageDialog(null, "Username Salah, Silahkan Masukkan Kembali Username Anda");
             }
 
         } catch (Exception e) {

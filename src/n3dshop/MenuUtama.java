@@ -25,7 +25,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a;
     String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar;
-    String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian;
+    String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return;
     Date tglsekarang;
     PreparedStatement pst;
 
@@ -47,6 +47,7 @@ public class MenuUtama extends javax.swing.JFrame {
         Tampil_Tanggal();
         tampil_combo();
         transaksi_pembelian_id();
+        transaksi_penjualan_id();
     }  
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
@@ -93,6 +94,61 @@ private void transaksi_pembelian_id(){
             java.sql.ResultSet rs1 = st1.executeQuery(sql1);
             rs1.next();
             txt_IDT.setText(rs1.getString("ttl_id"));
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+private void transaksi_penjualan_id(){
+        try {
+            String sql = "SELECT MAX(RIGHT(no_faktur, 1)) AS ttl_id from transaksi_penjualan";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(sql);
+            rs.next();
+            id_trpenjualan = rs.getString("ttl_id");
+            if (id_trpembelian == null) {
+                IDT_Penjualan.setText("TRN-01");
+                String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('"+IDT_Penjualan.getText()+"')";
+                java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
+                pst1.execute();
+            } else {
+                String sql1 = "SELECT MAX(no_faktur) AS ttl_id from transaksi_penjualan";
+            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st1 = cn1.createStatement();
+            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+            rs1.next();
+            IDT_Penjualan.setText(rs1.getString("ttl_id"));
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+
+private void return_barang_id(){
+        try {
+            String sql = "SELECT MAX(RIGHT(id_return, 1)) AS ttl_id from return_barang";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(sql);
+            rs.next();
+            id_return = rs.getString("ttl_id");
+            if (id_return == null) {
+                ReturnID.setText("RTN-01");
+                String sql12 = "Insert into return_barang (id_return) values ('"+ReturnID.getText()+"')";
+                java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
+                pst1.execute();
+            } else {
+                String sql1 = "SELECT MAX(id_return) AS ttl_id from return_barang";
+            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st1 = cn1.createStatement();
+            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+            rs1.next();
+            ReturnID.setText(rs1.getString("ttl_id"));
             }
             
             
@@ -401,6 +457,7 @@ public void tampil_barang(){
         kembalikecari = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         mencariPenjualan = new javax.swing.JTextField();
+        IDT_Penjualan = new javax.swing.JLabel();
         TransaksiPembelian = new javax.swing.JPanel();
         clear1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
@@ -458,6 +515,7 @@ public void tampil_barang(){
         clear2 = new javax.swing.JButton();
         btlprd1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        ReturnID = new javax.swing.JLabel();
 
         strukpeminjaman.setColumns(20);
         strukpeminjaman.setRows(5);
@@ -922,6 +980,8 @@ public void tampil_barang(){
             }
         });
 
+        IDT_Penjualan.setText("jLabel32");
+
         javax.swing.GroupLayout TransaksiPenjualanLayout = new javax.swing.GroupLayout(TransaksiPenjualan);
         TransaksiPenjualan.setLayout(TransaksiPenjualanLayout);
         TransaksiPenjualanLayout.setHorizontalGroup(
@@ -942,6 +1002,8 @@ public void tampil_barang(){
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
                         .addComponent(mencariPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(373, 373, 373)
+                        .addComponent(IDT_Penjualan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tanggalreal)
                         .addGap(76, 76, 76))))
@@ -997,7 +1059,9 @@ public void tampil_barang(){
                 .addGap(18, 18, 18)
                 .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TransaksiPenjualanLayout.createSequentialGroup()
-                        .addComponent(tanggalreal)
+                        .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tanggalreal)
+                            .addComponent(IDT_Penjualan))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPenjualanLayout.createSequentialGroup()
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1500,6 +1564,8 @@ public void tampil_barang(){
             }
         });
 
+        ReturnID.setText("jLabel32");
+
         javax.swing.GroupLayout ReturnLayout = new javax.swing.GroupLayout(Return);
         Return.setLayout(ReturnLayout);
         ReturnLayout.setHorizontalGroup(
@@ -1516,7 +1582,9 @@ public void tampil_barang(){
                         .addGap(87, 87, 87))
                     .addGroup(ReturnLayout.createSequentialGroup()
                         .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(311, 311, 311)
+                        .addComponent(ReturnID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
                         .addComponent(tanggalreal1)
                         .addGap(108, 108, 108))))
             .addGroup(ReturnLayout.createSequentialGroup()
@@ -1571,11 +1639,17 @@ public void tampil_barang(){
         ReturnLayout.setVerticalGroup(
             ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReturnLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(tanggalreal1))
-                .addGap(18, 18, 18)
+                .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ReturnLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(tanggalreal1))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ReturnID)
+                        .addGap(33, 33, 33)))
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1923,7 +1997,30 @@ public void tampil_combo(){
     }//GEN-LAST:event_HargaBayarActionPerformed
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
-      
+      try {
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet rss = st.executeQuery("select max(right(no_faktur,1)) as no_terakhir from transaksi_penjualan;");
+            
+            if (rss.next()) {
+                String kode = rss.getString("no_terakhir");
+                String AN = "" + (Integer.parseInt(kode) + 1);
+                String strip = "-";
+                
+                IDT_Penjualan.setText("TRN" + strip + AN);
+                
+            } else {
+                IDT_Penjualan.setText("TRN-01");
+            }
+            
+            String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDT_Penjualan.getText() + "')";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            pst = cnn.prepareStatement(sql12);
+            pst.execute();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } 
     }//GEN-LAST:event_CETAKActionPerformed
 
 
@@ -2263,6 +2360,30 @@ public void tampil_combo(){
 
     private void CETAK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAK1ActionPerformed
         // TODO add your handling code here:
+         try {
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet rss = st.executeQuery("select max(right(id_return,1)) as no_terakhir from return_barang;");
+            
+            if (rss.next()) {
+                String kode = rss.getString("no_terakhir");
+                String AN = "" + (Integer.parseInt(kode) + 1);
+                String strip = "-";
+                
+                ReturnID.setText("RTN" + strip + AN);
+                
+            } else {
+                ReturnID.setText("RTN-01");
+            }
+            
+            String sql12 = "Insert into return_barang (id_return) values ('" + ReturnID.getText() + "')";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            pst = cnn.prepareStatement(sql12);
+            pst.execute();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_CETAK1ActionPerformed
 
     private void kembalikecari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikecari2ActionPerformed
@@ -2432,9 +2553,11 @@ public void tampil_combo(){
     private javax.swing.JButton CETAK1;
     public javax.swing.JPanel Cari;
     private javax.swing.JTextField HargaBayar;
+    private javax.swing.JLabel IDT_Penjualan;
     private javax.swing.JPanel Kasir;
     public static final javax.swing.JTextField NamaKasir = new javax.swing.JTextField();
     private javax.swing.JPanel Return;
+    private javax.swing.JLabel ReturnID;
     private javax.swing.JPanel TransaksiPembelian;
     private javax.swing.JPanel TransaksiPenjualan;
     private javax.swing.JTable barang_barang;
