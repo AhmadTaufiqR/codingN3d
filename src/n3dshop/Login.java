@@ -25,7 +25,7 @@ import javax.swing.JPanel;
  */
 public class Login extends javax.swing.JFrame {
 
-    private String lvl;
+    private String lvl, user, psw;
     /**
      * Creates new form Login
      */
@@ -156,14 +156,17 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       try {
-            String sql = "SELECT username, password, level, nama from petugas WHERE username='" + Username.getText()+ "'";
+        try {
+            String sql = "SELECT username, password, level, nama from petugas WHERE username='" + Username.getText()
+                    + "'AND password='" + txt_password.getText()
+                    + "'AND level='"+ Level.getSelectedItem()+"'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
             java.sql.ResultSet rs = pst.executeQuery(sql);
 
             if (rs.next()) {
-                MenuUtama.NamaKasir.setText(rs.getString("nama"));
+                
+                
                 if (Username.getText().equals(rs.getString("username"))
                         && txt_password.getText().equals(rs.getString("password"))
                         && Level.getSelectedItem().equals(rs.getString("level"))) {
@@ -175,20 +178,17 @@ public class Login extends javax.swing.JFrame {
                         } else if (Level.getSelectedItem() == "KASIR"){
                         this.setVisible(false);
                         new MenuUtama().setVisible(true);
+                        MenuUtama.NamaKasir.setText(rs.getString("nama"));
+                        MenuUtama.UsernameKasir.setText(rs.getString("username"));
                         } else {
                             JOptionPane.showMessageDialog(null, "SILAHKAN PILIH LAVEL");
                         }
 
-                } else if (Username.getText() != rs.getString("username")){
-                    JOptionPane.showMessageDialog(null, "Username Salah, Silahkan Masukkan Kembali Username Anda");
-                }
-                 else if (txt_password.getText() != rs.getString("password")){
-                    JOptionPane.showMessageDialog(null, "Password Salah, Silahkan Masukkan Kembali Password Anda");
-                } else if (Level.getSelectedItem().toString() != rs.getString("level")){
-                    JOptionPane.showMessageDialog(null, "Level Salah, Silahkan Masukkan Kembali Level Anda");
-                }
+                }else {
+                JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Anda");
+            }
             } else {
-                JOptionPane.showMessageDialog(null, "Username Salah, Silahkan Masukkan Kembali Username Anda");
+                JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Anda");
             }
 
         } catch (Exception e) {

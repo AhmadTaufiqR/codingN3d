@@ -2256,8 +2256,6 @@ public class MenuOwner extends javax.swing.JFrame {
             java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data pada Profil Berhasil diubah ");
-
-          
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data pada Profil Tidak berhasil diubah");
         }
