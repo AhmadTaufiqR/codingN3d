@@ -225,6 +225,14 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        DataPelanggan = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        cariTransaksiPembelian1 = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabelTransaksiPembelian1 = new javax.swing.JTable();
+        unduhTransaksiPembelian1 = new javax.swing.JButton();
+        hapusdatabarang1 = new javax.swing.JButton();
         DataBarang = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         caridatabarang = new javax.swing.JTextField();
@@ -834,6 +842,102 @@ public class MenuOwner extends javax.swing.JFrame {
 
         KONTEN.add(Dashboard, "card2");
 
+        jLabel43.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatapelanggan.png"))); // NOI18N
+        jLabel43.setText("DATA PELANGGAN");
+        jLabel43.setToolTipText("");
+
+        jLabel44.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel44.setText("Cari : ");
+
+        cariTransaksiPembelian1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariTransaksiPembelian1ActionPerformed(evt);
+            }
+        });
+        cariTransaksiPembelian1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariTransaksiPembelian1KeyReleased(evt);
+            }
+        });
+
+        tabelTransaksiPembelian1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tabelTransaksiPembelian1);
+
+        unduhTransaksiPembelian1.setBackground(new java.awt.Color(240, 225, 89));
+        unduhTransaksiPembelian1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        unduhTransaksiPembelian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/unduh.png"))); // NOI18N
+        unduhTransaksiPembelian1.setText("UNDUH");
+        unduhTransaksiPembelian1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unduhTransaksiPembelian1ActionPerformed(evt);
+            }
+        });
+
+        hapusdatabarang1.setBackground(new java.awt.Color(240, 225, 89));
+        hapusdatabarang1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        hapusdatabarang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
+        hapusdatabarang1.setText("HAPUS");
+        hapusdatabarang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusdatabarang1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DataPelangganLayout = new javax.swing.GroupLayout(DataPelanggan);
+        DataPelanggan.setLayout(DataPelangganLayout);
+        DataPelangganLayout.setHorizontalGroup(
+            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DataPelangganLayout.createSequentialGroup()
+                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addGap(524, 524, 524)
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cariTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel43))
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(unduhTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(hapusdatabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        DataPelangganLayout.setVerticalGroup(
+            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DataPelangganLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43)
+                .addGap(39, 39, 39)
+                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(hapusdatabarang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unduhTransaksiPembelian1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        KONTEN.add(DataPelanggan, "card5");
+
         jLabel14.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Databarang1.png"))); // NOI18N
         jLabel14.setText(" DATA BARANG");
@@ -935,7 +1039,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                 .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(DataBarangLayout.createSequentialGroup()
                                         .addComponent(jLabel14)
-                                        .addGap(18, 311, Short.MAX_VALUE))
+                                        .addGap(18, 334, Short.MAX_VALUE))
                                     .addGroup(DataBarangLayout.createSequentialGroup()
                                         .addGroup(DataBarangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(DataBarangLayout.createSequentialGroup()
@@ -953,7 +1057,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                                         .addComponent(NamaDataBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(memilihsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addComponent(HargaDataBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)))
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(DataBarangLayout.createSequentialGroup()
                                 .addGap(24, 24, 24)
@@ -1047,7 +1151,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         TRANSAKSILayout.setVerticalGroup(
             TRANSAKSILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1111,7 +1215,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPenjualan1Layout.createSequentialGroup()
-                        .addGap(0, 769, Short.MAX_VALUE)
+                        .addGap(0, 509, Short.MAX_VALUE)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
                         .addComponent(cariTransaksiPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1206,7 +1310,7 @@ public class MenuOwner extends javax.swing.JFrame {
                     .addGroup(TransaksiPembelian1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(unduhTransaksiPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         TransaksiPembelian1Layout.setVerticalGroup(
             TransaksiPembelian1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1303,7 +1407,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 279, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         DataLaporanLayout.setVerticalGroup(
             DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1556,7 +1660,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGroup(SuplierLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jLabel46))))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         SuplierLayout.setVerticalGroup(
             SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1925,7 +2029,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(DataReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Simpan7))
-                .addGap(0, 279, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         DataReturnLayout.setVerticalGroup(
             DataReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2822,13 +2926,13 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void menupelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menupelangganMouseClicked
         // TODO add your handling code here:
-//        KONTEN.removeAll();
-//        KONTEN.repaint();
-//        KONTEN.revalidate();
-//
-//        KONTEN.add(DataReturn);
-//        KONTEN.repaint();
-//        KONTEN.revalidate();
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataPelanggan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -2843,13 +2947,13 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void datapelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datapelangganMouseClicked
         // TODO add your handling code here:
-        //        KONTEN.removeAll();
-//        KONTEN.repaint();
-//        KONTEN.revalidate();
-//
-//        KONTEN.add(DataReturn);
-//        KONTEN.repaint();
-//        KONTEN.revalidate();
+                KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataPelanggan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -2861,6 +2965,22 @@ public class MenuOwner extends javax.swing.JFrame {
         KeluarMenu.setBackground(new Color(0,9,87));
         menupelanggan.setBackground(new Color(51,102,255));
     }//GEN-LAST:event_datapelangganMouseClicked
+
+    private void cariTransaksiPembelian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariTransaksiPembelian1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariTransaksiPembelian1ActionPerformed
+
+    private void cariTransaksiPembelian1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiPembelian1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariTransaksiPembelian1KeyReleased
+
+    private void unduhTransaksiPembelian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unduhTransaksiPembelian1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_unduhTransaksiPembelian1ActionPerformed
+
+    private void hapusdatabarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusdatabarang1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hapusdatabarang1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2913,6 +3033,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel DashboardMenu;
     private javax.swing.JPanel DataBarang;
     private javax.swing.JPanel DataLaporan;
+    private javax.swing.JPanel DataPelanggan;
     private javax.swing.JPanel DataReturn;
     private javax.swing.JTextField HargaDataBarang;
     private javax.swing.JTextField IdBarang;
@@ -2939,6 +3060,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton btn_unggah;
     private javax.swing.JTextField cariAkun;
     private javax.swing.JTextField cariTransaksiPembelian;
+    private javax.swing.JTextField cariTransaksiPembelian1;
     private javax.swing.JTextField cariTransaksiPenjualan;
     private javax.swing.JTextField caridatabarang;
     private javax.swing.JTable data_barang;
@@ -2948,6 +3070,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel gambar;
     private javax.swing.JButton hapusAkun;
     private javax.swing.JButton hapusdatabarang;
+    private javax.swing.JButton hapusdatabarang1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2990,6 +3113,8 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3008,6 +3133,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -3025,6 +3151,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton simpanProfil;
     private javax.swing.JTable tabelAkun;
     private javax.swing.JTable tabelTransaksiPembelian;
+    private javax.swing.JTable tabelTransaksiPembelian1;
     private javax.swing.JTable tabelTransaksiPenjualan;
     private javax.swing.JTextField txt_filename;
     private javax.swing.JTextField txt_gambarprofil;
@@ -3036,6 +3163,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nohpSupplier;
     private javax.swing.JTextField txt_usernameProfil;
     private javax.swing.JButton unduhTransaksiPembelian;
+    private javax.swing.JButton unduhTransaksiPembelian1;
     private javax.swing.JButton unduhTransaksiPenjualan;
     private javax.swing.JTextField usernameAkun;
     // End of variables declaration//GEN-END:variables
