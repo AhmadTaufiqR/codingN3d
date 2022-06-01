@@ -215,7 +215,7 @@ where transaksi_penjualan.no_faktur = $P{kode};]]>
 				<textFieldExpression><![CDATA[$F{kembali}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="65" width="186" height="20"/>
+				<reportElement x="0" y="62" width="186" height="20"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[TERIMA KASIH TELAH BERBELANJA]]></text>
 			</staticText>

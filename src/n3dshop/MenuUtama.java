@@ -51,13 +51,13 @@ public class MenuUtama extends javax.swing.JFrame {
         tampil_barang();
         Tampil_Jam();
         PilihSatuan();
-        notransaksi();
         Tampil_Tanggal();
         tampil_combo();
         transaksi_pembelian_id();
         transaksi_penjualan_id();
         return_barang_id();
         Supplier_id();
+        notransaksi();
     }  
 public void Tampil_Jam(){
         ActionListener taskPerformer = new ActionListener() {
@@ -119,7 +119,7 @@ private void transaksi_penjualan_id(){
             java.sql.ResultSet rs = st.executeQuery(sql);
             rs.next();
             id_trpenjualan = rs.getString("ttl_id");
-            if (id_trpembelian == null) {
+            if (id_trpenjualan == null) {
                 IDT_Penjualan.setText("TRN-1");
                 String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('"+IDT_Penjualan.getText()+"')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
@@ -368,10 +368,9 @@ public void tampil_barang(){
         try {
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
-            java.sql.ResultSet rs = st.executeQuery("select no_faktur from transaksi_penjualan");
+            java.sql.ResultSet rs = st.executeQuery("select MAX(no_faktur) AS no_faktur from transaksi_penjualan");
             rs.next();
             No_faktur = rs.getString("no_faktur");
-            id_transaksi.setText(No_faktur);
         } catch (Exception e) {
         }
     }
@@ -1864,7 +1863,7 @@ public void tampil_combo(){
         // TODO add your handling code here:
         if (satuan.getSelectedItem() == "ECERAN") {
             try {
-                PilihSatuan();
+            PilihSatuan();
             String sql = "INSERT INTO keranjang (Id_barang, nama_barang, satuan, jumlah_ecer, harga) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"')";
             String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('"+No_faktur+"','"+Id_barang+"', '"+jumlahprd.getText()+"', '"+SATUAN+"', '"+hargaprduk.getText()+"', '"+tgl+"')";
             java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
@@ -1876,7 +1875,7 @@ public void tampil_combo(){
             hapus();
             load_table();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
             
         } else if (satuan.getSelectedItem() == "GROSIR"){
@@ -1894,7 +1893,7 @@ public void tampil_combo(){
             hapus();
             load_table();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Data Tidak berhasil Disimpan");
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
         }
         
@@ -2564,6 +2563,7 @@ public void tampil_combo(){
         jumlahbarang();
         notransaksi();
         HargaTot();
+        transaksi_penjualan_id();
     }//GEN-LAST:event_btn_tjual1ActionPerformed
 
     private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
