@@ -50,14 +50,6 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="txt_IDT">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jLabel31"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="UsernameKasir">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -1130,7 +1122,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="533" pref="533" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
+                      <Component id="txt_IDT" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="326" max="-2" attributes="0"/>
                       <Component id="hargaTotal" min="-2" pref="284" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
@@ -1202,7 +1196,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txt_IDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="hargaTotal" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
@@ -1373,6 +1370,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jumlah_pembelian">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jumlah_pembelianActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
@@ -1398,11 +1398,15 @@
             </Component>
             <Component class="javax.swing.JTextField" name="id_barangi1">
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="id_barangi1ActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="id_barangi1KeyPressed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="id_barangi1KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="namabarang1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namabarang1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
@@ -1497,6 +1501,9 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="namasatuan1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namasatuan1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel26">
               <Properties>
@@ -1521,6 +1528,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="harga1">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="harga1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="kembalikecari1">
               <Properties>
@@ -1573,6 +1583,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="txt_IDT">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="jLabel31"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
