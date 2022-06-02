@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Penjualan" language="groovy" pageWidth="226" pageHeight="340" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="3.1384283767210204"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Penjualan" language="groovy" pageWidth="226" pageHeight="425" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="4.594972986357248"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="333"/>
 	<parameter name="kode" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama
@@ -171,53 +171,53 @@ where transaksi_penjualan.no_faktur = $P{kode};]]>
 		</band>
 	</detail>
 	<summary>
-		<band height="96">
+		<band height="73">
 			<staticText>
-				<reportElement x="78" y="16" width="35" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[Bayar      :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="78" y="26" width="35" height="10"/>
+				<reportElement x="78" y="30" width="35" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[Kembali   :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="115" y="16" width="67" height="10"/>
+				<reportElement x="115" y="20" width="67" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bayar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="78" y="6" width="35" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[Total        :]]></text>
+				<reportElement x="0" y="53" width="186" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TERIMA KASIH TELAH BERBELANJA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="115" y="6" width="67" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Harga_Total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="115" y="26" width="67" height="10"/>
+				<reportElement x="115" y="30" width="67" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{kembali}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="62" width="186" height="20"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[TERIMA KASIH TELAH BERBELANJA]]></text>
+				<reportElement x="78" y="10" width="35" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Total        :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="115" y="10" width="67" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Harga_Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="78" y="20" width="35" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Bayar      :]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="0" width="186" height="1"/>
