@@ -55,7 +55,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }
 
     private void Tabel_TransaksiPembelian() {
@@ -107,6 +106,33 @@ public class MenuOwner extends javax.swing.JFrame {
     }
 
     private void Tabel_TransaksiPenjualan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("NO FAKTUR");
+        model.addColumn("NAMA KASIR");
+        model.addColumn("TANGGAL");
+        model.addColumn("HARGA TOTAL");
+        model.addColumn("BAYAR");
+        model.addColumn("KEMBALIAN");
+
+        String cari = cariTransaksiPenjualan.getText();
+
+        try {
+            String sql = "SELECT * FROM transaksi_penjualan WHERE tanggal LIKE'%" + cari + "%'";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("no_faktur"), res.getString("username"), res.getString("tanggal"),
+                    res.getString("harga_total"),
+                    res.getString("bayar"), res.getString("kembali")});
+            }
+            tabelTransaksiPenjualan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void laporan() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("NO FAKTUR");
         model.addColumn("NAMA KASIR");
@@ -216,8 +242,6 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         KeluarMenu = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
-        menupelanggan = new javax.swing.JPanel();
-        datapelanggan = new javax.swing.JLabel();
         navbar = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         KONTEN = new javax.swing.JPanel();
@@ -225,14 +249,6 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        DataPelanggan = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        cariTransaksiPembelian1 = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tabelTransaksiPembelian1 = new javax.swing.JTable();
-        unduhTransaksiPembelian1 = new javax.swing.JButton();
-        hapusdatabarang1 = new javax.swing.JButton();
         DataBarang = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         caridatabarang = new javax.swing.JTextField();
@@ -274,7 +290,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         Cari5 = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        laporan = new javax.swing.JTable();
         Simpan5 = new javax.swing.JButton();
         Profil = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
@@ -656,40 +672,6 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        menupelanggan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menupelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menupelangganMouseClicked(evt);
-            }
-        });
-
-        datapelanggan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        datapelanggan.setForeground(new java.awt.Color(255, 255, 255));
-        datapelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/dataPelanggan.png"))); // NOI18N
-        datapelanggan.setText("  DATA PELANGGAN");
-        datapelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                datapelangganMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout menupelangganLayout = new javax.swing.GroupLayout(menupelanggan);
-        menupelanggan.setLayout(menupelangganLayout);
-        menupelangganLayout.setHorizontalGroup(
-            menupelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menupelangganLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(datapelanggan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        menupelangganLayout.setVerticalGroup(
-            menupelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menupelangganLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(datapelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout MENUSAMPINGLayout = new javax.swing.GroupLayout(MENUSAMPING);
         MENUSAMPING.setLayout(MENUSAMPINGLayout);
         MENUSAMPINGLayout.setHorizontalGroup(
@@ -698,7 +680,6 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(KeluarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menupelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(DATABARANGMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(MENUSAMPINGLayout.createSequentialGroup()
                         .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -737,9 +718,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menupelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(KeluarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -841,102 +820,6 @@ public class MenuOwner extends javax.swing.JFrame {
         );
 
         KONTEN.add(Dashboard, "card2");
-
-        jLabel43.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
-        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/icondatapelanggan.png"))); // NOI18N
-        jLabel43.setText("DATA PELANGGAN");
-        jLabel43.setToolTipText("");
-
-        jLabel44.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jLabel44.setText("Cari : ");
-
-        cariTransaksiPembelian1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cariTransaksiPembelian1ActionPerformed(evt);
-            }
-        });
-        cariTransaksiPembelian1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cariTransaksiPembelian1KeyReleased(evt);
-            }
-        });
-
-        tabelTransaksiPembelian1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane5.setViewportView(tabelTransaksiPembelian1);
-
-        unduhTransaksiPembelian1.setBackground(new java.awt.Color(240, 225, 89));
-        unduhTransaksiPembelian1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        unduhTransaksiPembelian1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/unduh.png"))); // NOI18N
-        unduhTransaksiPembelian1.setText("UNDUH");
-        unduhTransaksiPembelian1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unduhTransaksiPembelian1ActionPerformed(evt);
-            }
-        });
-
-        hapusdatabarang1.setBackground(new java.awt.Color(240, 225, 89));
-        hapusdatabarang1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        hapusdatabarang1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/delete (1).png"))); // NOI18N
-        hapusdatabarang1.setText("HAPUS");
-        hapusdatabarang1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusdatabarang1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout DataPelangganLayout = new javax.swing.GroupLayout(DataPelanggan);
-        DataPelanggan.setLayout(DataPelangganLayout);
-        DataPelangganLayout.setHorizontalGroup(
-            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DataPelangganLayout.createSequentialGroup()
-                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DataPelangganLayout.createSequentialGroup()
-                        .addGap(524, 524, 524)
-                        .addComponent(jLabel44)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cariTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DataPelangganLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel43))
-                    .addGroup(DataPelangganLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DataPelangganLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(unduhTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(hapusdatabarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        DataPelangganLayout.setVerticalGroup(
-            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DataPelangganLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel43)
-                .addGap(39, 39, 39)
-                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cariTransaksiPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(hapusdatabarang1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(unduhTransaksiPembelian1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        KONTEN.add(DataPelanggan, "card5");
 
         jLabel14.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/Databarang1.png"))); // NOI18N
@@ -1355,8 +1238,8 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jTable5.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        laporan.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        laporan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1367,7 +1250,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTable5);
+        jScrollPane6.setViewportView(laporan);
 
         Simpan5.setBackground(new java.awt.Color(240, 225, 89));
         Simpan5.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
@@ -2589,7 +2472,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void DashboardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMenuMouseClicked
@@ -2610,7 +2492,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
 
     }//GEN-LAST:event_DashboardMenuMouseClicked
 
@@ -2632,7 +2513,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void AKUNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AKUNMENUMouseClicked
@@ -2653,7 +2533,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_AKUNMENUMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -2673,7 +2552,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void TRANSAKSIMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TRANSAKSIMENUMouseClicked
@@ -2694,7 +2572,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_TRANSAKSIMENUMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -2715,7 +2592,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void DATABARANGMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATABARANGMENUMouseClicked
@@ -2736,7 +2612,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATABARANGMENUMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -2757,7 +2632,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void SUPPLIERMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SUPPLIERMENUMouseClicked
@@ -2778,7 +2652,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_SUPPLIERMENUMouseClicked
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
@@ -2799,7 +2672,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel33MouseClicked
 
     private void DATALAPORANMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATALAPORANMENUMouseClicked
@@ -2820,7 +2692,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATALAPORANMENUMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -2841,7 +2712,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void DATARETURNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENUMouseClicked
@@ -2862,7 +2732,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATARETURNMENUMouseClicked
 
     private void KeluarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KeluarMenuMouseClicked
@@ -2876,7 +2745,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(213,0,0));
-        menupelanggan.setBackground(new Color(0,9,87));
         
         int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Keluar?","Confirmation",JOptionPane.YES_NO_OPTION);
         if(ok == 0){
@@ -2896,7 +2764,6 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(213,0,0));
-        menupelanggan.setBackground(new Color(0,9,87));
         
         int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Keluar?","Confirmation",JOptionPane.YES_NO_OPTION);
         if(ok == 0){
@@ -2923,64 +2790,6 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
         KeluarMenu.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel42MouseExited
-
-    private void menupelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menupelangganMouseClicked
-        // TODO add your handling code here:
-        KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(DataPelanggan);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        DashboardMenu.setBackground(new Color(0,9,87));
-        AKUNMENU.setBackground(new Color(0,9,87));
-        TRANSAKSIMENU.setBackground(new Color(0,9,87));
-        DATABARANGMENU.setBackground(new Color(0,9,87));
-        DATALAPORANMENU.setBackground(new Color(0,9,87));
-        DATARETURNMENU.setBackground(new Color(0,9,87));
-        SUPPLIERMENU.setBackground(new Color(0,9,87));
-        KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(51,102,255));
-    }//GEN-LAST:event_menupelangganMouseClicked
-
-    private void datapelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_datapelangganMouseClicked
-        // TODO add your handling code here:
-                KONTEN.removeAll();
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        KONTEN.add(DataPelanggan);
-        KONTEN.repaint();
-        KONTEN.revalidate();
-
-        DashboardMenu.setBackground(new Color(0,9,87));
-        AKUNMENU.setBackground(new Color(0,9,87));
-        TRANSAKSIMENU.setBackground(new Color(0,9,87));
-        DATABARANGMENU.setBackground(new Color(0,9,87));
-        DATALAPORANMENU.setBackground(new Color(0,9,87));
-        DATARETURNMENU.setBackground(new Color(0,9,87));
-        SUPPLIERMENU.setBackground(new Color(0,9,87));
-        KeluarMenu.setBackground(new Color(0,9,87));
-        menupelanggan.setBackground(new Color(51,102,255));
-    }//GEN-LAST:event_datapelangganMouseClicked
-
-    private void cariTransaksiPembelian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariTransaksiPembelian1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cariTransaksiPembelian1ActionPerformed
-
-    private void cariTransaksiPembelian1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiPembelian1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cariTransaksiPembelian1KeyReleased
-
-    private void unduhTransaksiPembelian1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unduhTransaksiPembelian1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unduhTransaksiPembelian1ActionPerformed
-
-    private void hapusdatabarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusdatabarang1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hapusdatabarang1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3033,7 +2842,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel DashboardMenu;
     private javax.swing.JPanel DataBarang;
     private javax.swing.JPanel DataLaporan;
-    private javax.swing.JPanel DataPelanggan;
     private javax.swing.JPanel DataReturn;
     private javax.swing.JTextField HargaDataBarang;
     private javax.swing.JTextField IdBarang;
@@ -3060,17 +2868,14 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton btn_unggah;
     private javax.swing.JTextField cariAkun;
     private javax.swing.JTextField cariTransaksiPembelian;
-    private javax.swing.JTextField cariTransaksiPembelian1;
     private javax.swing.JTextField cariTransaksiPenjualan;
     private javax.swing.JTextField caridatabarang;
     private javax.swing.JTable data_barang;
-    private javax.swing.JLabel datapelanggan;
     private javax.swing.JButton editAkun;
     private javax.swing.JButton editdatabarang;
     private javax.swing.JLabel gambar;
     private javax.swing.JButton hapusAkun;
     private javax.swing.JButton hapusdatabarang;
-    private javax.swing.JButton hapusdatabarang1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3113,8 +2918,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3133,15 +2936,13 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JTable laporan;
     private javax.swing.JComboBox<String> memilihsatuan;
-    private javax.swing.JPanel menupelanggan;
     private javax.swing.JTextField namaAkun;
     private javax.swing.JPanel navbar;
     private javax.swing.JTextField noHpAkun;
@@ -3151,7 +2952,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton simpanProfil;
     private javax.swing.JTable tabelAkun;
     private javax.swing.JTable tabelTransaksiPembelian;
-    private javax.swing.JTable tabelTransaksiPembelian1;
     private javax.swing.JTable tabelTransaksiPenjualan;
     private javax.swing.JTextField txt_filename;
     private javax.swing.JTextField txt_gambarprofil;
@@ -3163,7 +2963,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nohpSupplier;
     private javax.swing.JTextField txt_usernameProfil;
     private javax.swing.JButton unduhTransaksiPembelian;
-    private javax.swing.JButton unduhTransaksiPembelian1;
     private javax.swing.JButton unduhTransaksiPenjualan;
     private javax.swing.JTextField usernameAkun;
     // End of variables declaration//GEN-END:variables

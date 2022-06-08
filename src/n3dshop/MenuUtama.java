@@ -538,7 +538,6 @@ public void tampil_barang(){
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
         namaSupplier = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         Return = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -566,7 +565,6 @@ public void tampil_barang(){
         tambahprd1 = new javax.swing.JButton();
         clear2 = new javax.swing.JButton();
         btlprd1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         strukpeminjaman.setColumns(20);
         strukpeminjaman.setRows(5);
@@ -1398,15 +1396,6 @@ public void tampil_barang(){
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 232, 22));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/LISTPRODUCT.png"))); // NOI18N
-        jButton3.setText("LIST PRODUCT");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout TransaksiPembelianLayout = new javax.swing.GroupLayout(TransaksiPembelian);
         TransaksiPembelian.setLayout(TransaksiPembelianLayout);
         TransaksiPembelianLayout.setHorizontalGroup(
@@ -1457,12 +1446,10 @@ public void tampil_barang(){
                     .addComponent(namasatuan1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(harga1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tambahprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1521,9 +1508,7 @@ public void tampil_barang(){
                         .addGap(20, 20, 20)
                         .addComponent(clear1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btlprd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72)
                 .addGroup(TransaksiPembelianLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1689,15 +1674,6 @@ public void tampil_barang(){
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 232, 22));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/LISTPRODUCT.png"))); // NOI18N
-        jButton4.setText("LIST PRODUCT");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout ReturnLayout = new javax.swing.GroupLayout(Return);
         Return.setLayout(ReturnLayout);
         ReturnLayout.setHorizontalGroup(
@@ -1754,12 +1730,10 @@ public void tampil_barang(){
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(namaBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(27, 27, 27)
-                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tambahprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(clear2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tambahprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clear2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(619, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1808,9 +1782,7 @@ public void tampil_barang(){
                                 .addGap(20, 20, 20)
                                 .addComponent(clear2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20)
-                                .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1969,6 +1941,8 @@ public void tampil_combo(){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan Pilih Satuan");
         }
         
     }//GEN-LAST:event_tambahActionPerformed
@@ -2718,18 +2692,6 @@ public void tampil_combo(){
         // TODO add your handling code here:
     }//GEN-LAST:event_mencariPenjualanActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-
-        Kasir.add(Cari);
-        Kasir.repaint();
-        Kasir.revalidate();
-        load_table();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void btn_tjual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjual2ActionPerformed
         // TODO add your handling code here:
         Kasir.removeAll();
@@ -2770,6 +2732,7 @@ public void tampil_combo(){
 
     private void tambahprd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprd1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_tambahprd1ActionPerformed
 
     private void clear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear2ActionPerformed
@@ -2779,10 +2742,6 @@ public void tampil_combo(){
     private void btlprd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprd1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btlprd1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void namabarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namabarang1ActionPerformed
         // TODO add your handling code here:
@@ -3015,8 +2974,6 @@ public void tampil_combo(){
     private javax.swing.JTextField id_barangpnj;
     private javax.swing.JTextField id_pembelian;
     private javax.swing.JTextField id_transaksi;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
