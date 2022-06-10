@@ -5,7 +5,6 @@
  */
 package n3dshop;
 
-
 import com.sun.glass.ui.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,8 +33,8 @@ import net.sf.jasperreports.view.JasperViewer;
 public class MenuUtama extends javax.swing.JFrame {
 
     int a, hasil;
-   private String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar1, totalmembayar2, tglpenjualan,nama_barangpnj,jml_gr, jml_ecr, jumlah_ecerpnj,jumlah_grosirpnj,eceranpnj,grosirpnj,hrg_ecerpnj,hrg_grosirpnj;
-    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return;
+    private String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar1, totalmembayar2, tglpenjualan, nama_barangpnj, jml_gr, jml_ecr, jumlah_ecerpnj, jumlah_grosirpnj, eceranpnj, grosirpnj, hrg_ecerpnj, hrg_grosirpnj;
+    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return, id_supp, ecr_supp, grs_supp;
     private Date tglsekarang;
     public PreparedStatement pst;
 
@@ -61,33 +60,41 @@ public class MenuUtama extends javax.swing.JFrame {
         Supplier_id();
         notransaksi();
         HargaTot();
-    }  
-public void Tampil_Jam(){
+        id_barangi1.requestFocus();
+    }
+
+    public void Tampil_Jam() {
         ActionListener taskPerformer = new ActionListener() {
- 
+
             public void actionPerformed(ActionEvent evt) {
-            String nol_jam = "", nol_menit = "",nol_detik = "";
- 
-            java.util.Date dateTime = new java.util.Date();
-            int nilai_jam = dateTime.getHours();
-            int nilai_menit = dateTime.getMinutes();
-            int nilai_detik = dateTime.getSeconds();
- 
-            if(nilai_jam <= 9) nol_jam= "0";
-            if(nilai_menit <= 9) nol_menit= "0";
-            if(nilai_detik <= 9) nol_detik= "0";
- 
-            String jam = nol_jam + Integer.toString(nilai_jam);
-            String menit = nol_menit + Integer.toString(nilai_menit);
-            String detik = nol_detik + Integer.toString(nilai_detik);
- 
-            tanggalreal.setText(jam+":"+menit+":"+detik+"");
+                String nol_jam = "", nol_menit = "", nol_detik = "";
+
+                java.util.Date dateTime = new java.util.Date();
+                int nilai_jam = dateTime.getHours();
+                int nilai_menit = dateTime.getMinutes();
+                int nilai_detik = dateTime.getSeconds();
+
+                if (nilai_jam <= 9) {
+                    nol_jam = "0";
+                }
+                if (nilai_menit <= 9) {
+                    nol_menit = "0";
+                }
+                if (nilai_detik <= 9) {
+                    nol_detik = "0";
+                }
+
+                String jam = nol_jam + Integer.toString(nilai_jam);
+                String menit = nol_menit + Integer.toString(nilai_menit);
+                String detik = nol_detik + Integer.toString(nilai_detik);
+
+                tanggalreal.setText(jam + ":" + menit + ":" + detik + "");
             }
         };
-    new Timer(1000, taskPerformer).start();
-    }  
- 
-private void transaksi_pembelian_id(){
+        new Timer(1000, taskPerformer).start();
+    }
+
+    private void transaksi_pembelian_id() {
         try {
             String sql = "SELECT MAX(RIGHT(Id_pembelian, 1)) AS ttl_id from transaksi_pembelian";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
@@ -97,26 +104,26 @@ private void transaksi_pembelian_id(){
             id_trpembelian = rs.getString("ttl_id");
             if (id_trpembelian == null) {
                 txt_IDT.setText("T-1");
-                String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('"+txt_IDT.getText()+"')";
+                String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('" + txt_IDT.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
                 String sql1 = "SELECT MAX(Id_pembelian) AS ttl_id from transaksi_pembelian";
-            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st1 = cn1.createStatement();
-            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
-            rs1.next();
-            txt_IDT.setText(rs1.getString("ttl_id"));
+                java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st1 = cn1.createStatement();
+                java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+                rs1.next();
+                txt_IDT.setText(rs1.getString("ttl_id"));
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
-private void transaksi_penjualan_id(){
+    }
+
+    private void transaksi_penjualan_id() {
         try {
-            String sql = "SELECT MAX(RIGHT(no_faktur, 1)) AS ttl_id from transaksi_penjualan";
+            String sql = "SELECT MAX(RIGHT(no_faktur, 2)) AS ttl_id from transaksi_penjualan";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
@@ -124,26 +131,25 @@ private void transaksi_penjualan_id(){
             id_trpenjualan = rs.getString("ttl_id");
             if (id_trpenjualan == null) {
                 IDT_Penjualan.setText("TRN-1");
-                String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('"+IDT_Penjualan.getText()+"')";
+                String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDT_Penjualan.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
-                String sql1 = "SELECT MAX(no_faktur) AS ttl_id from transaksi_penjualan";
-            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st1 = cn1.createStatement();
-            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
-            rs1.next();
-            IDT_Penjualan.setText(rs1.getString("ttl_id"));
-            id_transaksi.setText(rs1.getString("ttl_id"));
+                String sql1 = "SELECT MAX(RIGHT(no_faktur, 2)) AS ttl_id from transaksi_penjualan";
+                java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st1 = cn1.createStatement();
+                java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+                rs1.next();
+                IDT_Penjualan.setText("TRN-" + rs1.getString("ttl_id"));
+                id_transaksi.setText("TRN-"+ rs1.getString("ttl_id"));
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
 
-private void return_barang_id(){
+    private void return_barang_id() {
         try {
             String sql = "SELECT MAX(RIGHT(id_return, 1)) AS ttl_id from return_barang";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
@@ -153,27 +159,24 @@ private void return_barang_id(){
             id_return = rs.getString("ttl_id");
             if (id_return == null) {
                 ReturnID.setText("RTN-01");
-                String sql12 = "Insert into return_barang (id_return) values ('"+ReturnID.getText()+"')";
+                String sql12 = "Insert into return_barang (id_return) values ('" + ReturnID.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
                 String sql1 = "SELECT MAX(id_return) AS ttl_id from return_barang";
-            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st1 = cn1.createStatement();
-            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
-            rs1.next();
-            ReturnID.setText(rs1.getString("ttl_id"));
+                java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st1 = cn1.createStatement();
+                java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+                rs1.next();
+                ReturnID.setText(rs1.getString("ttl_id"));
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
 
-
-
-private void Supplier_id(){
+    private void Supplier_id() {
         try {
             String sql = "SELECT MAX(RIGHT(id_supplier, 1)) AS ttl_id from supplier";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
@@ -183,41 +186,36 @@ private void Supplier_id(){
             id_trpembelian = rs.getString("ttl_id");
             if (id_trpembelian == null) {
                 IDTSupplier.setText("SP-1");
-                String sql12 = "Insert into supplier (id_suppiler) values ('"+namaSupplier.getText()+"')";
+                String sql12 = "Insert into supplier (id_suppiler) values ('" + namaSupplier.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
                 String sql1 = "SELECT MAX(id_supplier) AS ttl_id from supplier";
-            java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st1 = cn1.createStatement();
-            java.sql.ResultSet rs1 = st1.executeQuery(sql1);
-            rs1.next();
-            IDTSupplier.setText(rs1.getString("ttl_id"));
+                java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st1 = cn1.createStatement();
+                java.sql.ResultSet rs1 = st1.executeQuery(sql1);
+                rs1.next();
+                IDTSupplier.setText(rs1.getString("ttl_id"));
             }
-            
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    }
 
+    public void Tampil_Tanggal() {
+        tglsekarang = new Date();
+        SimpleDateFormat smpdtfmt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        tgl = smpdtfmt.format(tglsekarang);
 
+        String tampilan = "yyyy-MM-dd";
+        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+        tglpenjualan = String.valueOf(fm.format(tglsekarang));
 
+    }
 
-
-public void Tampil_Tanggal() {
-    tglsekarang = new Date();
-    SimpleDateFormat smpdtfmt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-    tgl = smpdtfmt.format(tglsekarang);
-    
-            String tampilan = "yyyy-MM-dd";
-            SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-            tglpenjualan = String.valueOf(fm.format(tglsekarang));
-    
-    
-}
-private void load_table (){
-    //membuat tampilan tabel
+    private void load_table() {
+        //membuat tampilan tabel
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
@@ -241,35 +239,37 @@ private void load_table (){
         } catch (Exception e) {
         }
     }
-public void tabel_return (){
-    //membuat tampilan tabel
+
+    public void tabel_return() {
+        //membuat tampilan tabel
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("NAMA BARANG ");
-        model.addColumn("NAMA SUPPLIER");
-        model.addColumn("JUMLAH");
-        model.addColumn("SATUAN");
- 
+        model.addColumn("ID BARANG");
+        model.addColumn("ECERAN");
+        model.addColumn("GROSIR");
+        model.addColumn("JUMLAH ECER");
+        model.addColumn("JUMLAH GROSIR");
+
         //menampilkan database dalam tabel
         try {
-            String sql = "select * from detail_return;";
+            String sql = "select id_barang, eceran, grosir, jumlah_eceran, jumlah_grosir from keranjang;";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("")});
+                model.addRow(new Object[]{res.getString("id_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_grosir"), res.getString("jumlah_eceran")});
             }
             return_barang.setModel(model);
         } catch (Exception e) {
         }
     }
 
-private void hapus(){
-    namaprd.setText("");
-    jumlahprd.setText("");
-    hargaprduk.setText("");
-    cari.setText("");
-    satuan.setSelectedItem("SATUAN");
-}
+    private void hapus() {
+        namaprd.setText("");
+        jumlahprd.setText("");
+        hargaprduk.setText("");
+        cari.setText("");
+        satuan.setSelectedItem("SATUAN");
+    }
 
     private void Banyak() {
         try {
@@ -281,10 +281,9 @@ private void hapus(){
             total.setText(res.getString("total"));
         } catch (Exception e) {
         }
-}
+    }
 
-
-public void tampil_barang(){
+    public void tampil_barang() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
@@ -300,16 +299,17 @@ public void tampil_barang(){
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()){
+            while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("eceran"),res.getString("grosir"), res.getString("jumlah_ecer"),res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_ecer"), res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             table_barang.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data tidak muncul");
         }
     }
-     public void tampil_data() {
+
+    public void tampil_data() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
@@ -325,9 +325,9 @@ public void tampil_barang(){
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()){
+            while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("eceran"),res.getString("grosir"), res.getString("jumlah_ecer"),res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_ecer"), res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
 
             list_barang.setModel(model);
@@ -335,7 +335,6 @@ public void tampil_barang(){
             JOptionPane.showMessageDialog(null, "Data tidak muncul");
         }
     }
-
 
     public void notransaksi() {
         try {
@@ -347,8 +346,8 @@ public void tampil_barang(){
         } catch (Exception e) {
         }
     }
-    
-    private void HargaTot(){
+
+    private void HargaTot() {
         try {
             String sql = "SELECT SUM(harga_eceran) AS total, SUM(harga_grosir) AS ttl, jumlah_grosir, jumlah_ecer FROM keranjang WHERE keterangan = 'PENJUALAN'";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -363,15 +362,15 @@ public void tampil_barang(){
             if (hasil == 0) {
                 HargaBayar.setText("Rp. ");
             } else {
-                HargaBayar.setText("Rp. "+ String.valueOf(hasil));
+                HargaBayar.setText("Rp. " + String.valueOf(hasil));
             }
-            
+
         } catch (Exception e) {
         }
     }
-    
-    private void TotalPembelian(){
-   
+
+    private void TotalPembelian() {
+
         try {
             String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from keranjang where keterangan = 'PENJUALAN'";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
@@ -380,61 +379,59 @@ public void tampil_barang(){
             rs.next();
             String totalecr = rs.getString("totalEceran");
             String totalgsr = rs.getString("totalGrosir");
-            
+
             if (totalecr == null && totalgsr == null) {
                 hargaTotal.setText("Rp. ");
-            }
-            else if (totalecr == null) {
+            } else if (totalecr == null) {
                 int totalkeseluruhan = 0 + Integer.valueOf(totalgsr);
-            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
-            } else if (totalgsr == null){
+                hargaTotal.setText("Rp. " + String.valueOf(totalkeseluruhan));
+            } else if (totalgsr == null) {
                 int totalkeseluruhan = Integer.valueOf(totalecr) + 0;
-            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
-            }else {
-            int totalkeseluruhan = Integer.valueOf(totalecr) + Integer.valueOf(totalgsr);
-            hargaTotal.setText("Rp. "+String.valueOf(totalkeseluruhan));
+                hargaTotal.setText("Rp. " + String.valueOf(totalkeseluruhan));
+            } else {
+                int totalkeseluruhan = Integer.valueOf(totalecr) + Integer.valueOf(totalgsr);
+                hargaTotal.setText("Rp. " + String.valueOf(totalkeseluruhan));
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void PilihSatuan(){
+    public void PilihSatuan() {
         try {
             Object pilihan = satuan.getSelectedItem();
-            String sql1 = "SELECT eceran, grosir FROM barang WHERE  Id_barang = '"+Id_barang+"';";
+            String sql1 = "SELECT eceran, grosir FROM barang WHERE  Id_barang = '" + Id_barang + "';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
             res.next();
             if (pilihan == "ECERAN") {
                 SATUAN = res.getString("eceran");
-            } else if (pilihan == "GROSIR"){
+            } else if (pilihan == "GROSIR") {
                 SATUAN = res.getString("grosir");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void PilihSatuan2(){
+
+    public void PilihSatuan2() {
         try {
             Object pilihan = satuan4.getSelectedItem();
-            String sql1 = "SELECT eceran, grosir FROM barang WHERE  Id_barang = '"+id_barangpnj.getText()+"';";
+            String sql1 = "SELECT eceran, grosir FROM barang WHERE  Id_barang = '" + id_barangpnj.getText() + "';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
             res.next();
             if (pilihan == "ECERAN") {
                 SATUAN = res.getString("eceran");
-            } else if (pilihan == "GROSIR"){
+            } else if (pilihan == "GROSIR") {
                 SATUAN = res.getString("grosir");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -454,7 +451,6 @@ public void tampil_barang(){
         UsernameKasir = new javax.swing.JTextField();
         IDTSupplier = new javax.swing.JLabel();
         txt_IDT = new javax.swing.JLabel();
-        IDT_Penjualan = new javax.swing.JLabel();
         ReturnID = new javax.swing.JLabel();
         hargaprduk1 = new javax.swing.JTextField();
         Kasir = new javax.swing.JPanel();
@@ -484,6 +480,7 @@ public void tampil_barang(){
         jumlahprd = new javax.swing.JTextField();
         hargaprduk = new javax.swing.JTextField();
         TransaksiPenjualan = new javax.swing.JPanel();
+        IDT_Penjualan = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         HargaBayar = new javax.swing.JTextField();
@@ -512,6 +509,7 @@ public void tampil_barang(){
         TambahBrg = new javax.swing.JButton();
         TransaksiPembelian = new javax.swing.JPanel();
         clear1 = new javax.swing.JButton();
+        namaSupplier = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -537,7 +535,6 @@ public void tampil_barang(){
         harga1 = new javax.swing.JTextField();
         kembalikecari1 = new javax.swing.JButton();
         logout1 = new javax.swing.JButton();
-        namaSupplier = new javax.swing.JTextField();
         Return = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -560,7 +557,7 @@ public void tampil_barang(){
         jLabel30 = new javax.swing.JLabel();
         satuan3 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        keteranganrtn = new javax.swing.JTextArea();
         jLabel31 = new javax.swing.JLabel();
         tambahprd1 = new javax.swing.JButton();
         clear2 = new javax.swing.JButton();
@@ -580,8 +577,6 @@ public void tampil_barang(){
 
         txt_IDT.setForeground(new java.awt.Color(255, 255, 255));
         txt_IDT.setText("jLabel31");
-
-        IDT_Penjualan.setText("jLabel32");
 
         ReturnID.setText("jLabel32");
 
@@ -617,6 +612,11 @@ public void tampil_barang(){
         btn_tpembelian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_tpembelianActionPerformed(evt);
+            }
+        });
+        btn_tpembelian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btn_tpembelianKeyReleased(evt);
             }
         });
 
@@ -909,6 +909,8 @@ public void tampil_barang(){
 
         TransaksiPenjualan.setBackground(new java.awt.Color(0, 9, 87));
 
+        IDT_Penjualan.setText("jLabel32");
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TRANSAKSI PENJUALAN");
@@ -1127,10 +1129,12 @@ public void tampil_barang(){
                                             .addComponent(bayar1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jumlah_barang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
-                                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bataltrn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TambahBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(clear3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(bataltrn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(TambahBrg, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(clear3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(IDT_Penjualan))))
                         .addGap(45, 45, 45))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransaksiPenjualanLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1196,7 +1200,9 @@ public void tampil_barang(){
                                 .addGap(18, 18, 18)
                                 .addComponent(bataltrn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(clear3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(clear3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(80, 80, 80)
+                                .addComponent(IDT_Penjualan)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(TransaksiPenjualanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(kembalikecari, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1215,6 +1221,13 @@ public void tampil_barang(){
         clear1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear1ActionPerformed(evt);
+            }
+        });
+
+        namaSupplier.setDropMode(javax.swing.DropMode.INSERT);
+        namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                namaSupplierKeyReleased(evt);
             }
         });
 
@@ -1386,13 +1399,6 @@ public void tampil_barang(){
         logout1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logout1ActionPerformed(evt);
-            }
-        });
-
-        namaSupplier.setDropMode(javax.swing.DropMode.INSERT);
-        namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                namaSupplierKeyReleased(evt);
             }
         });
 
@@ -1639,9 +1645,9 @@ public void tampil_barang(){
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
+        keteranganrtn.setColumns(20);
+        keteranganrtn.setRows(5);
+        jScrollPane5.setViewportView(keteranganrtn);
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
@@ -1812,27 +1818,28 @@ public void tampil_barang(){
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void tampil_combo(){
-       try{
-           String sql = "SELECT nama_supplier FROM supplier GROUP BY nama_supplier;";
-           java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
-           java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-           java.sql.ResultSet rs = pst.executeQuery();
-           
-           while(rs.next()){
-               satuan3.addItem(rs.getString("nama_supplier"));
-               
-           }
-           
-           rs.last();
-           int jumlahdata = rs.getRow();
-           rs.first();
-           
-       }catch(Exception e){
-           
-       }
-   }
-    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {                                           
+public void tampil_combo() {
+        try {
+            String sql = "SELECT nama_supplier, id_supplier FROM supplier GROUP BY nama_supplier;";
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+            java.sql.ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                satuan3.addItem(rs.getString("nama_supplier"));
+                id_supp = rs.getString("id_supplier");
+            }
+
+            rs.last();
+            int jumlahdata = rs.getRow();
+            rs.first();
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         Kasir.removeAll();
         Kasir.repaint();
@@ -1844,9 +1851,8 @@ public void tampil_combo(){
         tampil_data();
         notransaksi();
         HargaTot();
-                                             
 
-    }                                          
+    }
 
     private void cariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariKeyReleased
         // TODO add your handling code here:
@@ -1888,94 +1894,80 @@ public void tampil_combo(){
         hrg_grosir = (String) barang_barang.getValueAt(a, 7);
 
         Id_barang = (String) barang_barang.getValueAt(a, 0);
-        
+
         stokBarangEcer = (String) barang_barang.getValueAt(a, 2);
         stokBarangGrosir = (String) barang_barang.getValueAt(a, 3);
-        
+
 
     }//GEN-LAST:event_barang_barangMouseClicked
 
-    private void hargaprdActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void hargaprdActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
-    }                                     
+    }
 
-    private void jumlahprdKeyTyped(java.awt.event.KeyEvent evt) {                                   
+    private void jumlahprdKeyTyped(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
 
-    }                               
+    }
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
         if (satuan.getSelectedItem() == "ECERAN") {
             try {
-            PilihSatuan();
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"', 'PENJUALAN')";
-            String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('"+No_faktur+"','"+Id_barang+"', '"+jumlahprd.getText()+"', '"+SATUAN+"', '"+hargaprduk.getText()+"', '"+tgl+"')";
-            java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pst1=conn.prepareStatement(sql1);
-            pst.execute();
-            pst1.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            hapus();
-            load_table();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-            
-        } else if (satuan.getSelectedItem() == "GROSIR"){
-            
+                PilihSatuan();
+                String sql = "INSERT INTO keranjang (Id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) Values ('" + Id_barang + "', '" + namaprd.getText() + "', '" + SATUAN + "', '" + jumlahprd.getText() + "', '" + hargaprduk.getText() + "', 'PENJUALAN')";
+                String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('" + No_faktur + "','" + Id_barang + "', '" + jumlahprd.getText() + "', '" + SATUAN + "', '" + hargaprduk.getText() + "', '" + tgl + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                hapus();
+                load_table();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+
+        } else if (satuan.getSelectedItem() == "GROSIR") {
+
             try {
                 PilihSatuan();
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) Values ('"+Id_barang+"', '"+namaprd.getText()+"', '"+SATUAN+"', '"+jumlahprd.getText()+"', '"+hargaprduk.getText()+"', 'PENJUALAN')";
-            String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_grosir, satuan, harga, tanggal) Values ('"+No_faktur+"','"+Id_barang+"', '"+jumlahprd.getText()+"', '"+SATUAN+"', '"+hargaprduk.getText()+"', '"+tgl+"')";
-            java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pst1=conn.prepareStatement(sql1);
-            pst.execute();
-            pst1.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            hapus();
-            load_table();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+                String sql = "INSERT INTO keranjang (Id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) Values ('" + Id_barang + "', '" + namaprd.getText() + "', '" + SATUAN + "', '" + jumlahprd.getText() + "', '" + hargaprduk.getText() + "', 'PENJUALAN')";
+                String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_grosir, satuan, harga, tanggal) Values ('" + No_faktur + "','" + Id_barang + "', '" + jumlahprd.getText() + "', '" + SATUAN + "', '" + hargaprduk.getText() + "', '" + tgl + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                hapus();
+                load_table();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan Pilih Satuan");
         }
-        
+
     }//GEN-LAST:event_tambahActionPerformed
 
     private void batalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_batalActionPerformed
         // TODO add your handling code here:
-        try {
-            String sql = "DELETE FROM keranjang;";
-            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st = cn.createStatement();
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
-            load_table();
-            hapus();
-            tampil_data();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
-        }
+       hapus();
     }//GEN-LAST:event_batalActionPerformed
 
     private void btn_tpembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tpembelianActionPerformed
         // TODO add your handling code here:
         Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-
         Kasir.add(TransaksiPembelian);
         Kasir.repaint();
-        Kasir.revalidate();
+        Kasir.validate();
         tampil_barang();
         TotalPembelian();
         transaksi_pembelian_id();
+        namaSupplier.requestFocus();
     }//GEN-LAST:event_btn_tpembelianActionPerformed
 
     private void satuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuanActionPerformed
@@ -1985,31 +1977,37 @@ public void tampil_combo(){
 
     private void mencariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mencariActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_mencariActionPerformed
 
     private void bataltrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bataltrnActionPerformed
         // TODO add your handling code here:
-        try {
+        
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Menghapus Data Transaksi?","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(ok == 0){
+            try {
             String sql = "DELETE FROM keranjang;";
+            String sql1 = "DELETE From detail_transaksi_penjualan where no_faktur = '"+id_transaksi.getText()+"'";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             st.executeUpdate(sql);
+            st.executeUpdate(sql1);
             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
             tampil_data();
             HargaTot();
-            
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
+        }
         } 
+        
     }//GEN-LAST:event_bataltrnActionPerformed
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cariActionPerformed
 
-    private void mencariKeyReleased(java.awt.event.KeyEvent evt) {                                    
+    private void mencariKeyReleased(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID BARANG");
@@ -2020,7 +2018,7 @@ public void tampil_combo(){
         model.addColumn("ACTION");
 
         try {
-            String sql = "Select * From keranjang where nama_barang LIKE '%"+mencariPenjualan.getText()+"%';";
+            String sql = "Select * From keranjang where nama_barang LIKE '%" + mencariPenjualan.getText() + "%';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
@@ -2031,33 +2029,37 @@ public void tampil_combo(){
             list_barang.setModel(model);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data tidak muncul");
-        
+
+        }
     }
-    }                                   
 
     private void bayar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bayar1ActionPerformed
 
-    private void bayarKeyReleased(java.awt.event.KeyEvent evt) {                                  
+    private void bayarKeyReleased(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
         kembali.setText("");
         if (bayar1.getText() == "") {
             kembali.setText("");
         } else {
-            
-        int membayar = Integer.parseInt(bayar1.getText());
-        int Hargatt = hasil;
-        
-        int totalkembali = membayar - Hargatt;
-        kembali.setText("Rp. "+String.valueOf(totalkembali));
+
+            int membayar = Integer.parseInt(bayar1.getText());
+            int Hargatt = hasil;
+
+            int totalkembali = membayar - Hargatt;
+            kembali.setText("Rp. " + String.valueOf(totalkembali));
         }
-    }                                 
+    }
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new Login().setVisible(true);
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Keluar?","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(ok == 0){
+            this.setVisible(false);
+            new Login().setVisible(true);
+        } 
+        
     }//GEN-LAST:event_logoutActionPerformed
 
     private void kembalikecariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikecariActionPerformed
@@ -2077,113 +2079,86 @@ public void tampil_combo(){
     }//GEN-LAST:event_HargaBayarActionPerformed
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
+        try {
+            String sql = "UPDATE transaksi_penjualan SET username = '" + UsernameKasir.getText() + "', tanggal = '" + tglpenjualan + "', Harga_Total = '" + HargaBayar.getText() + "', bayar = '" + bayar1.getText() + "', kembali = '" + kembali.getText() + "' where transaksi_penjualan.no_faktur = '" + id_transaksi.getText() + "'";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
+            pst.execute();
+
             try {
-            String sql = "UPDATE transaksi_penjualan SET username = '"+UsernameKasir.getText()+"', tanggal = '"+tglpenjualan+"', Harga_Total = '"+HargaBayar.getText()+"', bayar = '"+bayar1.getText()+"', kembali = '"+kembali.getText()+"' where transaksi_penjualan.no_faktur = '"+id_transaksi.getText()+"'";
-                            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
-                            java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
-                            pst.execute();
-                            
-                            
-                            
-                            
-                            
-                            
-                   try {
-                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
-                    java.sql.Connection con = (Connection) Koneksi.getkoneksi();
+                JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
+                java.sql.Connection con = (Connection) Koneksi.getkoneksi();
 
-                    String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama\n" +
-                    "FROM transaksi_penjualan \n" +
-                    "JOIN detail_transaksi_penjualan \n" +
-                    "ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur \n" +
-                    "JOIN barang \n" +
-                    "ON barang.id_barang = detail_transaksi_penjualan.Id_barang\n" +
-                    "JOIN petugas\n" +
-                    "ON petugas.username = transaksi_penjualan.username where transaksi_penjualan.no_faktur = '"+IDT_Penjualan.getText()+"'";
-                    JRDesignQuery newQuery = new JRDesignQuery();
-                    newQuery.setText(sql1);
-                    jasdi.setQuery(newQuery);
-                    JasperReport js = JasperCompileManager.compileReport(jasdi);
-                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
-                    // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                    JasperViewer.viewReport(jp);
-                    
+                String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama, NOW()\n"
+                        + "FROM transaksi_penjualan \n"
+                        + "JOIN detail_transaksi_penjualan \n"
+                        + "ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur \n"
+                        + "JOIN barang \n"
+                        + "ON barang.id_barang = detail_transaksi_penjualan.Id_barang\n"
+                        + "JOIN petugas\n"
+                        + "ON petugas.username = transaksi_penjualan.username where transaksi_penjualan.no_faktur = '" + IDT_Penjualan.getText() + "'";
+                JRDesignQuery newQuery = new JRDesignQuery();
+                newQuery.setText(sql1);
+                jasdi.setQuery(newQuery);
+                JasperReport js = JasperCompileManager.compileReport(jasdi);
+                JasperPrint jp = JasperFillManager.fillReport(js, null, con);
+                // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+                JasperViewer.viewReport(jp);
 
-                    
-                    
-                    
-                    
-                    
-                    try {
-                            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
-                            java.sql.Statement stt = conn.createStatement();
-                            java.sql.ResultSet rss = stt.executeQuery("select max(right(no_faktur,1)) as no_terakhir from transaksi_penjualan;");
+                try {
+                    java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                    java.sql.Statement stt = conn.createStatement();
+                    java.sql.ResultSet rss = stt.executeQuery("select max(right(no_faktur,1)) as no_terakhir from transaksi_penjualan;");
 
-                            if (rss.next()) {
-                                String kode = rss.getString("no_terakhir");
-                                String AN = "" + (Integer.parseInt(kode) + 1);
-                                String strip = "-";
+                    if (rss.next()) {
+                        String kode = rss.getString("no_terakhir");
+                        String AN = "" + (Integer.parseInt(kode) + 1);
+                        String strip = "-";
 
-                                IDT_Penjualan.setText("TRN" + strip + AN);
+                        IDT_Penjualan.setText("TRN" + strip + AN);
 
-                            } else {
-                                IDT_Penjualan.setText("TRN-1");
-                            }
+                    } else {
+                        IDT_Penjualan.setText("TRN-1");
+                    }
 
-                            String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDT_Penjualan.getText() + "')";
-                            String sql3 = "DELETE From keranjang where keterangan = 'PENJUALAN'";
-                            java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
-                            pst = cnnc.prepareStatement(sql12);
-                            java.sql.PreparedStatement pst1 = cnnc.prepareStatement(sql3);
-                            pst.execute();
-                            pst1.execute();
-                            tampil_data();
+                    String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDT_Penjualan.getText() + "')";
+                    String sql3 = "DELETE From keranjang where keterangan = 'PENJUALAN'";
+                    java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
+                    pst = cnnc.prepareStatement(sql12);
+                    java.sql.PreparedStatement pst1 = cnnc.prepareStatement(sql3);
+                    pst.execute();
+                    pst1.execute();
+                    tampil_data();
 
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e);
-                        }
-                    
-                    
-                    
-                    
-                       
-                    
-                 } catch (Exception e) {
-                     JOptionPane.showMessageDialog(rootPane, e);
-                 } 
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-              } catch (Exception e) {
-                  JOptionPane.showMessageDialog(null, "Silahkan Login Terlebih Dahulu");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Silahkan Login Terlebih Dahulu");
         }
 //                
-        
+
     }//GEN-LAST:event_CETAKActionPerformed
 
 
     private void bayar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayar1KeyReleased
         // TODO add your handling code here:
-        
-            kembali.setText("");
-            String byr = bayar1.getText();
-            double byr1 = Double.parseDouble(byr);
-            double hbyr = Double.parseDouble(String.valueOf(hasil));
 
-            double tt = byr1 - hbyr;
-            String hsl = String.format("%.2f", tt);
-            kembali.setText("Rp. "+hsl);
-        
-            
-            
-        
+        kembali.setText("");
+        String byr = bayar1.getText();
+        double byr1 = Double.parseDouble(byr);
+        double hbyr = Double.parseDouble(String.valueOf(hasil));
+
+        double tt = byr1 - hbyr;
+        String hsl = String.format("%.2f", tt);
+        kembali.setText("Rp. " + hsl);
+
+
     }//GEN-LAST:event_bayar1KeyReleased
 
     private void jumlahprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahprdActionPerformed
@@ -2194,39 +2169,37 @@ public void tampil_combo(){
         // TODO add your handling code here:
         hargaprduk.setText("");
         String pilihan = satuan.getSelectedItem().toString();
-        
+
         if (pilihan == "ECERAN") {
             int brgecr = Integer.valueOf(stokBarangEcer);
             String jl = jumlahprd.getText();
             int jmlprdecr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_ecer);
-           
-            if (jmlprdecr > brgecr ){
+
+            if (jmlprdecr > brgecr) {
                 JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
+            } else {
+                double tt = jm * st;
+                String hsl = String.format("%.2f", tt);
+                hargaprduk.setText(hsl);
             }
-            else{
-            double tt = jm * st;
-            String hsl = String.format("%.2f", tt);
-            hargaprduk.setText(hsl);
-            }
-            
+
         } else if (pilihan == "GROSIR") {
             int brggsr = Integer.valueOf(stokBarangGrosir);
             String jl = jumlahprd.getText();
             int jmlprdgsr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_grosir);
-            
-            if (jmlprdgsr > brggsr){
+
+            if (jmlprdgsr > brggsr) {
                 JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
-            }
-            else {
+            } else {
                 double tt = jm * st;
-            String hsl = String.format("%.2f", tt);
-            hargaprduk.setText(hsl);
+                String hsl = String.format("%.2f", tt);
+                hargaprduk.setText(hsl);
             }
-            
+
         } else {
             hargaprduk.setText("");
         }
@@ -2266,62 +2239,57 @@ public void tampil_combo(){
 
     private void namaSupplierKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_namaSupplierKeyReleased
         // TODO add your handling code here:
-        
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
-            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement st = conn.createStatement();
-            java.sql.ResultSet res = st.executeQuery(sql1);
-           if (res.next()){
-            String nmsp =  res.getString("nama_supplier");
-                namaSupplier.setText(nmsp);
-                id_barangi1.requestFocus();
-                
-                
-           } else {
-               namaSupplier.setText(namaSupplier.getText());
-               
-               
-               
-                         try {
-                            java.sql.Connection conn1 = (Connection) Koneksi.getkoneksi();
-                            java.sql.Statement stt = conn1.createStatement();
-                            java.sql.ResultSet rss = stt.executeQuery("select max(right(id_supplier,1)) as no_terakhir from supplier;");
+                String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%" + namaSupplier.getText() + "%';";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = conn.createStatement();
+                java.sql.ResultSet res = st.executeQuery(sql1);
+                if (res.next()) {
+                    String nmsp = res.getString("nama_supplier");
+                    namaSupplier.setText(nmsp);
+                    id_barangi1.requestFocus();
 
-                            if (rss.next()) {
-                                String kode = rss.getString("no_terakhir");
-                                String AN = "" + (Integer.parseInt(kode) + 1);
-                                String strip = "-";
+                } else {
+                    namaSupplier.setText(namaSupplier.getText());
 
-                                IDTSupplier.setText("SP" + strip + AN);
+                    try {
+                        java.sql.Connection conn1 = (Connection) Koneksi.getkoneksi();
+                        java.sql.Statement stt = conn1.createStatement();
+                        java.sql.ResultSet rss = stt.executeQuery("select max(right(id_supplier,1)) as no_terakhir from supplier;");
 
-                            } else {
-                                IDTSupplier.setText("SP-1");
-                            }
+                        if (rss.next()) {
+                            String kode = rss.getString("no_terakhir");
+                            String AN = "" + (Integer.parseInt(kode) + 1);
+                            String strip = "-";
 
-                            String sql12 = "Insert into supplier (id_supplier, nama_supplier) values ('" + IDTSupplier.getText() + "', '"+namaSupplier.getText()+"')";
-                            java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
-                            pst = cnnc.prepareStatement(sql12);
-                            pst.execute();
+                            IDTSupplier.setText("SP" + strip + AN);
 
-                        } catch (Exception e) {
-                            JOptionPane.showMessageDialog(null, e);
+                        } else {
+                            IDTSupplier.setText("SP-1");
                         }
-                         
-                         
-                         id_barangi1.requestFocus();
-               
-           }
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+
+                        String sql12 = "Insert into supplier (id_supplier, nama_supplier) values ('" + IDTSupplier.getText() + "', '" + namaSupplier.getText() + "')";
+                        java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
+                        pst = cnnc.prepareStatement(sql12);
+                        pst.execute();
+
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+                    id_barangi1.requestFocus();
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-            
-            
-        }
-        
-       
+
+
     }//GEN-LAST:event_namaSupplierKeyReleased
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
@@ -2348,11 +2316,11 @@ public void tampil_combo(){
 
     private void btlprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprdActionPerformed
         // TODO add your handling code here:
-        int ok=JOptionPane.showConfirmDialog(null,"Apakah Yakin Anda Menghapus Data ini???","Confirmation",JOptionPane.YES_NO_OPTION);
-        if(ok==0){
+        int ok = JOptionPane.showConfirmDialog(null, "Apakah Yakin Anda Menghapus Data ini???", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (ok == 0) {
             try {
-                String sql = "DELETE FROM barang WHERE tanggal = '"+tgl+"'";
-                String sql2 = "DELETE FROM detail_transaksi_pembelian where id_pembelian = '"+txt_IDT.getText()+"'";
+                String sql = "DELETE FROM barang WHERE tanggal = '" + tgl + "'";
+                String sql2 = "DELETE FROM detail_transaksi_pembelian where id_pembelian = '" + txt_IDT.getText() + "'";
                 String sql3 = "DELETE FROM keranjang where keterangan = 'PEMBELIAN'";
                 java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = cn.createStatement();
@@ -2380,34 +2348,34 @@ public void tampil_combo(){
 
         if (satuan1.getSelectedItem() == "ECERAN") {
             try {
-                    String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran) Values (?,?,?,?,?)"; 
-                    String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_ecer, harga_eceran) values ('"+txt_IDT.getText()+"', '"+tgl+"', '"+id_barangi1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"')";
-                    String sql3 = "Insert Into keranjang (id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) values ('"+id_barangi1.getText()+"', '"+namabarang1.getText()+"', '"+namasatuan1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"', 'PEMBELIAN')";
-                    java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
-                    java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
-                    java.sql.PreparedStatement pst2=conntt.prepareStatement(sql2);
-                    java.sql.PreparedStatement pst3=conntt.prepareStatement(sql3);
-                    pst.setString(1, id_barangi1.getText());
-                    pst.setString(2, namabarang1.getText());
-                    pst.setString(3, jumlah_pembelian.getText());
-                    pst.setString(4, namasatuan1.getText());
-                    pst.setString(5, harga1.getText());
-                    pst.executeUpdate();
-                    pst2.executeUpdate();
-                    pst3.executeUpdate();
-                    tampil_barang();
-                    TotalPembelian();
-                    satuan1.setSelectedItem("PILIH SATUAN");
-                    namasatuan1.setText("");
-                    harga1.setText("");
-                    jumlah_pembelian.setText("");
-                    JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
-                
+                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran) Values (?,?,?,?,?)";
+                String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_ecer, harga_eceran) values ('" + txt_IDT.getText() + "', '" + tgl + "', '" + id_barangi1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "')";
+                String sql3 = "Insert Into keranjang (id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) values ('" + id_barangi1.getText() + "', '" + namabarang1.getText() + "', '" + namasatuan1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "', 'PEMBELIAN')";
+                java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
+                java.sql.PreparedStatement pst2 = conntt.prepareStatement(sql2);
+                java.sql.PreparedStatement pst3 = conntt.prepareStatement(sql3);
+                pst.setString(1, id_barangi1.getText());
+                pst.setString(2, namabarang1.getText());
+                pst.setString(3, jumlah_pembelian.getText());
+                pst.setString(4, namasatuan1.getText());
+                pst.setString(5, harga1.getText());
+                pst.executeUpdate();
+                pst2.executeUpdate();
+                pst3.executeUpdate();
+                tampil_barang();
+                TotalPembelian();
+                satuan1.setSelectedItem("PILIH SATUAN");
+                namasatuan1.setText("");
+                harga1.setText("");
+                jumlah_pembelian.setText("");
+                JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+
             } catch (Exception e) {
                 try {
-                    String sql = "UPDATE barang SET stok_ecer = '"+jumlah_pembelian.getText()+"',eceran = '"+namasatuan1.getText()+"', harga_eceran='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
-                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_ecer = '"+jumlah_pembelian.getText()+"', harga_eceran='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
-                    String sql3 = "UPDATE keranjang SET eceran = '"+namasatuan1.getText()+"', jumlah_ecer = '"+jumlah_pembelian.getText()+"', harga_eceran = '"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    String sql = "UPDATE barang SET stok_ecer = '" + jumlah_pembelian.getText() + "',eceran = '" + namasatuan1.getText() + "', harga_eceran='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_ecer = '" + jumlah_pembelian.getText() + "', harga_eceran='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql3 = "UPDATE keranjang SET eceran = '" + namasatuan1.getText() + "', jumlah_ecer = '" + jumlah_pembelian.getText() + "', harga_eceran = '" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
                     java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
@@ -2422,16 +2390,16 @@ public void tampil_combo(){
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
             }
-            
-        } else if (satuan1.getSelectedItem() == "GROSIR"){
+
+        } else if (satuan1.getSelectedItem() == "GROSIR") {
             try {
                 String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_grosir, grosir, harga_grosir) Values (?,?,?,?,?)";
-                String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_grosir, harga_grosir) values ('"+txt_IDT.getText()+"', '"+tgl+"', '"+id_barangi1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"')";
-                String sql3 = "Insert Into keranjang (id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) values ('"+id_barangi1.getText()+"', '"+namabarang1.getText()+"', '"+namasatuan1.getText()+"', '"+jumlah_pembelian.getText()+"', '"+harga1.getText()+"', 'pembelian')";
-                java.sql.Connection conntt =(Connection) Koneksi.getkoneksi();
-                java.sql.PreparedStatement pst=conntt.prepareStatement(sql);
-                java.sql.PreparedStatement pst2=conntt.prepareStatement(sql2);
-                java.sql.PreparedStatement pst3=conntt.prepareStatement(sql3);
+                String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_grosir, harga_grosir) values ('" + txt_IDT.getText() + "', '" + tgl + "', '" + id_barangi1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "')";
+                String sql3 = "Insert Into keranjang (id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) values ('" + id_barangi1.getText() + "', '" + namabarang1.getText() + "', '" + namasatuan1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "', 'pembelian')";
+                java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conntt.prepareStatement(sql);
+                java.sql.PreparedStatement pst2 = conntt.prepareStatement(sql2);
+                java.sql.PreparedStatement pst3 = conntt.prepareStatement(sql3);
                 pst.setString(1, id_barangi1.getText());
                 pst.setString(2, namabarang1.getText());
                 pst.setString(3, jumlah_pembelian.getText());
@@ -2449,9 +2417,9 @@ public void tampil_combo(){
                 JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
             } catch (Exception e) {
                 try {
-                    String sql = "UPDATE barang SET stok_grosir = '"+jumlah_pembelian.getText()+"', grosir = '"+namasatuan1.getText()+"', harga_grosir='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
-                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_grosir = '"+jumlah_pembelian.getText()+"', harga_grosir='"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
-                    String sql3 = "UPDATE keranjang SET grosir = '"+namasatuan1.getText()+"', jumlah_grosir = '"+jumlah_pembelian.getText()+"', harga_grosir= '"+harga1.getText()+"' where id_barang = '"+id_barangi1.getText()+"'";
+                    String sql = "UPDATE barang SET stok_grosir = '" + jumlah_pembelian.getText() + "', grosir = '" + namasatuan1.getText() + "', harga_grosir='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_grosir = '" + jumlah_pembelian.getText() + "', harga_grosir='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql3 = "UPDATE keranjang SET grosir = '" + namasatuan1.getText() + "', jumlah_grosir = '" + jumlah_pembelian.getText() + "', harga_grosir= '" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                     java.sql.PreparedStatement pst = conn.prepareStatement(sql);
                     java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
@@ -2474,92 +2442,67 @@ public void tampil_combo(){
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "UPDATE transaksi_pembelian SET id_supplier = '"+namaSupplier.getText()+"', username = '"+UsernameKasir.getText()+"' where id_pembelian = '"+txt_IDT.getText()+"'";
-                            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
-                            java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
-                            pst.execute();
-                            
-                            
-                            
-                            
-                            
-                            
-                   try {
-                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
-                    java.sql.Connection con = (Connection) Koneksi.getkoneksi();
+            String sql = "UPDATE transaksi_pembelian SET id_supplier = '" + namaSupplier.getText() + "', username = '" + UsernameKasir.getText() + "', Harga_Total = '" + hargaTotal.getText() + "' where id_pembelian = '" + txt_IDT.getText() + "'";
+            java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
+            java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
+            pst.execute();
 
-                    String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama\n" +
-                    "FROM transaksi_penjualan \n" +
-                    "JOIN detail_transaksi_penjualan \n" +
-                    "ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur \n" +
-                    "JOIN barang \n" +
-                    "ON barang.id_barang = detail_transaksi_penjualan.Id_barang\n" +
-                    "JOIN petugas\n" +
-                    "ON petugas.username = transaksi_penjualan.username where transaksi_penjualan.no_faktur = '"+IDT_Penjualan.getText()+"'";
-                    JRDesignQuery newQuery = new JRDesignQuery();
-                    newQuery.setText(sql1);
-                    jasdi.setQuery(newQuery);
-                    JasperReport js = JasperCompileManager.compileReport(jasdi);
-                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
-                    // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                    JasperViewer.viewReport(jp);
-                    
-                    
-                    
-                    
-                    
-                    
-                                        try {
-                                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
-                                java.sql.Statement st = conn.createStatement();
-                                java.sql.ResultSet rss = st.executeQuery("select max(right(Id_pembelian,1)) as no_terakhir from transaksi_pembelian;");
+//                   try {
+//                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
+//                    java.sql.Connection con = (Connection) Koneksi.getkoneksi();
+//
+//                    String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama\n" +
+//                    "FROM transaksi_penjualan \n" +
+//                    "JOIN detail_transaksi_penjualan \n" +
+//                    "ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur \n" +
+//                    "JOIN barang \n" +
+//                    "ON barang.id_barang = detail_transaksi_penjualan.Id_barang\n" +
+//                    "JOIN petugas\n" +
+//                    "ON petugas.username = transaksi_penjualan.username where transaksi_penjualan.no_faktur = '"+IDT_Penjualan.getText()+"'";
+//                    JRDesignQuery newQuery = new JRDesignQuery();
+//                    newQuery.setText(sql1);
+//                    jasdi.setQuery(newQuery);
+//                    JasperReport js = JasperCompileManager.compileReport(jasdi);
+//                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
+//                    // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+//                    JasperViewer.viewReport(jp);
+//                    
+            try {
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = conn.createStatement();
+                java.sql.ResultSet rss = st.executeQuery("select max(right(Id_pembelian,1)) as no_terakhir from transaksi_pembelian;");
 
-                                if (rss.next()) {
-                                    String kode = rss.getString("no_terakhir");
-                                    String AN = "" + (Integer.parseInt(kode) + 1);
-                                    String strip = "-";
+                if (rss.next()) {
+                    String kode = rss.getString("no_terakhir");
+                    String AN = "" + (Integer.parseInt(kode) + 1);
+                    String strip = "-";
 
-                                    txt_IDT.setText("T" + strip + AN);
+                    txt_IDT.setText("T" + strip + AN);
 
-                                } else {
-                                    txt_IDT.setText("T-1");
-                                }
+                } else {
+                    txt_IDT.setText("T-1");
+                }
 
-                                String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('" + txt_IDT.getText() + "')";
-                                String sql3 = "DELETE From keranjang where keterangan = 'PEMBELIAN'";
-                                java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
-                                pst = cnn.prepareStatement(sql12);
-                                java.sql.PreparedStatement pst1 = cnnc.prepareStatement(sql3);
-                                pst.execute();
-                                pst1.execute();
-                                tampil_barang();
+                String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('" + txt_IDT.getText() + "')";
+                String sql3 = "DELETE From keranjang where keterangan = 'PEMBELIAN'";
+                java.sql.Connection cnnc = (Connection) Koneksi.getkoneksi();
+                pst = cnn.prepareStatement(sql12);
+                java.sql.PreparedStatement pst1 = cnnc.prepareStatement(sql3);
+                pst.execute();
+                pst1.execute();
+                tampil_barang();
 
-                            } catch (Exception e) {
-                                JOptionPane.showMessageDialog(null, e);
-                            } 
-                    
-                    
-                    
-                    
-                    
-                    
-                 } catch (Exception e) {
-                     JOptionPane.showMessageDialog(rootPane, e);
-                 } 
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-              } catch (Exception e) {
-                  JOptionPane.showMessageDialog(null, e);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+//                 } catch (Exception e) {
+//                     JOptionPane.showMessageDialog(rootPane, e);
+//                 } 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-            
+
     }//GEN-LAST:event_printActionPerformed
 
     private void mencari1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencari1KeyReleased
@@ -2575,13 +2518,13 @@ public void tampil_combo(){
         model.addColumn("Harga Grosir");
 
         try {
-            String sql = "SELECT * where keranjang nama_barang LIKE '%"+mencari1.getText()+"%';";
+            String sql = "SELECT * where keranjang nama_barang LIKE '%" + mencari1.getText() + "%';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = cn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                res.getString("nama_barang"),res.getString("eceran"),res.getString("grosir"), res.getString("jumlah_ecer"),res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_ecer"), res.getString("jumlah_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
 
             table_barang.setModel(model);
@@ -2616,27 +2559,27 @@ public void tampil_combo(){
 
     private void CETAK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAK1ActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet rss = st.executeQuery("select max(right(id_return,1)) as no_terakhir from return_barang;");
-            
+
             if (rss.next()) {
                 String kode = rss.getString("no_terakhir");
                 String AN = "" + (Integer.parseInt(kode) + 1);
                 String strip = "-";
-                
+
                 ReturnID.setText("RTN" + strip + AN);
-                
+
             } else {
-                ReturnID.setText("RTN-01");
+                ReturnID.setText("RTN-1");
             }
-            
+
             String sql12 = "Insert into return_barang (id_return) values ('" + ReturnID.getText() + "')";
             java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
             pst = cnn.prepareStatement(sql12);
             pst.execute();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -2655,8 +2598,8 @@ public void tampil_combo(){
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
         // TODO add your handling code here:
-       this.setVisible(false);
-       new Login().setVisible(true);
+        this.setVisible(false);
+        new Login().setVisible(true);
     }//GEN-LAST:event_logout2ActionPerformed
 
     private void mencariBarang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariBarang1KeyReleased
@@ -2665,17 +2608,15 @@ public void tampil_combo(){
 
     private void btn_tjual1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjual1ActionPerformed
         // TODO add your handling code here:
-                Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-
+        Kasir.removeAll();
         Kasir.add(TransaksiPenjualan);
         Kasir.repaint();
-        Kasir.revalidate();
+        Kasir.validate();
         tampil_data();
         notransaksi();
         HargaTot();
         transaksi_penjualan_id();
+        id_barangpnj.requestFocus();
     }//GEN-LAST:event_btn_tjual1ActionPerformed
 
     private void table_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_barangMouseClicked
@@ -2683,7 +2624,7 @@ public void tampil_combo(){
         int b = table_barang.rowAtPoint(evt.getPoint());
         String IDtransaksi = (String) table_barang.getValueAt(b, 0);
         id_barangi1.setText(IDtransaksi);
-        
+
         String NAMApembelian = (String) table_barang.getValueAt(b, 1);
         namabarang1.setText(NAMApembelian);
     }//GEN-LAST:event_table_barangMouseClicked
@@ -2695,23 +2636,48 @@ public void tampil_combo(){
     private void btn_tjual2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tjual2ActionPerformed
         // TODO add your handling code here:
         Kasir.removeAll();
-        Kasir.repaint();
-        Kasir.revalidate();
-
         Kasir.add(Return);
         Kasir.repaint();
-        Kasir.revalidate();
-        load_table();
+        Kasir.validate();
+        tabel_return();
         tanggalreal1.setText(tgl);
+        id_pembelian.requestFocus();
+        
     }//GEN-LAST:event_btn_tjual2ActionPerformed
 
     private void satuan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan2ActionPerformed
         // TODO add your handling code here:
+        if (satuan2.getSelectedItem() == "ECERAN") {
+            try {
+                String sql = "SELECT eceran FROM barang where id_barang = '" + namaBarang1.getText() + "'";
+                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = cn.createStatement();
+                java.sql.ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    ecr_supp = rs.getString("eceran");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (satuan2.getSelectedItem() == "GROSIR") {
+            try {
+                String sql = "SELECT grosir FROM barang where id_barang = '" + namaBarang1.getText() + "'";
+                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = cn.createStatement();
+                java.sql.ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    grs_supp = rs.getString("grosir");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_satuan2ActionPerformed
 
     private void satuan3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satuan3ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_satuan3ActionPerformed
 
     private void barang_barangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barang_barangMouseEntered
@@ -2720,19 +2686,50 @@ public void tampil_combo(){
 
     private void id_barangi1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barangi1KeyTyped
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_id_barangi1KeyTyped
 
     private void id_barangi1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barangi1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-           String IdpembelianBrg = id_barangi1.getText();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String IdpembelianBrg = id_barangi1.getText();
         }
     }//GEN-LAST:event_id_barangi1KeyPressed
 
     private void tambahprd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahprd1ActionPerformed
         // TODO add your handling code here:
-        
+        if (satuan2.getSelectedItem() == "ECERAN") {
+            try {
+                String sql = "INSERT INTO keranjang (Id_barang, jumlah_ecer, eceran, keterangan) Values ('" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + ecr_supp + "', 'RETURN')";
+                String sql1 = "INSERT INTO detail_return (id_return, id_barang, jumlah_ecer, eceran, keterangan) Values ('" + ReturnID.getText() + "','" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + ecr_supp + "', '" + keteranganrtn.getText() + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                tabel_return();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+
+        } else if (satuan2.getSelectedItem() == "GROSIR") {
+
+            try {
+                String sql = "INSERT INTO keranjang (Id_barang, jumlah_grosir, grosir, keterangan) Values ('" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + grs_supp + "', 'RETURN')";
+                String sql1 = "INSERT INTO detail_return (id_return, id_barang, jumlah_grosir, grosir, keterangan) Values ('" + ReturnID.getText() + "','" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + grs_supp + "', '" + keteranganrtn.getText() + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                tabel_return();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
     }//GEN-LAST:event_tambahprd1ActionPerformed
 
     private void clear2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear2ActionPerformed
@@ -2779,58 +2776,58 @@ public void tampil_combo(){
         // TODO add your handling code here:
         if (satuan4.getSelectedItem() == "ECERAN") {
             try {
-            PilihSatuan2();
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) Values ('"+id_barangpnj.getText()+"', '"+nama_barangpnj+"', '"+SATUAN+"', '"+jumlah_barang.getText()+"', '"+hargaprduk1.getText()+"', 'PENJUALAN')";
-            String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('"+No_faktur+"','"+id_barangpnj.getText()+"', '"+jumlah_barang.getText()+"', '"+SATUAN+"', '"+hargaprduk1.getText()+"', '"+tgl+"')";
-            java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pst1=conn.prepareStatement(sql1);
-            pst.execute();
-            pst1.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-           id_barangpnj.setText("");
-            satuan4.setSelectedItem("SATUAN");
-            jumlah_barang.setText("");
-            hargaprduk1.setText("");
-            tampil_data();
-            HargaTot();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-            
-        } else if (satuan4.getSelectedItem() == "GROSIR"){
-            
+                PilihSatuan2();
+                String sql = "INSERT INTO keranjang (Id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) Values ('" + id_barangpnj.getText() + "', '" + nama_barangpnj + "', '" + SATUAN + "', '" + jumlah_barang.getText() + "', '" + hargaprduk1.getText() + "', 'PENJUALAN')";
+                String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_ecer, satuan, harga, tanggal) Values ('" + No_faktur + "','" + id_barangpnj.getText() + "', '" + jumlah_barang.getText() + "', '" + SATUAN + "', '" + hargaprduk1.getText() + "', '" + tgl + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                id_barangpnj.setText("");
+                satuan4.setSelectedItem("SATUAN");
+                jumlah_barang.setText("");
+                hargaprduk1.setText("");
+                tampil_data();
+                HargaTot();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+
+        } else if (satuan4.getSelectedItem() == "GROSIR") {
+
             try {
                 PilihSatuan2();
-            String sql = "INSERT INTO keranjang (Id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) Values ('"+id_barangpnj.getText()+"', '"+nama_barangpnj+"', '"+SATUAN+"', '"+jumlah_barang.getText()+"', '"+hargaprduk1.getText()+"', 'PENJUALAN')";
-            String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_grosir, satuan, harga, tanggal) Values ('"+No_faktur+"','"+id_barangpnj.getText()+"', '"+jumlah_barang.getText()+"', '"+SATUAN+"', '"+hargaprduk1.getText()+"', '"+tgl+"')";
-            java.sql.Connection conn =(Connection) Koneksi.getkoneksi();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pst1=conn.prepareStatement(sql1);
-            pst.execute();
-            pst1.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
-            id_barangpnj.setText("");
-            satuan4.setSelectedItem("SATUAN");
-            jumlah_barang.setText("");
-            hargaprduk1.setText("");
-            tampil_data();
-            HargaTot();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+                String sql = "INSERT INTO keranjang (Id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) Values ('" + id_barangpnj.getText() + "', '" + nama_barangpnj + "', '" + SATUAN + "', '" + jumlah_barang.getText() + "', '" + hargaprduk1.getText() + "', 'PENJUALAN')";
+                String sql1 = "INSERT INTO detail_transaksi_penjualan (no_faktur, Id_barang, jumlah_grosir, satuan, harga, tanggal) Values ('" + No_faktur + "','" + id_barangpnj.getText() + "', '" + jumlah_barang.getText() + "', '" + SATUAN + "', '" + hargaprduk1.getText() + "', '" + tgl + "')";
+                java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+                java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+                java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.execute();
+                pst1.execute();
+                JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+                id_barangpnj.setText("");
+                satuan4.setSelectedItem("SATUAN");
+                jumlah_barang.setText("");
+                hargaprduk1.setText("");
+                tampil_data();
+                HargaTot();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
         }
     }//GEN-LAST:event_TambahBrgActionPerformed
 
     private void id_barangpnjKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_id_barangpnjKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-                String sql = "SELECT * from barang where id_barang = '"+id_barangpnj.getText()+"'";
+                String sql = "SELECT * from barang where id_barang = '" + id_barangpnj.getText() + "'";
                 java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = cn.createStatement();
                 java.sql.ResultSet rs = st.executeQuery(sql);
-                
+
                 rs.next();
                 nama_barangpnj = rs.getString("nama_barang");
                 jumlah_ecerpnj = rs.getString("stok_ecer");
@@ -2839,7 +2836,7 @@ public void tampil_combo(){
                 grosirpnj = rs.getString("grosir");
                 hrg_ecerpnj = rs.getString("harga_eceran");
                 hrg_grosirpnj = rs.getString("harga_grosir");
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2858,43 +2855,45 @@ public void tampil_combo(){
         // TODO add your handling code here:
         hargaprduk1.setText("");
         String pilihan = satuan4.getSelectedItem().toString();
-        
+
         if (pilihan == "ECERAN") {
             int brgecr = Integer.valueOf(jumlah_ecerpnj);
             String jl = jumlah_barang.getText();
             int jmlprdecr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_ecerpnj);
-           
-            if (jmlprdecr > brgecr ){
+
+            if (jmlprdecr > brgecr) {
                 JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
+            } else {
+                double tt = jm * st;
+                String hsl = String.format("%.2f", tt);
+                hargaprduk1.setText(hsl);
             }
-            else{
-            double tt = jm * st;
-            String hsl = String.format("%.2f", tt);
-            hargaprduk1.setText(hsl);
-            }
-            
+
         } else if (pilihan == "GROSIR") {
             int brggsr = Integer.valueOf(jumlah_grosirpnj);
             String jl = jumlah_barang.getText();
             int jmlprdgsr = Integer.valueOf(jl);
             double jm = Double.parseDouble(jl);
             double st = Double.parseDouble(hrg_grosirpnj);
-            
-            if (jmlprdgsr > brggsr){
+
+            if (jmlprdgsr > brggsr) {
                 JOptionPane.showMessageDialog(null, "Maaf Barang tidak mencukupi");
-            }
-            else {
+            } else {
                 double tt = jm * st;
-            String hsl = String.format("%.2f", tt);
-            hargaprduk1.setText(hsl);
+                String hsl = String.format("%.2f", tt);
+                hargaprduk1.setText(hsl);
             }
-            
+
         } else {
             hargaprduk1.setText("");
         }
     }//GEN-LAST:event_jumlah_barangKeyReleased
+
+    private void btn_tpembelianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_tpembelianKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tpembelianKeyReleased
 
     /**
      * @param args the command line arguments
@@ -3018,7 +3017,6 @@ public void tampil_combo(){
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jumlahBarang1;
     private javax.swing.JTextField jumlah_barang;
     private javax.swing.JTextField jumlah_pembelian;
@@ -3027,6 +3025,7 @@ public void tampil_combo(){
     private javax.swing.JButton kembalikecari;
     private javax.swing.JButton kembalikecari1;
     private javax.swing.JButton kembalikecari2;
+    private javax.swing.JTextArea keteranganrtn;
     private javax.swing.JTable list_barang;
     private javax.swing.JButton logout;
     private javax.swing.JButton logout1;
@@ -3060,20 +3059,20 @@ public void tampil_combo(){
     private javax.swing.JLabel txt_IDT;
     private javax.swing.JTextField txt_IDTOther;
     // End of variables declaration//GEN-END:variables
-public void namaSup(){ 
-            try {
-            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%"+namaSupplier.getText()+"%';";
+public void namaSup() {
+        try {
+            String sql1 = "SELECT * FROM supplier where nama_supplier LIKE '%" + namaSupplier.getText() + "%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet res = st.executeQuery(sql1);
             while (res.next()) {
-            res.getString("nama_supplier");
+                res.getString("nama_supplier");
             }
-                if (namaSupplier.getText() == null) {
-                    namaSupplier.setText("");
-                }
+            if (namaSupplier.getText() == null) {
+                namaSupplier.setText("");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }   
+    }
 }

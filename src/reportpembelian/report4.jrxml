@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Penjualan" language="groovy" pageWidth="226" pageHeight="340" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Penjualan" language="groovy" pageWidth="226" pageHeight="566" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="3.1384283767210204"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="27"/>
+	<property name="ireport.y" value="42"/>
 	<parameter name="kode" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username]]>
+		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username
+where transaksi_pembelian.Id_pembelian = $P{kdpenjualan};]]>
 	</queryString>
 	<field name="Id_pembelian" class="java.lang.String"/>
 	<field name="nama_supplier" class="java.lang.String"/>
@@ -23,7 +25,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="60" splitType="Stretch">
+		<band height="61" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="186" height="20"/>
 				<textElement textAlignment="Center">
@@ -131,7 +133,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="10" splitType="Stretch">
+		<band height="12" splitType="Stretch">
 			<textField>
 				<reportElement x="95" y="0" width="45" height="10"/>
 				<textElement>
@@ -184,7 +186,7 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="96">
+		<band height="108">
 			<staticText>
 				<reportElement x="78" y="6" width="35" height="10"/>
 				<textElement>
