@@ -68,11 +68,6 @@
         <Property name="text" type="java.lang.String" value="jLabel31"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="ReturnID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel32"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="hargaprduk1">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
@@ -81,6 +76,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hargaprduk1ActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="hargaprduk1KeyReleased"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="ReturnID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel32"/>
+      </Properties>
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -1291,6 +1291,7 @@
                 </Property>
               </Properties>
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namaSupplierActionPerformed"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="namaSupplierKeyReleased"/>
               </Events>
             </Component>
@@ -1656,14 +1657,11 @@
                                   <Component id="clear2" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                   <Component id="btlprd1" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="574" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="619" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane4" min="-2" pref="565" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1726,15 +1724,15 @@
                                   <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane4" min="-2" pref="409" max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" pref="438" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                      <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="kembalikecari2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="CETAK1" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="logout2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1782,27 +1780,6 @@
                 <Property name="text" type="java.lang.String" value="CARI"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="return_barang">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
-                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2026,6 +2003,27 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btlprd1ActionPerformed"/>
               </Events>
             </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="returnnnn">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                        <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="842" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="3.4522712143931042"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="paramreturn" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select return_barang.id_return, return_barang.id_pembelian, return_barang.tanggal, detail_return.jumlah_ecer, detail_return.jumlah_grosir, detail_return.eceran, detail_return.grosir, detail_return.keterangan, barang.nama_barang, supplier.nama_supplier, return_barang.username FROM return_barang JOIN detail_return ON detail_return.id_return = return_barang.id_return JOIN barang ON detail_return.id_barang = barang.id_barang JOIN supplier ON supplier.id_supplier = return_barang.id_supplier where return_barang.id_return = $P{paramreturn};]]>
+	</queryString>
+	<field name="id_return" class="java.lang.String"/>
+	<field name="id_pembelian" class="java.lang.String"/>
+	<field name="tanggal" class="java.sql.Date"/>
+	<field name="jumlah_ecer" class="java.lang.String"/>
+	<field name="jumlah_grosir" class="java.lang.String"/>
+	<field name="eceran" class="java.lang.String"/>
+	<field name="grosir" class="java.lang.String"/>
+	<field name="keterangan" class="java.lang.String"/>
+	<field name="nama_barang" class="java.lang.String"/>
+	<field name="nama_supplier" class="java.lang.String"/>
+	<field name="username" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="51" width="226" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Bondowoso, Jawa Timur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="226" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[JL. Khoiril Anwar, RT 05, RW 01, Badean]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="11" width="226" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ANGKRINGAN N3D SHOP]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="7" width="85" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Kode Transaksi          :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="7" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_return}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="17" width="85" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Kode Transaksi Beli   :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="17" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_pembelian}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="27" width="85" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier           :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="37" width="85" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Kasir                          :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="27" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_supplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="37" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{username}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="226" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="62" width="226" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="6" y="66" width="31" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="66" width="29" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Satuan Ecer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="66" width="31" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Satuan Grosir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="66" width="29" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Jumlah Ecer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="66" width="32" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Jumlah Grosir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="66" width="32" height="8"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="47" width="85" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Tanggal                     :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="47" width="126" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="7" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="31" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="29" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{eceran}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="0" width="31" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grosir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="29" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah_ecer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="32" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah_grosir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="32" height="7"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="3" width="226" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="18" width="226" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[TERIMA KASIH]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

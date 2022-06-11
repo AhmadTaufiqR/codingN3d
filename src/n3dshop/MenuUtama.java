@@ -34,7 +34,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a, hasil;
     private String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar1, totalmembayar2, tglpenjualan, nama_barangpnj, jml_gr, jml_ecr, jumlah_ecerpnj, jumlah_grosirpnj, eceranpnj, grosirpnj, hrg_ecerpnj, hrg_grosirpnj;
-    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return, id_supp, ecr_supp, grs_supp;
+    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return, suppid, ecr_supp, grs_supp;
     private Date tglsekarang;
     public PreparedStatement pst;
 
@@ -60,6 +60,7 @@ public class MenuUtama extends javax.swing.JFrame {
         Supplier_id();
         notransaksi();
         HargaTot();
+        tabel_return_barang();
         id_barangi1.requestFocus();
     }
 
@@ -96,24 +97,24 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void transaksi_pembelian_id() {
         try {
-            String sql = "SELECT MAX(RIGHT(Id_pembelian, 1)) AS ttl_id from transaksi_pembelian";
+            String sql = "SELECT COUNT(Id_pembelian) AS ttl_id from transaksi_pembelian";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
             rs.next();
             id_trpembelian = rs.getString("ttl_id");
-            if (id_trpembelian == null) {
+            if (Integer.valueOf(id_trpembelian) == 0) {
                 txt_IDT.setText("T-1");
                 String sql12 = "Insert into transaksi_pembelian (Id_pembelian) values ('" + txt_IDT.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
-                String sql1 = "SELECT MAX(Id_pembelian) AS ttl_id from transaksi_pembelian";
+                String sql1 = "SELECT COUNT(Id_pembelian) AS ttl_id from transaksi_pembelian";
                 java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st1 = cn1.createStatement();
                 java.sql.ResultSet rs1 = st1.executeQuery(sql1);
                 rs1.next();
-                txt_IDT.setText(rs1.getString("ttl_id"));
+                txt_IDT.setText("T-"+rs1.getString("ttl_id"));
             }
 
         } catch (SQLException ex) {
@@ -123,19 +124,19 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void transaksi_penjualan_id() {
         try {
-            String sql = "SELECT MAX(RIGHT(no_faktur, 2)) AS ttl_id from transaksi_penjualan";
+            String sql = "SELECT COUNT(no_faktur) AS ttl_id from transaksi_penjualan";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
             rs.next();
             id_trpenjualan = rs.getString("ttl_id");
-            if (id_trpenjualan == null) {
+            if (Integer.valueOf(id_trpenjualan) == 0) {
                 IDT_Penjualan.setText("TRN-1");
                 String sql12 = "Insert into transaksi_penjualan (no_faktur) values ('" + IDT_Penjualan.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
-                String sql1 = "SELECT MAX(RIGHT(no_faktur, 2)) AS ttl_id from transaksi_penjualan";
+                String sql1 = "SELECT COUNT(no_faktur)  AS ttl_id from transaksi_penjualan";
                 java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st1 = cn1.createStatement();
                 java.sql.ResultSet rs1 = st1.executeQuery(sql1);
@@ -151,24 +152,24 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void return_barang_id() {
         try {
-            String sql = "SELECT MAX(RIGHT(id_return, 1)) AS ttl_id from return_barang";
+            String sql = "SELECT COUNT(id_return) AS ttl_id from return_barang";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
             rs.next();
             id_return = rs.getString("ttl_id");
-            if (id_return == null) {
-                ReturnID.setText("RTN-01");
+            if (Integer.valueOf(id_return) == 0) {
+                ReturnID.setText("RTN-1");
                 String sql12 = "Insert into return_barang (id_return) values ('" + ReturnID.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
-                String sql1 = "SELECT MAX(id_return) AS ttl_id from return_barang";
+                String sql1 = "SELECT COUNT(id_return) AS ttl_id from return_barang";
                 java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st1 = cn1.createStatement();
                 java.sql.ResultSet rs1 = st1.executeQuery(sql1);
                 rs1.next();
-                ReturnID.setText(rs1.getString("ttl_id"));
+                ReturnID.setText("RTN-"+rs1.getString("ttl_id"));
             }
 
         } catch (SQLException ex) {
@@ -178,24 +179,24 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void Supplier_id() {
         try {
-            String sql = "SELECT MAX(RIGHT(id_supplier, 1)) AS ttl_id from supplier";
+            String sql = "SELECT COUNT(id_supplier) AS ttl_id from supplier";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
             rs.next();
             id_trpembelian = rs.getString("ttl_id");
-            if (id_trpembelian == null) {
+            if (Integer.valueOf(id_trpembelian) == 0) {
                 IDTSupplier.setText("SP-1");
-                String sql12 = "Insert into supplier (id_suppiler) values ('" + namaSupplier.getText() + "')";
+                String sql12 = "Insert into supplier (id_supplier) values ('" + namaSupplier.getText() + "')";
                 java.sql.PreparedStatement pst1 = cn.prepareStatement(sql12);
                 pst1.execute();
             } else {
-                String sql1 = "SELECT MAX(id_supplier) AS ttl_id from supplier";
+                String sql1 = "SELECT COUNT(id_supplier) AS ttl_id from supplier";
                 java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st1 = cn1.createStatement();
                 java.sql.ResultSet rs1 = st1.executeQuery(sql1);
                 rs1.next();
-                IDTSupplier.setText(rs1.getString("ttl_id"));
+                IDTSupplier.setText("SP-"+rs1.getString("ttl_id"));
             }
 
         } catch (SQLException ex) {
@@ -240,7 +241,7 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }
 
-    public void tabel_return() {
+    public void tabel_return_barang() {
         //membuat tampilan tabel
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID BARANG");
@@ -251,14 +252,14 @@ public class MenuUtama extends javax.swing.JFrame {
 
         //menampilkan database dalam tabel
         try {
-            String sql = "select id_barang, eceran, grosir, jumlah_eceran, jumlah_grosir from keranjang;";
+            String sql = "SELECT Id_barang, eceran, grosir, jumlah_ecer, jumlah_grosir FROM `keranjang` WHERE keterangan = 'RETURN';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("id_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_grosir"), res.getString("jumlah_eceran")});
+                model.addRow(new Object[]{res.getString("Id_barang"), res.getString("eceran"), res.getString("grosir"), res.getString("jumlah_grosir"), res.getString("jumlah_ecer")});
             }
-            return_barang.setModel(model);
+            returnnnn.setModel(model);
         } catch (Exception e) {
         }
     }
@@ -372,7 +373,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private void TotalPembelian() {
 
         try {
-            String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from keranjang where keterangan = 'PENJUALAN'";
+            String sql = "SELECT SUM(harga_eceran) AS totalEceran, SUM(harga_grosir) AS totalGrosir from keranjang where keterangan = 'PEMBELIAN'";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             java.sql.ResultSet rs = st.executeQuery(sql);
@@ -451,8 +452,8 @@ public class MenuUtama extends javax.swing.JFrame {
         UsernameKasir = new javax.swing.JTextField();
         IDTSupplier = new javax.swing.JLabel();
         txt_IDT = new javax.swing.JLabel();
-        ReturnID = new javax.swing.JLabel();
         hargaprduk1 = new javax.swing.JTextField();
+        ReturnID = new javax.swing.JLabel();
         Kasir = new javax.swing.JPanel();
         Cari = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -539,8 +540,6 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        return_barang = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         id_pembelian = new javax.swing.JTextField();
@@ -562,6 +561,8 @@ public class MenuUtama extends javax.swing.JFrame {
         tambahprd1 = new javax.swing.JButton();
         clear2 = new javax.swing.JButton();
         btlprd1 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        returnnnn = new javax.swing.JTable();
 
         strukpeminjaman.setColumns(20);
         strukpeminjaman.setRows(5);
@@ -578,8 +579,6 @@ public class MenuUtama extends javax.swing.JFrame {
         txt_IDT.setForeground(new java.awt.Color(255, 255, 255));
         txt_IDT.setText("jLabel31");
 
-        ReturnID.setText("jLabel32");
-
         hargaprduk1.setEditable(false);
         hargaprduk1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -591,6 +590,8 @@ public class MenuUtama extends javax.swing.JFrame {
                 hargaprduk1KeyReleased(evt);
             }
         });
+
+        ReturnID.setText("jLabel32");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1280, 720));
@@ -1225,6 +1226,11 @@ public class MenuUtama extends javax.swing.JFrame {
         });
 
         namaSupplier.setDropMode(javax.swing.DropMode.INSERT);
+        namaSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaSupplierActionPerformed(evt);
+            }
+        });
         namaSupplier.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 namaSupplierKeyReleased(evt);
@@ -1550,19 +1556,6 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("CARI");
 
-        return_barang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(return_barang);
-
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("ID PEMBELIAN");
@@ -1680,6 +1673,19 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
 
+        returnnnn.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(returnnnn);
+
         javax.swing.GroupLayout ReturnLayout = new javax.swing.GroupLayout(Return);
         Return.setLayout(ReturnLayout);
         ReturnLayout.setHorizontalGroup(
@@ -1739,12 +1745,10 @@ public class MenuUtama extends javax.swing.JFrame {
                         .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tambahprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(clear2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(619, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReturnLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                            .addComponent(btlprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         ReturnLayout.setVerticalGroup(
             ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1793,13 +1797,13 @@ public class MenuUtama extends javax.swing.JFrame {
                         .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel31)))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(ReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kembalikecari2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CETAK1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logout2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         Kasir.add(Return, "card3");
@@ -1827,7 +1831,7 @@ public void tampil_combo() {
 
             while (rs.next()) {
                 satuan3.addItem(rs.getString("nama_supplier"));
-                id_supp = rs.getString("id_supplier");
+                suppid = rs.getString("id_supplier");
             }
 
             rs.last();
@@ -2108,7 +2112,7 @@ public void tampil_combo() {
                 try {
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                     java.sql.Statement stt = conn.createStatement();
-                    java.sql.ResultSet rss = stt.executeQuery("select max(right(no_faktur,1)) as no_terakhir from transaksi_penjualan;");
+                    java.sql.ResultSet rss = stt.executeQuery("select COUNT(no_faktur) as no_terakhir from transaksi_penjualan;");
 
                     if (rss.next()) {
                         String kode = rss.getString("no_terakhir");
@@ -2248,6 +2252,7 @@ public void tampil_combo() {
                 java.sql.ResultSet res = st.executeQuery(sql1);
                 if (res.next()) {
                     String nmsp = res.getString("nama_supplier");
+                    suppid = res.getString("id_supplier");
                     namaSupplier.setText(nmsp);
                     id_barangi1.requestFocus();
 
@@ -2257,7 +2262,7 @@ public void tampil_combo() {
                     try {
                         java.sql.Connection conn1 = (Connection) Koneksi.getkoneksi();
                         java.sql.Statement stt = conn1.createStatement();
-                        java.sql.ResultSet rss = stt.executeQuery("select max(right(id_supplier,1)) as no_terakhir from supplier;");
+                        java.sql.ResultSet rss = stt.executeQuery("select COUNT(id_supplier) as no_terakhir from supplier;");
 
                         if (rss.next()) {
                             String kode = rss.getString("no_terakhir");
@@ -2294,8 +2299,11 @@ public void tampil_combo() {
 
     private void logout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout1ActionPerformed
         // TODO add your handling code here:
+        int ok = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Ingin Keluar???", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (ok == 0) {
         this.setVisible(false);
         new Login().setVisible(true);
+        }
     }//GEN-LAST:event_logout1ActionPerformed
 
     private void kembalikecari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembalikecari1ActionPerformed
@@ -2316,7 +2324,7 @@ public void tampil_combo() {
 
     private void btlprdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprdActionPerformed
         // TODO add your handling code here:
-        int ok = JOptionPane.showConfirmDialog(null, "Apakah Yakin Anda Menghapus Data ini???", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int ok = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Membatalkan Transaksi ini???", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
             try {
                 String sql = "DELETE FROM barang WHERE tanggal = '" + tgl + "'";
@@ -2442,35 +2450,32 @@ public void tampil_combo() {
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
         // TODO add your handling code here:
         try {
-            String sql = "UPDATE transaksi_pembelian SET id_supplier = '" + namaSupplier.getText() + "', username = '" + UsernameKasir.getText() + "', Harga_Total = '" + hargaTotal.getText() + "' where id_pembelian = '" + txt_IDT.getText() + "'";
+            String sql = "UPDATE transaksi_pembelian SET id_supplier = '" + suppid + "', username = '" + UsernameKasir.getText() + "', Harga_Total = '" + hargaTotal.getText() + "' where id_pembelian = '" + txt_IDT.getText() + "'";
             java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
             pst.execute();
 
-//                   try {
-//                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
-//                    java.sql.Connection con = (Connection) Koneksi.getkoneksi();
-//
-//                    String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama\n" +
-//                    "FROM transaksi_penjualan \n" +
-//                    "JOIN detail_transaksi_penjualan \n" +
-//                    "ON transaksi_penjualan.no_faktur = detail_transaksi_penjualan.no_faktur \n" +
-//                    "JOIN barang \n" +
-//                    "ON barang.id_barang = detail_transaksi_penjualan.Id_barang\n" +
-//                    "JOIN petugas\n" +
-//                    "ON petugas.username = transaksi_penjualan.username where transaksi_penjualan.no_faktur = '"+IDT_Penjualan.getText()+"'";
-//                    JRDesignQuery newQuery = new JRDesignQuery();
-//                    newQuery.setText(sql1);
-//                    jasdi.setQuery(newQuery);
-//                    JasperReport js = JasperCompileManager.compileReport(jasdi);
-//                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
-//                    // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-//                    JasperViewer.viewReport(jp);
+                   try {
+                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportpembelian\\pembelianstr.jrxml");
+                    java.sql.Connection con = (Connection) Koneksi.getkoneksi();
+
+                    String sql1 = "SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, "
+                            + "detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, "
+                            + "detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), SUM(detail_transaksi_pembelian.harga_eceran) + SUM(detail_transaksi_pembelian.harga_grosir) AS total "
+                            + "FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN "
+                            + "petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = '"+txt_IDT.getText()+"';";
+                    JRDesignQuery newQuery = new JRDesignQuery();
+                    newQuery.setText(sql1);
+                    jasdi.setQuery(newQuery);
+                    JasperReport js = JasperCompileManager.compileReport(jasdi);
+                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
+                    // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+                    JasperViewer.viewReport(jp);
 //                    
             try {
                 java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = conn.createStatement();
-                java.sql.ResultSet rss = st.executeQuery("select max(right(Id_pembelian,1)) as no_terakhir from transaksi_pembelian;");
+                java.sql.ResultSet rss = st.executeQuery("select COUNT(Id_pembelian) as no_terakhir from transaksi_pembelian;");
 
                 if (rss.next()) {
                     String kode = rss.getString("no_terakhir");
@@ -2496,9 +2501,9 @@ public void tampil_combo() {
                 JOptionPane.showMessageDialog(null, e);
             }
 
-//                 } catch (Exception e) {
-//                     JOptionPane.showMessageDialog(rootPane, e);
-//                 } 
+                 } catch (Exception e) {
+                     JOptionPane.showMessageDialog(rootPane, e);
+                 } 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -2639,7 +2644,7 @@ public void tampil_combo() {
         Kasir.add(Return);
         Kasir.repaint();
         Kasir.validate();
-        tabel_return();
+        tabel_return_barang();
         tanggalreal1.setText(tgl);
         id_pembelian.requestFocus();
         
@@ -2707,14 +2712,13 @@ public void tampil_combo() {
                 java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
                 pst.execute();
                 pst1.execute();
-                tabel_return();
+                tabel_return_barang();
                 JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
 
         } else if (satuan2.getSelectedItem() == "GROSIR") {
-
             try {
                 String sql = "INSERT INTO keranjang (Id_barang, jumlah_grosir, grosir, keterangan) Values ('" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + grs_supp + "', 'RETURN')";
                 String sql1 = "INSERT INTO detail_return (id_return, id_barang, jumlah_grosir, grosir, keterangan) Values ('" + ReturnID.getText() + "','" + namaBarang1.getText() + "', '" + jumlahBarang1.getText() + "', '" + grs_supp + "', '" + keteranganrtn.getText() + "')";
@@ -2723,7 +2727,7 @@ public void tampil_combo() {
                 java.sql.PreparedStatement pst1 = conn.prepareStatement(sql1);
                 pst.execute();
                 pst1.execute();
-                tabel_return();
+                tabel_return_barang();
                 JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
 
             } catch (Exception e) {
@@ -2895,6 +2899,10 @@ public void tampil_combo() {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_tpembelianKeyReleased
 
+    private void namaSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaSupplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namaSupplierActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3015,8 +3023,8 @@ public void tampil_combo() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextField jumlahBarang1;
     private javax.swing.JTextField jumlah_barang;
     private javax.swing.JTextField jumlah_pembelian;
@@ -3039,7 +3047,7 @@ public void tampil_combo() {
     private javax.swing.JTextField namaprd;
     private javax.swing.JTextField namasatuan1;
     private javax.swing.JButton print;
-    private javax.swing.JTable return_barang;
+    private javax.swing.JTable returnnnn;
     private javax.swing.JComboBox<String> satuan;
     private javax.swing.JComboBox<String> satuan1;
     private javax.swing.JComboBox<String> satuan2;
