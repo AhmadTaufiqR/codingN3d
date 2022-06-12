@@ -2327,14 +2327,13 @@ public void tampil_combo() {
         int ok = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Membatalkan Transaksi ini???", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
             try {
-                String sql = "DELETE FROM barang WHERE tanggal = '" + tgl + "'";
-                String sql2 = "DELETE FROM detail_transaksi_pembelian where id_pembelian = '" + txt_IDT.getText() + "'";
-                String sql3 = "DELETE FROM keranjang where keterangan = 'PEMBELIAN'";
+                String sql = "DELETE FROM detail_transaksi_pembelian where Id_pembelian = '"+txt_IDT.getText()+"'";
+                
+                String sql1 = "DELETE FROM keranjang where keterangan = 'PEMBELIAN'";
                 java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = cn.createStatement();
                 st.executeUpdate(sql);
-                st.executeUpdate(sql2);
-                st.executeUpdate(sql3);
+                st.executeUpdate(sql1);
                 JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
                 hapus();
                 namaSupplier.setText("");
@@ -2345,7 +2344,7 @@ public void tampil_combo() {
                 namasatuan1.setText("");
                 harga1.setText("");
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
             tampil_barang();
             TotalPembelian();
@@ -2356,7 +2355,7 @@ public void tampil_combo() {
 
         if (satuan1.getSelectedItem() == "ECERAN") {
             try {
-                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_ecer, eceran, harga_eceran) Values (?,?,?,?,?)";
+                String sql = "INSERT INTO barang (Id_barang, nama_barang, eceran, harga_eceran) Values (?,?,?,?)";
                 String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_ecer, harga_eceran) values ('" + txt_IDT.getText() + "', '" + tgl + "', '" + id_barangi1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "')";
                 String sql3 = "Insert Into keranjang (id_barang, nama_barang, eceran, jumlah_ecer, harga_eceran, keterangan) values ('" + id_barangi1.getText() + "', '" + namabarang1.getText() + "', '" + namasatuan1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "', 'PEMBELIAN')";
                 java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
@@ -2365,9 +2364,8 @@ public void tampil_combo() {
                 java.sql.PreparedStatement pst3 = conntt.prepareStatement(sql3);
                 pst.setString(1, id_barangi1.getText());
                 pst.setString(2, namabarang1.getText());
-                pst.setString(3, jumlah_pembelian.getText());
-                pst.setString(4, namasatuan1.getText());
-                pst.setString(5, harga1.getText());
+                pst.setString(3, namasatuan1.getText());
+                pst.setString(4, harga1.getText());
                 pst.executeUpdate();
                 pst2.executeUpdate();
                 pst3.executeUpdate();
@@ -2381,7 +2379,7 @@ public void tampil_combo() {
 
             } catch (Exception e) {
                 try {
-                    String sql = "UPDATE barang SET stok_ecer = '" + jumlah_pembelian.getText() + "',eceran = '" + namasatuan1.getText() + "', harga_eceran='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql = "UPDATE barang SET eceran = '" + namasatuan1.getText() + "', harga_eceran='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_ecer = '" + jumlah_pembelian.getText() + "', harga_eceran='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     String sql3 = "UPDATE keranjang SET eceran = '" + namasatuan1.getText() + "', jumlah_ecer = '" + jumlah_pembelian.getText() + "', harga_eceran = '" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -2401,7 +2399,7 @@ public void tampil_combo() {
 
         } else if (satuan1.getSelectedItem() == "GROSIR") {
             try {
-                String sql = "INSERT INTO barang (Id_barang, nama_barang, stok_grosir, grosir, harga_grosir) Values (?,?,?,?,?)";
+                String sql = "INSERT INTO barang (Id_barang, nama_barang, grosir, harga_grosir) Values (?,?,?,?)";
                 String sql2 = "Insert Into detail_transaksi_pembelian (Id_pembelian, tanggal, Id_barang, jumlah_grosir, harga_grosir) values ('" + txt_IDT.getText() + "', '" + tgl + "', '" + id_barangi1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "')";
                 String sql3 = "Insert Into keranjang (id_barang, nama_barang, grosir, jumlah_grosir, harga_grosir, keterangan) values ('" + id_barangi1.getText() + "', '" + namabarang1.getText() + "', '" + namasatuan1.getText() + "', '" + jumlah_pembelian.getText() + "', '" + harga1.getText() + "', 'pembelian')";
                 java.sql.Connection conntt = (Connection) Koneksi.getkoneksi();
@@ -2410,9 +2408,8 @@ public void tampil_combo() {
                 java.sql.PreparedStatement pst3 = conntt.prepareStatement(sql3);
                 pst.setString(1, id_barangi1.getText());
                 pst.setString(2, namabarang1.getText());
-                pst.setString(3, jumlah_pembelian.getText());
-                pst.setString(4, namasatuan1.getText());
-                pst.setString(5, harga1.getText());
+                pst.setString(3, namasatuan1.getText());
+                pst.setString(4, harga1.getText());
                 pst.executeUpdate();
                 pst2.executeUpdate();
                 pst3.executeUpdate();
@@ -2425,7 +2422,7 @@ public void tampil_combo() {
                 JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
             } catch (Exception e) {
                 try {
-                    String sql = "UPDATE barang SET stok_grosir = '" + jumlah_pembelian.getText() + "', grosir = '" + namasatuan1.getText() + "', harga_grosir='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
+                    String sql = "UPDATE barang SET grosir = '" + namasatuan1.getText() + "', harga_grosir='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     String sql2 = "UPDATE detail_transaksi_pembelian SET jumlah_grosir = '" + jumlah_pembelian.getText() + "', harga_grosir='" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     String sql3 = "UPDATE keranjang SET grosir = '" + namasatuan1.getText() + "', jumlah_grosir = '" + jumlah_pembelian.getText() + "', harga_grosir= '" + harga1.getText() + "' where id_barang = '" + id_barangi1.getText() + "'";
                     java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
