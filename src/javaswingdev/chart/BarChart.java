@@ -40,8 +40,8 @@ public class BarChart extends JComponent {
     private float animate;
     private String labelText;
     private int overIndex = -1;
-    private Color displayTextColor = new Color(200, 200, 200);
-    private Color displayTextBackground = new Color(70, 70, 70);
+    private Color displayTextColor = new Color(0, 0, 0);
+    private Color displayTextBackground = new Color(51, 51, 51);
 
     public BarChart() {
         init();
@@ -170,7 +170,7 @@ public class BarChart extends JComponent {
         panelLegend.setOpaque(false);
         panelLegend.setLayout(new MigLayout("filly, center, inset 0", "[]10[]"));
         labelTitle = new JLabel();
-        labelTitle.setForeground(new Color(229, 229, 229));
+        labelTitle.setForeground(new Color(255, 255, 255));
         labelTitle.setFont(labelTitle.getFont().deriveFont(Font.BOLD, 15));
         panelLegend.add(labelTitle, "push, gap left 10");
         add(panelLegend, "wrap");

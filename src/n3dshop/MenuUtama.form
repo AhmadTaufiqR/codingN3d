@@ -82,6 +82,11 @@
         <Property name="text" type="java.lang.String" value="jLabel32"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="IDT_Penjualan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel32"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -710,13 +715,10 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="bataltrn" min="-2" pref="153" max="-2" attributes="0"/>
-                                              <Component id="TambahBrg" min="-2" pref="153" max="-2" attributes="0"/>
-                                              <Component id="clear3" min="-2" pref="153" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="IDT_Penjualan" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="bataltrn" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <Component id="TambahBrg" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <Component id="clear3" min="-2" pref="153" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -806,8 +808,6 @@
                                       <Component id="bataltrn" min="-2" pref="50" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="clear3" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                                      <Component id="IDT_Penjualan" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -824,11 +824,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="IDT_Penjualan">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jLabel32"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
