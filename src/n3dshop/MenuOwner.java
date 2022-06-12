@@ -50,6 +50,8 @@ public class MenuOwner extends javax.swing.JFrame {
         Tabel_Supplier();
         Tabel_TransaksiPenjualan();
         Tabel_TransaksiPembelian();
+        Tabel_Returnbarang();
+        Tabel_DataLaporan();
         init();
         init2();
         DashboardMenu.setBackground(new Color(51,102,255));
@@ -94,8 +96,8 @@ public class MenuOwner extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID PEMBELIAN");
         model.addColumn("ID SUPPLIER");
-        model.addColumn("NAMA KASIR");
-        model.addColumn("TANGGAL");
+        model.addColumn("USERNAME");
+        model.addColumn("HARGA ");
 
         String cari = cariTransaksiPembelian.getText();
 
@@ -106,7 +108,7 @@ public class MenuOwner extends javax.swing.JFrame {
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_pembelian"), res.getString("id_supplier"), res.getString("username"),
-                    res.getString("tanggal")});
+                    res.getString("Harga_total")});
             }
             tabelTransaksiPembelian.setModel(model);
         } catch (Exception e) {
@@ -133,6 +135,60 @@ public class MenuOwner extends javax.swing.JFrame {
                     res.getString("no_telepon")});
             }
             Tabel_suplier.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+      private void Tabel_DataLaporan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("TRANSAKSI PEMBELIAN");
+        model.addColumn("TRANSAKSI PENJUALAN");
+        model.addColumn("HARGA ECERAN ");
+        model.addColumn("HARGA GROSIR");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = Cari5.getText();
+
+        try {
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, "
+                    + "SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,"
+                    + " detail_transaksi_penjualan.Tanggal as tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY detail_transaksi_penjualan.Tanggal; ";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
+                    res.getString("harga2"),
+                    res.getString("tanggal")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+     private void Tabel_Returnbarang() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID RETURN");
+        model.addColumn("ID PEMBELIAN");
+        model.addColumn("ID SUPPLIER");
+        model.addColumn("USERNAME ");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = CariReturn6.getText();
+
+        try {
+            String sql = "SELECT * FROM return_barang WHERE tanggal LIKE'%" + cari + "%'";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("id_return"), res.getString("id_pembelian"), res.getString("id_supplier"),
+                    res.getString("username"),
+                    res.getString("tanggal")});
+            }
+            tabelReturnBarang.setModel(model);
         } catch (Exception e) {
 
         }
@@ -327,20 +383,17 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         Cari5 = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
-        laporan = new javax.swing.JTable();
+        tabelDataLaporan = new javax.swing.JTable();
         Simpan5 = new javax.swing.JButton();
         Profil = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        txt_usernameProfil = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        txt_levelProfil = new javax.swing.JTextField();
-        txt_namaProfil = new javax.swing.JTextField();
         txt_nohpProfil = new javax.swing.JTextField();
         simpanProfil = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
+        gambarProfil = new javax.swing.JLabel();
         txt_gambarprofil = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         Suplier = new javax.swing.JPanel();
@@ -393,7 +446,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         CariReturn6 = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tabelReturnBarang = new javax.swing.JTable();
         Simpan7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -477,7 +530,7 @@ public class MenuOwner extends javax.swing.JFrame {
         AKUNMENULayout.setVerticalGroup(
             AKUNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AKUNMENULayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -803,7 +856,6 @@ public class MenuOwner extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Transaksi Pembelian");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -831,7 +883,6 @@ public class MenuOwner extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setText("Transaksi Penjualan");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1304,8 +1355,8 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        laporan.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        laporan.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDataLaporan.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        tabelDataLaporan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1316,7 +1367,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(laporan);
+        jScrollPane6.setViewportView(tabelDataLaporan);
 
         Simpan5.setBackground(new java.awt.Color(240, 225, 89));
         Simpan5.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
@@ -1447,10 +1498,10 @@ public class MenuOwner extends javax.swing.JFrame {
         });
         Profil.add(simpanProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, 120, 43));
 
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("foto");
-        jLabel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Profil.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 139, 144));
+        gambarProfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gambarProfil.setText("foto");
+        gambarProfil.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Profil.add(gambarProfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 139, 144));
 
         txt_gambarprofil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1926,8 +1977,8 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        jTable6.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tabelReturnBarang.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        tabelReturnBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1938,7 +1989,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane8.setViewportView(jTable6);
+        jScrollPane8.setViewportView(tabelReturnBarang);
 
         Simpan7.setBackground(new java.awt.Color(240, 225, 89));
         Simpan7.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
@@ -2445,14 +2496,36 @@ public class MenuOwner extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        
+        FileNameExtensionFilter filter=new FileNameExtensionFilter("*.Image","jpg","png","jpeg");
+        chooser.addChoosableFileFilter(filter);
+        
+        int result=chooser.showSaveDialog(null);
+        
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
+       
+        if (filename.endsWith(".jpg")||filename.endsWith(".JPG")||filename.endsWith(".PNG")||filename.endsWith(".png")||filename.endsWith(".jpeg")||filename.endsWith(".JPEG")) {
+             if (result==JFileChooser.APPROVE_OPTION) {
+                  String path = f.getAbsolutePath();
+                  ImageIcon myImage = new ImageIcon(path);
+                  
+                  Image img =myImage.getImage();
+                  Image newImage=img.getScaledInstance(gambar.getWidth(), gambar.getHeight() , Image.SCALE_SMOOTH);
+                  
+                  ImageIcon icon = new ImageIcon(filename);
+                  gambarProfil.setIcon(icon); 
+                  
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Masukkan jenis file jpg, png, jpeg", "PERINGATAN !", 1);
+        }
+            
+        
         txt_gambarprofil.setText(filename);
-        Image getAbsolutePath = null;
-        ImageIcon icon = new ImageIcon(filename);
-        Image image = icon.getImage().getScaledInstance(gambar.getWidth(), gambar.getHeight(), Image.SCALE_SMOOTH);
-        jLabel19.setIcon(icon);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void tabelAkunMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelAkunMouseClicked
@@ -2942,6 +3015,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton editAkun;
     private javax.swing.JButton editdatabarang;
     private javax.swing.JLabel gambar;
+    private javax.swing.JLabel gambarProfil;
     private javax.swing.JButton hapusAkun;
     private javax.swing.JButton hapusdatabarang;
     private javax.swing.JButton jButton1;
@@ -2959,7 +3033,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -3010,8 +3083,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable laporan;
     private javax.swing.JComboBox<String> memilihsatuan;
     private javax.swing.JTextField namaAkun;
     private javax.swing.JPanel navbar;
@@ -3021,17 +3092,19 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton simpanAkun;
     private javax.swing.JButton simpanProfil;
     private javax.swing.JTable tabelAkun;
+    private javax.swing.JTable tabelDataLaporan;
+    private javax.swing.JTable tabelReturnBarang;
     private javax.swing.JTable tabelTransaksiPembelian;
     private javax.swing.JTable tabelTransaksiPenjualan;
     private javax.swing.JTextField txt_filename;
     private javax.swing.JTextField txt_gambarprofil;
     private javax.swing.JTextField txt_idSupplier;
-    private javax.swing.JTextField txt_levelProfil;
-    private javax.swing.JTextField txt_namaProfil;
+    public static final javax.swing.JTextField txt_levelProfil = new javax.swing.JTextField();
+    public static final javax.swing.JTextField txt_namaProfil = new javax.swing.JTextField();
     private javax.swing.JTextField txt_namaSupplier;
     private javax.swing.JTextField txt_nohpProfil;
     private javax.swing.JTextField txt_nohpSupplier;
-    private javax.swing.JTextField txt_usernameProfil;
+    public static final javax.swing.JTextField txt_usernameProfil = new javax.swing.JTextField();
     private javax.swing.JButton unduhTransaksiPembelian;
     private javax.swing.JButton unduhTransaksiPenjualan;
     private javax.swing.JTextField usernameAkun;

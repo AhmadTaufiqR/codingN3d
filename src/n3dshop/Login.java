@@ -18,6 +18,9 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import static n3dshop.MenuOwner.txt_levelProfil;
+import static n3dshop.MenuOwner.txt_namaProfil;
+import static n3dshop.MenuOwner.txt_usernameProfil;
 
 /**
  *
@@ -165,7 +168,9 @@ public class Login extends javax.swing.JFrame {
             java.sql.ResultSet rs = pst.executeQuery(sql);
 
             if (rs.next()) {
-                
+                txt_usernameProfil.setText(rs.getString("username"));
+                txt_levelProfil.setText(rs.getString("level"));
+                txt_namaProfil.setText(rs.getString("nama"));
                 
                 if (Username.getText().equals(rs.getString("username"))
                         && txt_password.getText().equals(rs.getString("password"))
