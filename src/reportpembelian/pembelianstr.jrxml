@@ -250,10 +250,10 @@
 				<textFieldExpression><![CDATA[$F{Harga_Total}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="71" y="68" width="151" height="41"/>
-				<jr:Code39 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" orientation="180" moduleWidth="1.0" textPosition="none">
-					<jr:codeExpression><![CDATA[$F{Id_pembelian}]]></jr:codeExpression>
-				</jr:Code39>
+				<reportElement x="0" y="68" width="226" height="54"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128A" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$P{idpmb}]]></jr:codeExpression>
+				</jr:barbecue>
 			</componentElement>
 		</band>
 	</summary>

@@ -645,7 +645,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="barChart2" pref="444" max="32767" attributes="0"/>
+                                  <Component id="barChart2" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   <Component id="barChart1" min="-2" pref="435" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -1448,10 +1448,10 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                        <StringItem index="0" value="PILIH"/>
+                        <StringItem index="1" value="HARI"/>
+                        <StringItem index="2" value="BULAN"/>
+                        <StringItem index="3" value="TAHUN"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -2492,10 +2492,11 @@
                       <Font name="Roboto Slab" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Tanggal"/>
-                        <StringItem index="1" value="Item 3"/>
-                        <StringItem index="2" value="Item 4"/>
+                      <StringArray count="4">
+                        <StringItem index="0" value="PILIH"/>
+                        <StringItem index="1" value="HARI"/>
+                        <StringItem index="2" value="BULAN"/>
+                        <StringItem index="3" value="TAHUN"/>
                       </StringArray>
                     </Property>
                   </Properties>

@@ -22,7 +22,7 @@ public class BarangDash {
     MenuOwner mn = new MenuOwner();
     public List<ModelChart> getData() throws  SQLException{
            List<ModelChart> list = new ArrayList<>();
-                String sql1 = "SELECT barang.nama_barang, COUNT(detail_transaksi_penjualan.Id_barang) AS M FROM detail_transaksi_penjualan JOIN barang ON detail_transaksi_penjualan.Id_barang = barang.id_barang where detail_transaksi_penjualan.Id_barang LIKE '%" + mn.barangdashboard.getText() + "%' OR barang.nama_barang LIKE '%"+mn.barangdashboard.getText()+"%';";
+                String sql1 = "SELECT barang.nama_barang, COUNT(detail_transaksi_penjualan.Id_barang) AS M FROM detail_transaksi_penjualan JOIN barang ON detail_transaksi_penjualan.Id_barang = barang.id_barang where barang.nama_barang LIKE '%"+mn.barangdashboard.getText()+"%';";
                 java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = conn.createStatement();
                 java.sql.ResultSet rs = st.executeQuery(sql1);

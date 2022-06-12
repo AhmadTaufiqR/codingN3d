@@ -32,6 +32,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import grafikpenjualan.report;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -1325,7 +1328,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel22.setText("Pilih");
 
         jComboBox1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "HARI", "BULAN", "TAHUN" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -1947,7 +1950,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel31.setText("Pilih");
 
         jComboBox2.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tanggal", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "HARI", "BULAN", "TAHUN" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -2407,6 +2410,15 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void Simpan5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Simpan5ActionPerformed
         // TODO add your handling code here:
+        MessageFormat judul = new MessageFormat(" DATA LAPORAN") ;
+        MessageFormat footer = new MessageFormat(" page(0,number,integer)") ;
+        
+        try {
+            tabelDataLaporan.print(JTable.PrintMode.FIT_WIDTH,judul,footer);
+            
+        } catch (  PrinterException e) {
+            System.err.print("Error Printing");
+        }
     }//GEN-LAST:event_Simpan5ActionPerformed
 
     private void txt_gambarprofilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_gambarprofilActionPerformed
@@ -2447,6 +2459,37 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
+        if(jComboBox2.getSelectedItem() == "HARI"){
+            try {
+                String sql = "";
+                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = cn.createStatement();
+                java.sql.ResultSet rs = st.executeQuery(sql);
+                while(rs.next()){
+                    
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (jComboBox2.getSelectedItem() == "BULAN"){
+            try {
+                String sql = "";
+                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = cn.createStatement();
+                java.sql.ResultSet rs = st.executeQuery(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if(jComboBox2.getSelectedItem() == "TAHUN"){
+            try {
+                String sql = "";
+                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+                java.sql.Statement st = cn.createStatement();
+                java.sql.ResultSet rs = st.executeQuery(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void CariReturn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariReturn6ActionPerformed
@@ -2455,6 +2498,15 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void Simpan7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Simpan7ActionPerformed
         // TODO add your handling code here:
+        MessageFormat judul = new MessageFormat(" DATA LAPORAN") ;
+        MessageFormat footer = new MessageFormat(" page(0,number,integer)") ;
+        
+        try {
+            tabelReturnBarang.print(JTable.PrintMode.FIT_WIDTH,judul,footer);
+            
+        } catch (  PrinterException e) {
+            System.err.print("Error Printing");
+        }
     }//GEN-LAST:event_Simpan7ActionPerformed
 
     private void cariTransaksiPembelianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariTransaksiPembelianKeyReleased

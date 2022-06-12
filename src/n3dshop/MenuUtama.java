@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -33,7 +35,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int a, hasil;
     private String hrg_ecer, hrg_grosir, Id, No_faktur, totalmembayar1, totalmembayar2, tglpenjualan, nama_barangpnj, jml_gr, jml_ecr, jumlah_ecerpnj, jumlah_grosirpnj, eceranpnj, grosirpnj, hrg_ecerpnj, hrg_grosirpnj;
-    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return, suppid, ecr_supp, grs_supp;
+    private String Id_barang, SATUAN, SATUANpmb, tgl, kode, stokBarangEcer, stokBarangGrosir, id_trpembelian, id_trpenjualan, id_return, suppid, ecr_supp, grs_supp, idbrpmb;
     private Date tglsekarang;
     public PreparedStatement pst;
 
@@ -1973,7 +1975,7 @@ public void tampil_combo() {
         int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Menghapus Data Transaksi?","Confirmation",JOptionPane.YES_NO_OPTION);
         if(ok == 0){
             try {
-            String sql = "DELETE FROM keranjang;";
+            String sql = "DELETE FROM keranjang where keterangan = 'PENJUALAN';";
             String sql1 = "DELETE From detail_transaksi_penjualan where no_faktur = '"+id_transaksi.getText()+"'";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
@@ -2310,25 +2312,37 @@ public void tampil_combo() {
         // TODO add your handling code here:
         int ok = JOptionPane.showConfirmDialog(null, "Apakah Anda Yakin Membatalkan Transaksi ini???", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
+            
             try {
-                String sql = "DELETE FROM detail_transaksi_pembelian where Id_pembelian = '"+txt_IDT.getText()+"'";
-                
-                String sql1 = "DELETE FROM keranjang where keterangan = 'PEMBELIAN'";
+                String sql = "SELECT id_barang from detail_transaksi_pembelian where Id_pembelian = '"+txt_IDT.getText()+"'";
                 java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
                 java.sql.Statement st = cn.createStatement();
-                st.executeUpdate(sql);
-                st.executeUpdate(sql1);
-                JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
-                hapus();
-                namaSupplier.setText("");
-                id_barangi1.setText("");
-                namabarang1.setText("");
-                jumlah_pembelian.setText("");
-                satuan1.setSelectedItem("PILIH SATUAN");
-                namasatuan1.setText("");
-                harga1.setText("");
+                java.sql.ResultSet rs = st.executeQuery(sql);
+                if(rs.next()){
+                    idbrpmb = rs.getString("id_barang");
+                }
+                     try {
+                        String sql2 = "DELETE FROM detail_transaksi_pembelian where Id_pembelian = '"+txt_IDT.getText()+"'";
+                        String sql3 = "DELETE FROM barang where Id_barang = '"+idbrpmb+"'";
+                        String sql1 = "DELETE FROM keranjang where keterangan = 'PEMBELIAN'";
+                        java.sql.Connection cn1 = (Connection) Koneksi.getkoneksi();
+                        java.sql.Statement st2 = cn1.createStatement();
+                        st2.executeUpdate(sql2);
+                        st2.executeUpdate(sql1);
+                        st2.executeUpdate(sql3);
+                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+                        hapus();
+                        namaSupplier.setText("");
+                        id_barangi1.setText("");
+                        namabarang1.setText("");
+                        jumlah_pembelian.setText("");
+                        satuan1.setSelectedItem("PILIH SATUAN");
+                        namasatuan1.setText("");
+                        harga1.setText("");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
             }
             tampil_barang();
             TotalPembelian();
@@ -2437,21 +2451,22 @@ public void tampil_combo() {
             pst.execute();
 
                    try {
-                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportpembelian\\pembelianstr.jrxml");
+                    String jasdi = ("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportpembelian\\pembelianstr.jrxml");
                     java.sql.Connection con = (Connection) Koneksi.getkoneksi();
-
-                    String sql1 = "SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, "
-                            + "detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, "
-                            + "detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), SUM(detail_transaksi_pembelian.harga_eceran) + SUM(detail_transaksi_pembelian.harga_grosir) AS total "
-                            + "FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN "
-                            + "petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = '"+txt_IDT.getText()+"';";
-                    JRDesignQuery newQuery = new JRDesignQuery();
-                    newQuery.setText(sql1);
-                    jasdi.setQuery(newQuery);
+//
+//                    String sql1 = "SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, "
+//                            + "detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), transaksi_pembelian.Harga_Total FROM detail_transaksi_pembelian JOIN transaksi_pembelian "
+//                            + "ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier "
+//                            + "JOIN petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = '"+txt_IDT.getText()+"';";
+//                    JRDesignQuery newQuery = new JRDesignQuery();
+//                    newQuery.setText(sql1);
+//                    jasdi.setQuery(newQuery);
+                    Map param = new HashMap();
+                    param.put("idpmb", txt_IDT.getText());
                     JasperReport js = JasperCompileManager.compileReport(jasdi);
-                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
+                    JasperPrint jp = JasperFillManager.fillReport(js, param, con);
                     // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                    JasperViewer.viewReport(jp);
+                    JasperViewer.viewReport(jp, false);
 //                    
             try {
                 java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -2553,17 +2568,14 @@ public void tampil_combo() {
             pst.execute();
 
                    try {
-                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportreturn\\strukreturn.jrxml");
+                    String jasdi = ("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportreturn\\strukreturn.jrxml");
                     java.sql.Connection con = (Connection) Koneksi.getkoneksi();
-
-                    String sql1 = "select return_barang.id_return, return_barang.id_pembelian, return_barang.tanggal, detail_return.jumlah_ecer, detail_return.jumlah_grosir, detail_return.eceran, detail_return.grosir, detail_return.keterangan, barang.nama_barang, supplier.nama_supplier, return_barang.username FROM return_barang JOIN detail_return ON detail_return.id_return = return_barang.id_return JOIN barang ON detail_return.id_barang = barang.id_barang JOIN supplier ON supplier.id_supplier = return_barang.id_supplier where return_barang.id_return = '"+ReturnID.getText()+"'";
-                    JRDesignQuery newQuery = new JRDesignQuery();
-                    newQuery.setText(sql1);
-                    jasdi.setQuery(newQuery);
+                    Map param = new HashMap();
+                    param.put("paramreturn", ReturnID.getText());
                     JasperReport js = JasperCompileManager.compileReport(jasdi);
-                    JasperPrint jp = JasperFillManager.fillReport(js, null, con);
+                    JasperPrint jp = JasperFillManager.fillReport(js, param, con);
                     // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                    JasperViewer.viewReport(jp);
+                    JasperViewer.viewReport(jp, false);
 //                    
                                 try {
                                 java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -2582,8 +2594,10 @@ public void tampil_combo() {
                                 }
 
                                 String sql12 = "Insert into return_barang (id_return) values ('" + ReturnID.getText() + "')";
+                                String sql3 = "DELETE from keranjang where keterangan = 'RETURN'";
                                 java.sql.Connection cnn1 = (Connection) Koneksi.getkoneksi();
                                 pst = cnn1.prepareStatement(sql12);
+                                pst = cnn1.prepareStatement(sql3);
                                 pst.execute();
 
                             } catch (Exception e) {
@@ -2613,8 +2627,11 @@ public void tampil_combo() {
 
     private void logout2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout2ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        new Login().setVisible(true);
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Keluar?","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(ok == 0){
+            this.setVisible(false);
+            new Login().setVisible(true);
+        } 
     }//GEN-LAST:event_logout2ActionPerformed
 
     private void mencariBarang1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mencariBarang1KeyReleased
@@ -2722,6 +2739,10 @@ public void tampil_combo() {
                 pst.execute();
                 pst1.execute();
                 tabel_return_barang();
+                namaBarang1.setText("");
+                jumlahBarang1.setText("");
+                keteranganrtn.setText("");
+                satuan2.setSelectedItem("PILIH SATUAN");
                 JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
@@ -2737,6 +2758,10 @@ public void tampil_combo() {
                 pst.execute();
                 pst1.execute();
                 tabel_return_barang();
+                namaBarang1.setText("");
+                jumlahBarang1.setText("");
+                keteranganrtn.setText("");
+                satuan2.setSelectedItem("PILIH SATUAN");
                 JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
 
             } catch (Exception e) {
@@ -2751,6 +2776,23 @@ public void tampil_combo() {
 
     private void btlprd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btlprd1ActionPerformed
         // TODO add your handling code here:
+        int ok=JOptionPane.showConfirmDialog(null,"Apakah Anda Yakin Ingin Keluar?","Confirmation",JOptionPane.YES_NO_OPTION);
+        if(ok == 0){
+            try {
+            String sql = "DELETE FROM keranjang where keterangan = 'RETURN';";
+            String sql1 = "DELETE From detail_return where id_return = '"+ReturnID.getText()+"'";
+            java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = cn.createStatement();
+            st.executeUpdate(sql);
+            st.executeUpdate(sql1);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+            tampil_data();
+            HargaTot();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data Tidak Berhasil Dihapus");
+        }
+        } 
     }//GEN-LAST:event_btlprd1ActionPerformed
 
     private void namabarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namabarang1ActionPerformed
