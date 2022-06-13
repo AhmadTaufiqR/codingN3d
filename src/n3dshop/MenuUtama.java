@@ -2069,7 +2069,7 @@ public void tampil_combo() {
 
     private void CETAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CETAKActionPerformed
         try {
-            String sql = "UPDATE transaksi_penjualan SET username = '" + UsernameKasir.getText() + "', tanggal = '" + tglpenjualan + "', Harga_Total = '" + HargaBayar.getText() + "', bayar = '" + bayar1.getText() + "', kembali = '" + kembali.getText() + "' where transaksi_penjualan.no_faktur = '" + id_transaksi.getText() + "'";
+            String sql = "UPDATE transaksi_penjualan SET username = '" + UsernameKasir.getText() + "', Harga_Total = '" + HargaBayar.getText() + "', bayar = '" + bayar1.getText() + "', kembali = '" + kembali.getText() + "' where transaksi_penjualan.no_faktur = '" + id_transaksi.getText() + "'";
             java.sql.Connection cnn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement pst = cnn.prepareStatement(sql);
             pst.execute();
@@ -2119,6 +2119,9 @@ public void tampil_combo() {
                     pst.execute();
                     pst1.execute();
                     tampil_data();
+                    transaksi_penjualan_id();
+                    bayar1.setText("");
+                    HargaBayar.setText("");
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e);
@@ -2320,7 +2323,7 @@ public void tampil_combo() {
                 java.sql.ResultSet rs = st.executeQuery(sql);
                 if(rs.next()){
                     idbrpmb = rs.getString("id_barang");
-                }
+                    }
                      try {
                         String sql2 = "DELETE FROM detail_transaksi_pembelian where Id_pembelian = '"+txt_IDT.getText()+"'";
                         String sql3 = "DELETE FROM barang where Id_barang = '"+idbrpmb+"'";

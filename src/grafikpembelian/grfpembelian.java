@@ -24,24 +24,9 @@ import n3dshop.Koneksi;
  * @author HP
  */
 public class grfpembelian {
-    private Date tglsekarang;
-    private String tgl, tglpenjualan;
-    
-    public void Tampil_Tanggal() {
-        tglsekarang = new Date();
-        SimpleDateFormat smpdtfmt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        tgl = smpdtfmt.format(tglsekarang);
-
-        String tampilan = "yyyy-MM-dd";
-        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-        tglpenjualan = String.valueOf(fm.format(tglsekarang));
-
-    }
-    
-    
     public List<ModelChart> getData() throws  SQLException{
            List<ModelChart> list = new ArrayList<>();
-            String sql = "SELECT COUNT(no_faktur) AS M , SUM(bayar) AS B from transaksi_penjualan where tanggal = '"+tgl+"'";
+            String sql = "SELECT DATE_FORMAT(tanggal,'%M') AS tanggal, COUNT(transaksi_pembelian.Id_pembelian) AS id FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian GROUP BY tanggal ORDER BY tanggal DESC;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement st = cn.prepareStatement(sql);
             java.sql.ResultSet rs = st.executeQuery();

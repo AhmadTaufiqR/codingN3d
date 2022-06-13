@@ -6,6 +6,7 @@
 package n3dshop;
 
 import BaranagTampil.BarangDash;
+import grafikpembelian.grfpembelian;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -33,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 import grafikpenjualan.report;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,6 +45,7 @@ import java.util.logging.Logger;
 public class MenuOwner extends javax.swing.JFrame {
 
     public String SATUAN;
+    private List<ModelChart> list;
 
     /**
      * Creates new form MenuOwner
@@ -88,7 +91,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private void init2(){
         barChart1.addLegend("Transaksi Pembelian", new Color(12, 84, 175), new Color(0,9,87));
         try {
-            List<ModelChart> datas = new report().getData();
+            List<ModelChart> datas = new grfpembelian().getData();
             for (int i = datas.size() - 1; i >= 0; i--) {
                 barChart1.addData(datas.get(i));
             }
@@ -878,6 +881,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("RECORD BARANG");
 
+        barChart3.setBackground(new java.awt.Color(255, 255, 255));
         barChart3.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout DashboardLayout = new javax.swing.GroupLayout(Dashboard);
@@ -893,7 +897,7 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addComponent(barangdashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(DashboardLayout.createSequentialGroup()
-                        .addComponent(barChart2, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                        .addComponent(barChart2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(55, 55, 55)
                         .addComponent(barChart1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))))
@@ -2973,22 +2977,37 @@ public class MenuOwner extends javax.swing.JFrame {
     }//GEN-LAST:event_barangdashboardActionPerformed
 
     private void barangdashboardKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barangdashboardKeyReleased
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            try {
-            List<ModelChart> datas = new BarangDash().getData();
-            for (int i = datas.size() - 1; i >= 0; i--) {
-                barChart3.addData(datas.get(i));
+        try { 
+            // TODO add your handling code here:
+            list = new ArrayList<>();
+            String sql1 = "SELECT barang.nama_barang ,COUNT(detail_transaksi_penjualan.Id_barang) AS MA FROM barang JOIN detail_transaksi_penjualan ON detail_transaksi_penjualan.Id_barang = barang.id_barang where CONCAT(barang.nama_barang, detail_transaksi_penjualan.Id_barang) Like '%"+barangdashboard.getText()+"%' GROUP BY detail_transaksi_penjualan.Id_barang ";
+            
+            java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement st = conn.createStatement();
+            java.sql.ResultSet rs = st.executeQuery(sql1);
+            while(rs.next()){
+                String gr = rs.getString(1);
+                double dbj = rs.getDouble(2);
+                list.add(new ModelChart(gr, new double[]{dbj}));
             }
-            barChart3.start();
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-        }
-        
-        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-            barChart3.start();
-            barChart3.clear();
+            
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                try {
+                    for (int i = list.size() - 1; i >= 0; i--) {
+                        barChart3.addData(list.get(i));
+                    }
+                    barChart3.start();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+                barChart3.start();
+                barChart3.clear();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_barangdashboardKeyReleased
 
