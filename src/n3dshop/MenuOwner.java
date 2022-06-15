@@ -337,6 +337,8 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         DATALAPORANMENU = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
+        DATARETURNMENU1 = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
         DATARETURNMENU = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         KeluarMenu = new javax.swing.JPanel();
@@ -688,6 +690,42 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        DATARETURNMENU1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DATARETURNMENU1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DATARETURNMENU1MouseClicked(evt);
+            }
+        });
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/dataPelanggan.png"))); // NOI18N
+        jLabel43.setText("  PELANGGAN");
+        jLabel43.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel43MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DATARETURNMENU1Layout = new javax.swing.GroupLayout(DATARETURNMENU1);
+        DATARETURNMENU1.setLayout(DATARETURNMENU1Layout);
+        DATARETURNMENU1Layout.setHorizontalGroup(
+            DATARETURNMENU1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATARETURNMENU1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel43)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DATARETURNMENU1Layout.setVerticalGroup(
+            DATARETURNMENU1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATARETURNMENU1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         DATARETURNMENU.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         DATARETURNMENU.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -720,7 +758,7 @@ public class MenuOwner extends javax.swing.JFrame {
             DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATARETURNMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -768,13 +806,17 @@ public class MenuOwner extends javax.swing.JFrame {
             .addGroup(KeluarMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel42)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MENUSAMPINGLayout = new javax.swing.GroupLayout(MENUSAMPING);
         MENUSAMPING.setLayout(MENUSAMPINGLayout);
         MENUSAMPINGLayout.setHorizontalGroup(
             MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(MENUSAMPINGLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MENUSAMPINGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -788,12 +830,9 @@ public class MenuOwner extends javax.swing.JFrame {
                             .addComponent(TRANSAKSIMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DATARETURNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(DATARETURNMENU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(MENUSAMPINGLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MENUSAMPINGLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AKUNMENU, DATALAPORANMENU, DashboardMenu, SUPPLIERMENU, TRANSAKSIMENU});
@@ -817,7 +856,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DATARETURNMENU1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(KeluarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -3011,6 +3052,14 @@ public class MenuOwner extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_barangdashboardKeyReleased
 
+    private void jLabel43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel43MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel43MouseClicked
+
+    private void DATARETURNMENU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENU1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DATARETURNMENU1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3058,6 +3107,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel DATABARANGMENU;
     private javax.swing.JPanel DATALAPORANMENU;
     private javax.swing.JPanel DATARETURNMENU;
+    private javax.swing.JPanel DATARETURNMENU1;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JPanel DashboardMenu;
     private javax.swing.JPanel DataBarang;
@@ -3143,6 +3193,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;

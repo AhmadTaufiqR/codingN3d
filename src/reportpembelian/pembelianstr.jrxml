@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="850" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="2.8531167061100056"/>
+	<property name="ireport.zoom" value="5.0544702849929495"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="422"/>
 	<parameter name="idpmb" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), transaksi_pembelian.Harga_Total FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = $P{idpmb};]]>
@@ -27,21 +27,21 @@
 	<title>
 		<band height="53" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="226" height="14"/>
+				<reportElement x="0" y="-1" width="226" height="14"/>
 				<textElement textAlignment="Center">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[ANGKRINGAN N3D]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="14" width="226" height="15"/>
+				<reportElement x="0" y="13" width="226" height="15"/>
 				<textElement textAlignment="Center">
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[JL. Khoiril Anwar, RT 05, RW 01, Badean]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="29" width="226" height="20"/>
+				<reportElement x="0" y="28" width="226" height="20"/>
 				<textElement textAlignment="Center">
 					<font size="6"/>
 				</textElement>
@@ -73,7 +73,7 @@
 				<text><![CDATA[Kasir	        :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="8" y="0" width="211" height="1"/>
+				<reportElement x="8" y="0" width="218" height="1"/>
 			</line>
 			<staticText>
 				<reportElement x="8" y="35" width="59" height="10"/>
@@ -83,27 +83,27 @@
 				<text><![CDATA[Supplier               :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="8" y="50" width="211" height="1"/>
+				<reportElement x="8" y="51" width="215" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="8" y="51" width="33" height="9"/>
+				<reportElement x="3" y="51" width="31" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="41" y="51" width="30" height="9"/>
+				<reportElement x="37" y="51" width="28" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Jumlah Ecer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="163" y="51" width="27" height="9"/>
+				<reportElement x="164" y="51" width="27" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
@@ -138,28 +138,28 @@
 				<textFieldExpression><![CDATA[$F{nama_supplier}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="71" y="51" width="33" height="9"/>
+				<reportElement x="67" y="51" width="32" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Jumlah Grosir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="104" y="51" width="29" height="9"/>
+				<reportElement x="101" y="51" width="29" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Satuan Ecer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="133" y="51" width="29" height="9"/>
+				<reportElement x="130" y="51" width="32" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
-				<text><![CDATA[Satuan Ecer]]></text>
+				<text><![CDATA[Satuan grosir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="51" width="29" height="9"/>
+				<reportElement x="194" y="51" width="29" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
@@ -170,49 +170,49 @@
 	<detail>
 		<band height="10" splitType="Stretch">
 			<textField>
-				<reportElement x="8" y="0" width="33" height="10"/>
+				<reportElement x="3" y="0" width="31" height="10"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="163" y="0" width="16" height="10"/>
+				<reportElement x="164" y="0" width="16" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{harga_eceran}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="45" y="0" width="22" height="10"/>
+				<reportElement x="39" y="0" width="28" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_ecer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="71" y="0" width="20" height="10"/>
+				<reportElement x="67" y="0" width="32" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_grosir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="104" y="0" width="20" height="10"/>
+				<reportElement x="101" y="0" width="27" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{eceran}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="133" y="0" width="20" height="10"/>
+				<reportElement x="130" y="0" width="27" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{grosir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="190" y="0" width="19" height="10"/>
+				<reportElement x="194" y="0" width="19" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
@@ -221,15 +221,9 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="151" splitType="Stretch">
-			<line>
-				<reportElement x="8" y="0" width="211" height="1"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
+		<band height="111" splitType="Stretch">
 			<staticText>
-				<reportElement x="119" y="11" width="34" height="10"/>
+				<reportElement x="96" y="11" width="34" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
@@ -243,18 +237,24 @@
 				<text><![CDATA[TERIMA KASIH]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="153" y="11" width="66" height="10"/>
+				<reportElement x="130" y="11" width="66" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Harga_Total}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="0" y="68" width="226" height="54"/>
+				<reportElement x="34" y="65" width="165" height="34"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128A" drawText="false" checksumRequired="false">
 					<jr:codeExpression><![CDATA[$P{idpmb}]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
+			<line>
+				<reportElement x="8" y="0" width="215" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
 		</band>
 	</summary>
 </jasperReport>
