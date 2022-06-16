@@ -53,15 +53,16 @@ public class MenuOwner extends javax.swing.JFrame {
     public MenuOwner() {
         initComponents();
         Tabel_Akun();
-      
         Tabel_DataBarang();
         Tabel_Supplier();
         Tabel_TransaksiPenjualan();
         Tabel_TransaksiPembelian();
         Tabel_Returnbarang();
         Tabel_DataLaporan();
+        Tabel_DataPelanggan();
         init();
         init2();
+        
         DashboardMenu.setBackground(new Color(51,102,255));
         AKUNMENU.setBackground(new Color(0,9,87));
         TRANSAKSIMENU.setBackground(new Color(0,9,87));
@@ -70,6 +71,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
         
         barChart3.addLegend("Record Barang", new Color(12, 84, 175), new Color(0,9,87));
     }
@@ -101,7 +103,29 @@ public class MenuOwner extends javax.swing.JFrame {
         }
         
     }
+ private void Tabel_DataPelanggan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID PELANGGAN");
+        model.addColumn("NAMA PELANGGAN");
+        model.addColumn("NO HP");
+        model.addColumn("POINT ");
 
+        String cari = cariDataPelanggan.getText();
+
+        try {
+            String sql = "SELECT * FROM pelanggan WHERE CONCAT(id_pelanggan,nama_pelanggan)  LIKE '%" + cari + "%'";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("id_pelanggan"), res.getString("nama_pelanggan"), res.getString("no_hp"),
+                    res.getString("poin")});
+            }
+            tabelDataPelanggan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
     private void Tabel_TransaksiPembelian() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID PEMBELIAN");
@@ -148,8 +172,8 @@ public class MenuOwner extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }
-      private void Tabel_DataLaporan() {
+    }    
+    public void Tabel_DataLaporanTahun() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("TRANSAKSI PEMBELIAN");
         model.addColumn("TRANSAKSI PENJUALAN");
@@ -158,21 +182,127 @@ public class MenuOwner extends javax.swing.JFrame {
         model.addColumn("TANGGAL");
        
 
-        String cari = Cari5.getText();
+        String cari = cariLaporan.getText();
 
         try {
             String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, "
                     + "SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,"
-                    + " detail_transaksi_penjualan.Tanggal as tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY detail_transaksi_penjualan.Tanggal; ";
+                    + "DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%Y') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian "
+                    + "ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggal DESC ;"; 
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
+                    res.getString("harga2"),res.getString("tanggal")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    public void Tabel_DataLaporanBulan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("TRANSAKSI PEMBELIAN");
+        model.addColumn("TRANSAKSI PENJUALAN");
+        model.addColumn("HARGA ECERAN ");
+        model.addColumn("HARGA GROSIR");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = cariLaporan.getText();
+
+        try {
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC" ;  
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
                 model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
                     res.getString("harga2"),
-                    res.getString("tanggal")});
+                    res.getString("tanggall")});
             }
             tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+      public void Tabel_DataLaporan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("TRANSAKSI PEMBELIAN");
+        model.addColumn("TRANSAKSI PENJUALAN");
+        model.addColumn("HARGA ECERAN ");
+        model.addColumn("HARGA GROSIR");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = cariLaporan.getText();
+
+        try {
+            String sql = "SELECT COUNT(no_faktur) as ttl , tanggal FROM detail_transaksi_penjualan WHERE tanggal LIKE '%"+cariLaporan.getText()+"%' GROUP BY tanggal DESC; ";
+            String sqll= " SELECT COUNT(Id_pembelian) AS total , SUM(harga_eceran) AS harga1, SUM(harga_grosir) AS harga2 FROM detail_transaksi_pembelian ";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            java.sql.ResultSet rs = stm.executeQuery(sqll);
+            
+            while (res.next() ) {
+                model.addRow(new Object[]{rs.getString("total"), res.getString("ttl"), rs.getString("harga1"),
+                    rs.getString("harga2"), res.getString("tanggal")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+      public void TabelReturnTahun() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID RETURN");
+        model.addColumn("ID PEMBELIAN");
+        model.addColumn("ID SUPPLIER");
+        model.addColumn("USERNAME ");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = CariReturn6.getText();
+
+        try {
+            String sql = "SELECT id_return,id_pembelian,id_supplier,username, DATE_FORMAT(tanggal,'%Y') AS tanggall FROM return_barang GROUP BY tanggall ORDER BY tanggall DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("id_return"), res.getString("id_pembelian"), res.getString("id_supplier"),
+                    res.getString("username"),
+                    res.getString("tanggall")});
+            }
+            tabelReturnBarang.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+      public void TabelReturnBulan() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID RETURN");
+        model.addColumn("ID PEMBELIAN");
+        model.addColumn("ID SUPPLIER");
+        model.addColumn("USERNAME ");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = CariReturn6.getText();
+
+        try {
+            String sql = "SELECT id_return,id_pembelian,id_supplier,username, DATE_FORMAT(tanggal,'%M') AS tanggall FROM return_barang GROUP BY tanggall ORDER BY tanggall DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                model.addRow(new Object[]{res.getString("id_return"), res.getString("id_pembelian"), res.getString("id_supplier"),
+                    res.getString("username"),
+                    res.getString("tanggall")});
+            }
+            tabelReturnBarang.setModel(model);
         } catch (Exception e) {
 
         }
@@ -208,22 +338,23 @@ public class MenuOwner extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("NO FAKTUR");
         model.addColumn("NAMA KASIR");
-        model.addColumn("TANGGAL");
         model.addColumn("HARGA TOTAL");
         model.addColumn("BAYAR");
-        model.addColumn("KEMBALIAN");
+        model.addColumn("KEMBALI");
+        model.addColumn("ID PELANGGAN ");
+        model.addColumn("POINT");
 
         String cari = cariTransaksiPenjualan.getText();
 
         try {
-            String sql = "SELECT * FROM transaksi_penjualan WHERE tanggal LIKE'%" + cari + "%'";
+            String sql = "SELECT * FROM transaksi_penjualan WHERE no_faktur LIKE'%" + cari + "%'";
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("no_faktur"), res.getString("username"), res.getString("tanggal"),
-                    res.getString("harga_total"),
-                    res.getString("bayar"), res.getString("kembali")});
+                model.addRow(new Object[]{res.getString("no_faktur"), res.getString("username"), res.getString("harga_total"),
+                    res.getString("bayar"),
+                    res.getString("kembali"), res.getString("id_pelanggan"), res.getString("point")});
             }
             tabelTransaksiPenjualan.setModel(model);
         } catch (Exception e) {
@@ -271,7 +402,7 @@ public class MenuOwner extends javax.swing.JFrame {
         String cari = cariAkun.getText();
 
         try {
-            String sql = "SELECT username,nama,alamat,level,no_telepon,password FROM petugas WHERE username LIKE'%" + cari + "%'";
+            String sql = "SELECT username,nama,alamat,level,no_telepon,password FROM petugas WHERE CONCAT(username,nama) LIKE'%" + cari + "%'";
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
@@ -302,7 +433,10 @@ public class MenuOwner extends javax.swing.JFrame {
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("id_barang"), res.getString("nama_barang"), res.getString("stok_ecer"),
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("id_barang"), res.getString("nama_barang"), res.getString("stok_ecer"),
                     res.getString("stok_grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             data_barang.setModel(model);
@@ -337,7 +471,7 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         DATALAPORANMENU = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        DATARETURNMENU1 = new javax.swing.JPanel();
+        DATAPELANGGAN = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         DATARETURNMENU = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -390,9 +524,9 @@ public class MenuOwner extends javax.swing.JFrame {
         DataLaporan = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        pilihDataLaporan = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        Cari5 = new javax.swing.JTextField();
+        cariLaporan = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tabelDataLaporan = new javax.swing.JTable();
         Simpan5 = new javax.swing.JButton();
@@ -453,12 +587,18 @@ public class MenuOwner extends javax.swing.JFrame {
         DataReturn = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        pilihReturn = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
         CariReturn6 = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         tabelReturnBarang = new javax.swing.JTable();
         Simpan7 = new javax.swing.JButton();
+        DataPelanggan = new javax.swing.JPanel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        cariDataPelanggan = new javax.swing.JTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabelDataPelanggan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -690,10 +830,10 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        DATARETURNMENU1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        DATARETURNMENU1.addMouseListener(new java.awt.event.MouseAdapter() {
+        DATAPELANGGAN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        DATAPELANGGAN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DATARETURNMENU1MouseClicked(evt);
+                DATAPELANGGANMouseClicked(evt);
             }
         });
 
@@ -709,18 +849,18 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout DATARETURNMENU1Layout = new javax.swing.GroupLayout(DATARETURNMENU1);
-        DATARETURNMENU1.setLayout(DATARETURNMENU1Layout);
-        DATARETURNMENU1Layout.setHorizontalGroup(
-            DATARETURNMENU1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DATARETURNMENU1Layout.createSequentialGroup()
+        javax.swing.GroupLayout DATAPELANGGANLayout = new javax.swing.GroupLayout(DATAPELANGGAN);
+        DATAPELANGGAN.setLayout(DATAPELANGGANLayout);
+        DATAPELANGGANLayout.setHorizontalGroup(
+            DATAPELANGGANLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATAPELANGGANLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel43)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        DATARETURNMENU1Layout.setVerticalGroup(
-            DATARETURNMENU1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DATARETURNMENU1Layout.createSequentialGroup()
+        DATAPELANGGANLayout.setVerticalGroup(
+            DATAPELANGGANLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DATAPELANGGANLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addContainerGap())
@@ -758,7 +898,7 @@ public class MenuOwner extends javax.swing.JFrame {
             DATARETURNMENULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DATARETURNMENULayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -806,7 +946,7 @@ public class MenuOwner extends javax.swing.JFrame {
             .addGroup(KeluarMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel42)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout MENUSAMPINGLayout = new javax.swing.GroupLayout(MENUSAMPING);
@@ -831,7 +971,7 @@ public class MenuOwner extends javax.swing.JFrame {
                             .addComponent(SUPPLIERMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DATARETURNMENU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(DATARETURNMENU1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DATAPELANGGAN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -856,9 +996,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DATARETURNMENU1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(DATAPELANGGAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(KeluarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -966,7 +1106,7 @@ public class MenuOwner extends javax.swing.JFrame {
                     .addComponent(barangdashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(barChart3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(barChart3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1091,7 +1231,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                                         .addComponent(NamaDataBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(memilihsatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addComponent(HargaDataBarang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)))
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(DataBarangLayout.createSequentialGroup()
                                 .addGap(24, 24, 24)
@@ -1372,20 +1512,25 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         jLabel22.setText("Pilih");
 
-        jComboBox1.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "HARI", "BULAN", "TAHUN" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        pilihDataLaporan.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        pilihDataLaporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "BULAN", "TAHUN" }));
+        pilihDataLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                pilihDataLaporanActionPerformed(evt);
             }
         });
 
         jLabel23.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         jLabel23.setText("Cari : ");
 
-        Cari5.addActionListener(new java.awt.event.ActionListener() {
+        cariLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cari5ActionPerformed(evt);
+                cariLaporanActionPerformed(evt);
+            }
+        });
+        cariLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariLaporanKeyReleased(evt);
             }
         });
 
@@ -1430,11 +1575,11 @@ public class MenuOwner extends javax.swing.JFrame {
                                 .addComponent(jLabel22)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(DataLaporanLayout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pilihDataLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Cari5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(98, 98, 98))))))
             .addGroup(DataLaporanLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
@@ -1454,8 +1599,8 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1))
-                    .addComponent(Cari5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                        .addComponent(pilihDataLaporan))
+                    .addComponent(cariLaporan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1994,11 +2139,11 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         jLabel31.setText("Pilih");
 
-        jComboBox2.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "HARI", "BULAN", "TAHUN" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        pilihReturn.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        pilihReturn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "BULAN", "TAHUN" }));
+        pilihReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                pilihReturnActionPerformed(evt);
             }
         });
 
@@ -2008,6 +2153,11 @@ public class MenuOwner extends javax.swing.JFrame {
         CariReturn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CariReturn6ActionPerformed(evt);
+            }
+        });
+        CariReturn6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                CariReturn6KeyReleased(evt);
             }
         });
 
@@ -2052,7 +2202,7 @@ public class MenuOwner extends javax.swing.JFrame {
                                 .addComponent(jLabel31)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(DataReturnLayout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pilihReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel32)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2076,7 +2226,7 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addGroup(DataReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(DataReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox2))
+                        .addComponent(pilihReturn))
                     .addComponent(CariReturn6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2086,6 +2236,73 @@ public class MenuOwner extends javax.swing.JFrame {
         );
 
         KONTEN.add(DataReturn, "card8");
+
+        jLabel44.setFont(new java.awt.Font("Roboto Slab", 0, 24)); // NOI18N
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FIleGambar/transaksieksen.png"))); // NOI18N
+        jLabel44.setText("DATA PELANGGAN");
+        jLabel44.setToolTipText("");
+
+        jLabel45.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel45.setText("Cari : ");
+
+        cariDataPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariDataPelangganActionPerformed(evt);
+            }
+        });
+        cariDataPelanggan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cariDataPelangganKeyReleased(evt);
+            }
+        });
+
+        tabelDataPelanggan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tabelDataPelanggan);
+
+        javax.swing.GroupLayout DataPelangganLayout = new javax.swing.GroupLayout(DataPelanggan);
+        DataPelanggan.setLayout(DataPelangganLayout);
+        DataPelangganLayout.setHorizontalGroup(
+            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DataPelangganLayout.createSequentialGroup()
+                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addGap(524, 524, 524)
+                        .addComponent(jLabel45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cariDataPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel44))
+                    .addGroup(DataPelangganLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        DataPelangganLayout.setVerticalGroup(
+            DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DataPelangganLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel44)
+                .addGap(39, 39, 39)
+                .addGroup(DataPelangganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cariDataPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        KONTEN.add(DataPelanggan, "card5");
 
         OWNER.add(KONTEN, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 80, 980, 640));
 
@@ -2177,13 +2394,24 @@ public class MenuOwner extends javax.swing.JFrame {
 
     }//GEN-LAST:event_hapusdatabarangActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void pilihDataLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihDataLaporanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+       if (pilihDataLaporan.getSelectedItem() == "BULAN"){
+        Tabel_DataLaporanBulan();
+        
+        } else if(pilihDataLaporan.getSelectedItem() == "TAHUN"){
+          Tabel_DataLaporanTahun();
+          
+        }   else if(pilihDataLaporan.getSelectedItem() == "PILIH"){
+                Tabel_DataLaporan();
+        }
+       
+        
+    }//GEN-LAST:event_pilihDataLaporanActionPerformed
 
-    private void Cari5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cari5ActionPerformed
+    private void cariLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariLaporanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Cari5ActionPerformed
+    }//GEN-LAST:event_cariLaporanActionPerformed
 
     private void txt_usernameProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameProfilActionPerformed
         // TODO add your handling code here:
@@ -2270,7 +2498,7 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 
-            String sql = "DELETE * FROM petugas WHERE username='" + usernameAkun.getText() + "';";
+            String sql = "DELETE  FROM petugas WHERE username = '" + usernameAkun.getText() + "';";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement st = cn.createStatement();
             st.executeUpdate(sql);
@@ -2502,40 +2730,18 @@ public class MenuOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HargaDataBarangActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void pilihReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihReturnActionPerformed
         // TODO add your handling code here:
-        if(jComboBox2.getSelectedItem() == "HARI"){
-            try {
-                String sql = "";
-                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
-                java.sql.Statement st = cn.createStatement();
-                java.sql.ResultSet rs = st.executeQuery(sql);
-                while(rs.next()){
-                    
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (jComboBox2.getSelectedItem() == "BULAN"){
-            try {
-                String sql = "";
-                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
-                java.sql.Statement st = cn.createStatement();
-                java.sql.ResultSet rs = st.executeQuery(sql);
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if(jComboBox2.getSelectedItem() == "TAHUN"){
-            try {
-                String sql = "";
-                java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
-                java.sql.Statement st = cn.createStatement();
-                java.sql.ResultSet rs = st.executeQuery(sql);
-            } catch (SQLException ex) {
-                Logger.getLogger(MenuOwner.class.getName()).log(Level.SEVERE, null, ex);
-            }
+     if (pilihReturn.getSelectedItem() == "BULAN"){
+        TabelReturnBulan();
+        
+        } else if(pilihReturn.getSelectedItem() == "TAHUN"){
+          TabelReturnTahun();
+          
+        }   else if(pilihReturn.getSelectedItem() == "PILIH"){
+                Tabel_Returnbarang();
         }
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_pilihReturnActionPerformed
 
     private void CariReturn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CariReturn6ActionPerformed
         // TODO add your handling code here:
@@ -2626,6 +2832,9 @@ public class MenuOwner extends javax.swing.JFrame {
         String nohp  = (String) tabelAkun.getValueAt(a, 3);
         noHpAkun.setText(nohp);
         
+        String level = (String) tabelAkun.getValueAt(a, 2);
+        pilihanAkun.setSelectedItem(level);
+        
         String password = (String) tabelAkun.getValueAt(a, 5);
         passwordAkun.setText(password);
         
@@ -2694,6 +2903,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void DashboardMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardMenuMouseClicked
@@ -2714,6 +2924,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
 
     }//GEN-LAST:event_DashboardMenuMouseClicked
 
@@ -2735,6 +2946,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void AKUNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AKUNMENUMouseClicked
@@ -2755,6 +2967,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_AKUNMENUMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -2774,6 +2987,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void TRANSAKSIMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TRANSAKSIMENUMouseClicked
@@ -2794,6 +3008,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_TRANSAKSIMENUMouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -2814,6 +3029,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void DATABARANGMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATABARANGMENUMouseClicked
@@ -2834,6 +3050,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATABARANGMENUMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -2854,6 +3071,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void SUPPLIERMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SUPPLIERMENUMouseClicked
@@ -2874,6 +3092,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(51,102,255));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_SUPPLIERMENUMouseClicked
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
@@ -2894,6 +3113,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel33MouseClicked
 
     private void DATALAPORANMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATALAPORANMENUMouseClicked
@@ -2914,6 +3134,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(0,9,87));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATALAPORANMENUMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -2934,6 +3155,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void DATARETURNMENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENUMouseClicked
@@ -2954,6 +3176,7 @@ public class MenuOwner extends javax.swing.JFrame {
         DATARETURNMENU.setBackground(new Color(51,102,255));
         SUPPLIERMENU.setBackground(new Color(0,9,87));
         KeluarMenu.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_DATARETURNMENUMouseClicked
 
     private void KeluarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KeluarMenuMouseClicked
@@ -3054,11 +3277,64 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void jLabel43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel43MouseClicked
         // TODO add your handling code here:
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataPelanggan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(51,102,255));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
     }//GEN-LAST:event_jLabel43MouseClicked
 
-    private void DATARETURNMENU1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATARETURNMENU1MouseClicked
+    private void DATAPELANGGANMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DATAPELANGGANMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_DATARETURNMENU1MouseClicked
+        KONTEN.removeAll();
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        KONTEN.add(DataPelanggan);
+        KONTEN.repaint();
+        KONTEN.revalidate();
+
+        DashboardMenu.setBackground(new Color(0,9,87));
+        AKUNMENU.setBackground(new Color(0,9,87));
+        TRANSAKSIMENU.setBackground(new Color(0,9,87));
+        DATABARANGMENU.setBackground(new Color(0,9,87));
+        DATAPELANGGAN.setBackground(new Color(51,102,255));
+        DATALAPORANMENU.setBackground(new Color(0,9,87));
+        SUPPLIERMENU.setBackground(new Color(0,9,87));
+        KeluarMenu.setBackground(new Color(0,9,87));
+        DATARETURNMENU.setBackground(new Color(0,9,87));
+    }//GEN-LAST:event_DATAPELANGGANMouseClicked
+
+    private void cariDataPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariDataPelangganActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariDataPelangganActionPerformed
+
+    private void cariDataPelangganKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariDataPelangganKeyReleased
+        // TODO add your handling code here:
+        Tabel_DataPelanggan();
+    }//GEN-LAST:event_cariDataPelangganKeyReleased
+
+    private void cariLaporanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariLaporanKeyReleased
+        // TODO add your handling code here:
+        Tabel_DataLaporan();
+    }//GEN-LAST:event_cariLaporanKeyReleased
+
+    private void CariReturn6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CariReturn6KeyReleased
+        // TODO add your handling code here:
+        Tabel_Returnbarang();
+    }//GEN-LAST:event_CariReturn6KeyReleased
 
     /**
      * @param args the command line arguments
@@ -3101,17 +3377,17 @@ public class MenuOwner extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AKUNMENU;
     private javax.swing.JPanel Akun;
-    private javax.swing.JTextField Cari5;
     private javax.swing.JTextField CariReturn6;
     private javax.swing.JTextField CariSupplier;
     private javax.swing.JPanel DATABARANGMENU;
     private javax.swing.JPanel DATALAPORANMENU;
+    private javax.swing.JPanel DATAPELANGGAN;
     private javax.swing.JPanel DATARETURNMENU;
-    private javax.swing.JPanel DATARETURNMENU1;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JPanel DashboardMenu;
     private javax.swing.JPanel DataBarang;
     private javax.swing.JPanel DataLaporan;
+    private javax.swing.JPanel DataPelanggan;
     private javax.swing.JPanel DataReturn;
     private javax.swing.JTextField HargaDataBarang;
     private javax.swing.JTextField IdBarang;
@@ -3141,6 +3417,8 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton btn_simpansupplier;
     private javax.swing.JButton btn_unggah;
     private javax.swing.JTextField cariAkun;
+    private javax.swing.JTextField cariDataPelanggan;
+    private javax.swing.JTextField cariLaporan;
     private javax.swing.JTextField cariTransaksiPembelian;
     private javax.swing.JTextField cariTransaksiPenjualan;
     private javax.swing.JTextField caridatabarang;
@@ -3154,8 +3432,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3194,6 +3470,8 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
@@ -3210,6 +3488,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -3219,11 +3498,14 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel navbar;
     private javax.swing.JTextField noHpAkun;
     private javax.swing.JTextField passwordAkun;
+    private javax.swing.JComboBox<String> pilihDataLaporan;
+    private javax.swing.JComboBox<String> pilihReturn;
     private javax.swing.JComboBox<String> pilihanAkun;
     private javax.swing.JButton simpanAkun;
     private javax.swing.JButton simpanProfil;
     private javax.swing.JTable tabelAkun;
     private javax.swing.JTable tabelDataLaporan;
+    private javax.swing.JTable tabelDataPelanggan;
     private javax.swing.JTable tabelReturnBarang;
     private javax.swing.JTable tabelTransaksiPembelian;
     private javax.swing.JTable tabelTransaksiPenjualan;

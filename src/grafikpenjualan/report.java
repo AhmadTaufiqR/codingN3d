@@ -24,7 +24,7 @@ public class report {
     
     public List<ModelChart> getData() throws  SQLException{
            List<ModelChart> list = new ArrayList<>();
-            String sql = "SELECT DATE_FORMAT(tanggal,'%M') AS tanggal, COUNT(transaksi_penjualan.no_faktur) AS id FROM detail_transaksi_penjualan JOIN transaksi_penjualan ON detail_transaksi_penjualan.no_faktur = transaksi_penjualan.no_faktur GROUP BY tanggal ORDER BY tanggal DESC;";
+            String sql = "SELECT DATE_FORMAT(tanggal,'%M') AS tanggal1, COUNT(transaksi_penjualan.no_faktur) AS id FROM detail_transaksi_penjualan JOIN transaksi_penjualan ON detail_transaksi_penjualan.no_faktur = transaksi_penjualan.no_faktur GROUP BY tanggal1 ORDER BY tanggal DESC;";
             java.sql.Connection cn = (Connection) Koneksi.getkoneksi();
             java.sql.PreparedStatement st = cn.prepareStatement(sql);
             java.sql.ResultSet rs = st.executeQuery();
