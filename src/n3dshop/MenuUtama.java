@@ -2164,20 +2164,21 @@ public void tampil_combo() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Id barang");
         model.addColumn("Nama barang");
-        model.addColumn("Stok");
+        model.addColumn("Stok ecer");
+        model.addColumn("Stok grosir");
         model.addColumn("Eceran");
         model.addColumn("Grosir");
         model.addColumn("Harga Ecer");
         model.addColumn("Harga Grosir");
         //menampilkan database dalam tabel
         try {
-            String sql = "SELECT id_barang, nama_barang, stok, eceran, grosir, harga_eceran, harga_grosir FROM barang where nama_barang LIKE '%" + cari.getText() + "%';";
+            String sql = "SELECT id_barang, nama_barang, stok_ecer, stok_grosir, eceran, grosir, harga_eceran, harga_grosir FROM barang where CONCAT(nama_barang, id_barang) LIKE '%"+cari.getText()+"%';";
             java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
                 model.addRow(new Object[]{res.getString("id_barang"),
-                    res.getString("nama_barang"), res.getString("stok"), res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
+                    res.getString("nama_barang"), res.getString("stok_ecer"), res.getString("stok_grosir"), res.getString("eceran"), res.getString("grosir"), res.getString("harga_eceran"), res.getString("harga_grosir")});
             }
             barang_barang.setModel(model);
         } catch (Exception e) {
