@@ -239,16 +239,15 @@ public class MenuOwner extends javax.swing.JFrame {
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(no_faktur) as ttl , tanggal FROM detail_transaksi_penjualan WHERE tanggal LIKE '%"+cariLaporan.getText()+"%' GROUP BY tanggal DESC; ";
-            String sqll= " SELECT COUNT(Id_pembelian) AS total , SUM(harga_eceran) AS harga1, SUM(harga_grosir) AS harga2 FROM detail_transaksi_pembelian ";
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%d') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC;";
+            
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            java.sql.ResultSet rs = stm.executeQuery(sqll);
             
             while (res.next() ) {
-                model.addRow(new Object[]{rs.getString("total"), res.getString("ttl"), rs.getString("harga1"),
-                    rs.getString("harga2"), res.getString("tanggal")});
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
+                    res.getString("harga2"), res.getString("tanggal")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {
@@ -3104,6 +3103,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(DataLaporan);
         KONTEN.repaint();
         KONTEN.revalidate();
+        Tabel_DataLaporan();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -3125,6 +3125,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(DataLaporan);
         KONTEN.repaint();
         KONTEN.revalidate();
+        Tabel_DataLaporan();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -3328,7 +3329,31 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void cariLaporanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariLaporanKeyReleased
         // TODO add your handling code here:
-        Tabel_DataLaporan();
+       DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("TRANSAKSI PEMBELIAN");
+        model.addColumn("TRANSAKSI PENJUALAN");
+        model.addColumn("HARGA ECERAN ");
+        model.addColumn("HARGA GROSIR");
+        model.addColumn("TANGGAL");
+       
+
+        String cari = cariLaporan.getText();
+
+        try {
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang where concat(detail_transaksi_pembelian.Id_pembelian, detail_transaksi_penjualan.no_faktur) LIKE '%"+cariLaporan.getText()+"%' GROUP BY tanggall DESC;";
+            
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            while (res.next() ) {
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
+                    res.getString("harga2"), res.getString("tanggal")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_cariLaporanKeyReleased
 
     private void CariReturn6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CariReturn6KeyReleased
