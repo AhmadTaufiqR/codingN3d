@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="850" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="5.0544702849929495"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="422"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idpmb" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), transaksi_pembelian.Harga_Total FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = $P{idpmb};]]>
@@ -223,7 +223,7 @@
 	<summary>
 		<band height="111" splitType="Stretch">
 			<staticText>
-				<reportElement x="96" y="11" width="34" height="10"/>
+				<reportElement x="123" y="11" width="34" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
@@ -237,7 +237,7 @@
 				<text><![CDATA[TERIMA KASIH]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="11" width="66" height="10"/>
+				<reportElement x="157" y="11" width="66" height="10"/>
 				<textElement>
 					<font size="7"/>
 				</textElement>
