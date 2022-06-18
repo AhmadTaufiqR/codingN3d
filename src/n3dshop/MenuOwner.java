@@ -239,7 +239,7 @@ public class MenuOwner extends javax.swing.JFrame {
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%d') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC;";
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,detail_transaksi_penjualan.tanggal AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC;";
             
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
@@ -247,7 +247,7 @@ public class MenuOwner extends javax.swing.JFrame {
             
             while (res.next() ) {
                 model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"), res.getString("tanggal")});
+                    res.getString("harga2"), res.getString("tanggall")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {
@@ -995,9 +995,9 @@ public class MenuOwner extends javax.swing.JFrame {
                 .addComponent(DATALAPORANMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATARETURNMENU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DATAPELANGGAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(KeluarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -1599,7 +1599,7 @@ public class MenuOwner extends javax.swing.JFrame {
                     .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pilihDataLaporan))
-                    .addComponent(cariLaporan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(cariLaporan, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1850,11 +1850,11 @@ public class MenuOwner extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addGroup(SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CariSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                            .addComponent(CariSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(11, 11, 11)
                         .addComponent(txt_idSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SuplierLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(SuplierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2226,7 +2226,7 @@ public class MenuOwner extends javax.swing.JFrame {
                     .addGroup(DataReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pilihReturn))
-                    .addComponent(CariReturn6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(CariReturn6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -3340,7 +3340,7 @@ public class MenuOwner extends javax.swing.JFrame {
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang where concat(detail_transaksi_pembelian.Id_pembelian, detail_transaksi_penjualan.no_faktur) LIKE '%"+cariLaporan.getText()+"%' GROUP BY tanggall DESC;";
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,detail_transaksi_penjualan.tanggal AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang where CONCAT(detail_transaksi_pembelian.Id_pembelian, )GROUP BY tanggall DESC;";
             
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
@@ -3348,7 +3348,7 @@ public class MenuOwner extends javax.swing.JFrame {
             
             while (res.next() ) {
                 model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"), res.getString("tanggal")});
+                    res.getString("harga2"), res.getString("tanggall")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {

@@ -60,7 +60,6 @@ public class MenuUtama extends javax.swing.JFrame {
         transaksi_penjualan_id();
         return_barang_id();
         Supplier_id();
-        HargaTot();
         tabel_return_barang();
         id_barangi1.requestFocus();
         

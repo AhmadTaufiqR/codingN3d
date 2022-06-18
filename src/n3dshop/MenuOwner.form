@@ -105,9 +105,9 @@
                       <Component id="DATALAPORANMENU" linkSize="3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="DATARETURNMENU" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="DATAPELANGGAN" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                       <Component id="KeluarMenu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -1469,7 +1469,7 @@
                                   <Component id="jLabel23" alignment="3" max="32767" attributes="0"/>
                                   <Component id="pilihDataLaporan" alignment="3" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="cariLaporan" alignment="1" pref="27" max="32767" attributes="0"/>
+                              <Component id="cariLaporan" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" pref="406" max="-2" attributes="0"/>
@@ -1862,13 +1862,13 @@
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel48" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="CariSupplier" alignment="3" pref="27" max="32767" attributes="0"/>
+                                      <Component id="CariSupplier" alignment="3" pref="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Component id="txt_idSupplier" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="46" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel47" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -2514,7 +2514,7 @@
                                   <Component id="jLabel32" alignment="3" max="32767" attributes="0"/>
                                   <Component id="pilihReturn" alignment="3" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="CariReturn6" alignment="1" pref="27" max="32767" attributes="0"/>
+                              <Component id="CariReturn6" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane8" min="-2" pref="406" max="-2" attributes="0"/>
