@@ -36,7 +36,7 @@ public class CurvesPanel extends GradientPanel {
     }
 
     public CurvesPanel() {
-        super(Color.decode("#434343"), Color.decode("#000000"));
+        super(Color.decode("#344CB7"), Color.decode("#484E83"));
         hints = new RenderingHints(RenderingHints.KEY_ALPHA_INTERPOLATION,
                 RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
         hints.put(RenderingHints.KEY_ANTIALIASING,
