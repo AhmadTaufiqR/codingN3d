@@ -177,24 +177,20 @@ public class MenuOwner extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("TRANSAKSI PEMBELIAN");
         model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("HARGA ECERAN ");
-        model.addColumn("HARGA GROSIR");
         model.addColumn("TANGGAL");
        
 
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, "
-                    + "SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,"
-                    + "DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%Y') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian "
-                    + "ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggal DESC ;"; 
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl,\n" +
+"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%Y') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
+"                    GROUP BY tanggal DESC ;"; 
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"),res.getString("tanggal")});
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("tanggal")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {
@@ -205,22 +201,21 @@ public class MenuOwner extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("TRANSAKSI PEMBELIAN");
         model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("HARGA ECERAN ");
-        model.addColumn("HARGA GROSIR");
         model.addColumn("TANGGAL");
        
 
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC" ;  
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, \n" +
+"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
+"                    GROUP BY tanggal DESC ;" ;  
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             while (res.next()) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"),
-                    res.getString("tanggall")});
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"),
+                    res.getString("tanggal")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {
@@ -231,23 +226,23 @@ public class MenuOwner extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("TRANSAKSI PEMBELIAN");
         model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("HARGA ECERAN ");
-        model.addColumn("HARGA GROSIR");
+        
         model.addColumn("TANGGAL");
        
 
         String cari = cariLaporan.getText();
 
         try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,detail_transaksi_penjualan.tanggal AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang GROUP BY tanggall DESC;";
-            
+            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, \n" +
+"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%d') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
+"                    GROUP BY tanggal DESC ;";
             java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
             java.sql.Statement stm = connt.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             
             while (res.next() ) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"), res.getString("tanggall")});
+                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"),
+                     res.getString("tanggal")});
             }
             tabelDataLaporan.setModel(model);
         } catch (Exception e) {

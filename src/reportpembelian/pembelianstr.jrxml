@@ -5,16 +5,15 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="idpmb" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga_eceran, detail_transaksi_pembelian.harga_grosir, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), transaksi_pembelian.Harga_Total FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = $P{idpmb};]]>
+		<![CDATA[SELECT transaksi_pembelian.Id_pembelian, supplier.nama_supplier, detail_transaksi_pembelian.tanggal, detail_transaksi_pembelian.Id_barang, detail_transaksi_pembelian.jumlah_ecer, detail_transaksi_pembelian.jumlah_grosir, detail_transaksi_pembelian.harga, barang.nama_barang, petugas.nama, barang.eceran, barang.grosir, NOW(), transaksi_pembelian.Harga_Total FROM detail_transaksi_pembelian JOIN transaksi_pembelian ON detail_transaksi_pembelian.Id_pembelian = transaksi_pembelian.Id_pembelian JOIN barang ON detail_transaksi_pembelian.Id_barang =  barang.id_barang  JOIN supplier ON transaksi_pembelian.id_supplier  = supplier.id_supplier JOIN petugas ON transaksi_pembelian.username = petugas.username where transaksi_pembelian.Id_pembelian = $P{idpmb};]]>
 	</queryString>
 	<field name="Id_pembelian" class="java.lang.String"/>
 	<field name="nama_supplier" class="java.lang.String"/>
-	<field name="tanggal" class="java.lang.String"/>
+	<field name="tanggal" class="java.sql.Date"/>
 	<field name="Id_barang" class="java.lang.String"/>
-	<field name="jumlah_ecer" class="java.lang.String"/>
-	<field name="jumlah_grosir" class="java.lang.String"/>
-	<field name="harga_eceran" class="java.lang.String"/>
-	<field name="harga_grosir" class="java.lang.String"/>
+	<field name="jumlah_ecer" class="java.lang.Integer"/>
+	<field name="jumlah_grosir" class="java.lang.Integer"/>
+	<field name="harga" class="java.lang.Integer"/>
 	<field name="nama_barang" class="java.lang.String"/>
 	<field name="nama" class="java.lang.String"/>
 	<field name="eceran" class="java.lang.String"/>
@@ -83,31 +82,24 @@
 				<text><![CDATA[Supplier               :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="8" y="51" width="215" height="1"/>
+				<reportElement x="8" y="51" width="201" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="51" width="31" height="9"/>
+				<reportElement x="8" y="51" width="31" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="37" y="51" width="28" height="9"/>
+				<reportElement x="47" y="51" width="30" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Jumlah Ecer]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="164" y="51" width="27" height="9"/>
-				<textElement>
-					<font size="5"/>
-				</textElement>
-				<text><![CDATA[Harga Ecer]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="67" y="5" width="127" height="10"/>
@@ -138,85 +130,78 @@
 				<textFieldExpression><![CDATA[$F{nama_supplier}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="67" y="51" width="32" height="9"/>
+				<reportElement x="84" y="51" width="32" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Jumlah Grosir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="101" y="51" width="29" height="9"/>
+				<reportElement x="123" y="51" width="29" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Satuan Ecer]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="51" width="32" height="9"/>
+				<reportElement x="157" y="51" width="32" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<text><![CDATA[Satuan grosir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="194" y="51" width="29" height="9"/>
+				<reportElement x="194" y="51" width="15" height="9"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
-				<text><![CDATA[Harga Grosir]]></text>
+				<text><![CDATA[Harga]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="10" splitType="Stretch">
 			<textField>
-				<reportElement x="3" y="0" width="31" height="10"/>
+				<reportElement x="8" y="0" width="31" height="10"/>
 				<textElement>
 					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="164" y="0" width="16" height="10"/>
+				<reportElement x="47" y="0" width="30" height="10"/>
 				<textElement>
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{harga_eceran}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="39" y="0" width="28" height="10"/>
-				<textElement>
-					<font size="6"/>
+					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_ecer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="67" y="0" width="32" height="10"/>
+				<reportElement x="84" y="0" width="32" height="10"/>
 				<textElement>
-					<font size="6"/>
+					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jumlah_grosir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="101" y="0" width="27" height="10"/>
+				<reportElement x="123" y="0" width="27" height="10"/>
 				<textElement>
-					<font size="6"/>
+					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{eceran}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="27" height="10"/>
+				<reportElement x="157" y="0" width="27" height="10"/>
 				<textElement>
-					<font size="6"/>
+					<font size="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{grosir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="194" y="0" width="19" height="10"/>
+				<reportElement x="194" y="0" width="29" height="10"/>
 				<textElement>
-					<font size="6"/>
+					<font size="5"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{harga_grosir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -250,7 +235,7 @@
 				</jr:barbecue>
 			</componentElement>
 			<line>
-				<reportElement x="8" y="0" width="215" height="1"/>
+				<reportElement x="8" y="0" width="201" height="1"/>
 				<graphicElement>
 					<pen lineStyle="Dotted"/>
 				</graphicElement>
