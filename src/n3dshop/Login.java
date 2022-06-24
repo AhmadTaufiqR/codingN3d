@@ -184,7 +184,7 @@ public class Login extends javax.swing.JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "SILAHKAN PILIH LAVEL");
                         }
-
+                        
                 }else {
                 JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Anda");
             }

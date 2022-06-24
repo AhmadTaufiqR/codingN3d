@@ -58,10 +58,10 @@ public class MenuOwner extends javax.swing.JFrame {
         Tabel_TransaksiPenjualan();
         Tabel_TransaksiPembelian();
         Tabel_Returnbarang();
-        Tabel_DataLaporan();
         Tabel_DataPelanggan();
         init();
         init2();
+        tblelaporanpenjualanharian();
         
         DashboardMenu.setBackground(new Color(51,102,255));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -172,83 +172,7 @@ public class MenuOwner extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }    
-    public void Tabel_DataLaporanTahun() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("TRANSAKSI PEMBELIAN");
-        model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("TANGGAL");
-       
-
-        String cari = cariLaporan.getText();
-
-        try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl,\n" +
-"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%Y') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
-"                    GROUP BY tanggal DESC ;"; 
-            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement stm = connt.createStatement();
-            java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("tanggal")});
-            }
-            tabelDataLaporan.setModel(model);
-        } catch (Exception e) {
-
-        }
-    }
-    public void Tabel_DataLaporanBulan() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("TRANSAKSI PEMBELIAN");
-        model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("TANGGAL");
-       
-
-        String cari = cariLaporan.getText();
-
-        try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, \n" +
-"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%M') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
-"                    GROUP BY tanggal DESC ;" ;  
-            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement stm = connt.createStatement();
-            java.sql.ResultSet res = stm.executeQuery(sql);
-            while (res.next()) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"),
-                    res.getString("tanggal")});
-            }
-            tabelDataLaporan.setModel(model);
-        } catch (Exception e) {
-
-        }
-    }
-      public void Tabel_DataLaporan() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("TRANSAKSI PEMBELIAN");
-        model.addColumn("TRANSAKSI PENJUALAN");
-        
-        model.addColumn("TANGGAL");
-       
-
-        String cari = cariLaporan.getText();
-
-        try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, \n" +
-"                    DATE_FORMAT(detail_transaksi_penjualan.tanggal,'%d') AS tanggal FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian \n" +
-"                    GROUP BY tanggal DESC ;";
-            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement stm = connt.createStatement();
-            java.sql.ResultSet res = stm.executeQuery(sql);
-            
-            while (res.next() ) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"),
-                     res.getString("tanggal")});
-            }
-            tabelDataLaporan.setModel(model);
-        } catch (Exception e) {
-
-        }
-    }
+    } 
       public void TabelReturnTahun() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID RETURN");
@@ -439,8 +363,242 @@ public class MenuOwner extends javax.swing.JFrame {
         }
     }
 
-   
+    private void tblelaporanpenjualanbulanan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Haraga Total");
+        model.addColumn("Jumlah Pelanggan");
+        model.addColumn("Bulan");
 
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_penjualan.no_faktur) AS jm, SUM(transaksi_penjualan.Harga_Total) AS totl, COUNT(transaksi_penjualan.Id_pelanggan) AS jumlahid, DATE_FORMAT(transaksi_penjualan.tanggal, '%M') AS tgl FROM transaksi_penjualan GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    res.getString("jm"), res.getString("totl"), res.getString("jumlahid"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    private void tblelaporanpenjualantahunan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Haraga Total");
+        model.addColumn("Jumlah Pelanggan");
+        model.addColumn("Tahun");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_penjualan.no_faktur) AS jm, SUM(transaksi_penjualan.Harga_Total) AS totl, COUNT(transaksi_penjualan.Id_pelanggan) AS jumlahid, DATE_FORMAT(transaksi_penjualan.tanggal, '%Y') AS tgl FROM transaksi_penjualan GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"), res.getString("jumlahid"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+        
+    }
+    private void tblelaporanpenjualanharian(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Haraga Total");
+        model.addColumn("Jumlah Pelanggan");
+        model.addColumn("Hari");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_penjualan.no_faktur) AS jm, SUM(transaksi_penjualan.Harga_Total) AS totl, COUNT(transaksi_penjualan.Id_pelanggan) AS jumlahid, DATE_FORMAT(transaksi_penjualan.tanggal, '%d') AS tgl FROM transaksi_penjualan GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"), res.getString("jumlahid"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void tblelaporanpembelianharian(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Haraga Total");
+        model.addColumn("hari");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_pembelian.Id_pembelian) AS jm, SUM(transaksi_pembelian.Harga_Total) AS totl, DATE_FORMAT(transaksi_pembelian.tanggal, '%d') AS tgl FROM transaksi_pembelian GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void tblelaporanpembelianbulanan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Haraga Total");
+        model.addColumn("hari");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_pembelian.Id_pembelian) AS jm, SUM(transaksi_pembelian.Harga_Total) AS totl, DATE_FORMAT(transaksi_pembelian.tanggal, '%M') AS tgl FROM transaksi_pembelian GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    
+    private void tblelaporanpembeliantahunan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Jumlah Id Pembelian");
+        model.addColumn("hari");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(transaksi_pembelian.Id_pembelian) AS jm, SUM(transaksi_pembelian.Harga_Total) AS totl, DATE_FORMAT(transaksi_pembelian.tanggal, '%Y') AS tgl FROM transaksi_pembelian GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void tblelaporanreturnbulanan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("Jumlah Id Pembelian");
+        model.addColumn("Bulanan");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(return_barang.id_return) AS jm, COUNT(return_barang.id_pembelian) AS totl, DATE_FORMAT(return_barang.tanggal, '%M') AS tgl FROM return_barang GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void tblelaporanreturntahunan(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("jumlah Idpembelian");
+        model.addColumn("tahun");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(return_barang.id_return) AS jm, COUNT(return_barang.id_pembelian) AS totl, DATE_FORMAT(return_barang.tanggal, '%d') AS tgl FROM return_barang GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void tblelaporanreturnharian(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Jumlah Transaksi");
+        model.addColumn("jumlah Idpembelian");
+        model.addColumn("tahun");
+
+        String cari = caridatabarang.getText();
+
+        try {
+            String sql = "SELECT COUNT(return_barang.id_return) AS jm, COUNT(return_barang.id_pembelian) AS totl, DATE_FORMAT(return_barang.tanggal, '%d') AS tgl FROM return_barang GROUP by tgl DESC;";
+            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
+            java.sql.Statement stm = connt.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            while (res.next()) {
+                
+                model.addRow(new Object[]{
+                    
+                    res.getString("jm"), res.getString("totl"),
+                    res.getString("tgl")});
+            }
+            tabelDataLaporan.setModel(model);
+        } catch (Exception e) {
+
+        }
+    }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -519,11 +677,11 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         pilihDataLaporan = new javax.swing.JComboBox<>();
-        jLabel23 = new javax.swing.JLabel();
-        cariLaporan = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tabelDataLaporan = new javax.swing.JTable();
         Simpan5 = new javax.swing.JButton();
+        PilihLaporan = new javax.swing.JComboBox<>();
+        jLabel52 = new javax.swing.JLabel();
         Profil = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -1504,27 +1662,13 @@ public class MenuOwner extends javax.swing.JFrame {
         jLabel21.setToolTipText("");
 
         jLabel22.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jLabel22.setText("Pilih");
+        jLabel22.setText("Pilih Waktu");
 
         pilihDataLaporan.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
         pilihDataLaporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH", "BULAN", "TAHUN" }));
         pilihDataLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pilihDataLaporanActionPerformed(evt);
-            }
-        });
-
-        jLabel23.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
-        jLabel23.setText("Cari : ");
-
-        cariLaporan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cariLaporanActionPerformed(evt);
-            }
-        });
-        cariLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cariLaporanKeyReleased(evt);
             }
         });
 
@@ -1552,54 +1696,63 @@ public class MenuOwner extends javax.swing.JFrame {
             }
         });
 
+        PilihLaporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PENJUALAN", "PEMBELIAN", "RETURN" }));
+        PilihLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PilihLaporanActionPerformed(evt);
+            }
+        });
+
+        jLabel52.setFont(new java.awt.Font("Roboto Slab", 0, 14)); // NOI18N
+        jLabel52.setText("Pilih Laporan");
+
         javax.swing.GroupLayout DataLaporanLayout = new javax.swing.GroupLayout(DataLaporan);
         DataLaporan.setLayout(DataLaporanLayout);
         DataLaporanLayout.setHorizontalGroup(
             DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DataLaporanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DataLaporanLayout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(DataLaporanLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(DataLaporanLayout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(DataLaporanLayout.createSequentialGroup()
-                                .addComponent(pilihDataLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(98, 98, 98))))))
             .addGroup(DataLaporanLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 17, Short.MAX_VALUE))
+            .addGroup(DataLaporanLayout.createSequentialGroup()
+                .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DataLaporanLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel21))
+                    .addGroup(DataLaporanLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel52)
+                            .addComponent(PilihLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45)
+                .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DataLaporanLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(DataLaporanLayout.createSequentialGroup()
+                        .addComponent(pilihDataLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 535, Short.MAX_VALUE))))
         );
         DataLaporanLayout.setVerticalGroup(
             DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DataLaporanLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel21)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel52))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(DataLaporanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pilihDataLaporan))
-                    .addComponent(cariLaporan, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                    .addComponent(pilihDataLaporan)
+                    .addComponent(PilihLaporan))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Simpan5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         KONTEN.add(DataLaporan, "card8");
@@ -2390,22 +2543,55 @@ public class MenuOwner extends javax.swing.JFrame {
 
     private void pilihDataLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihDataLaporanActionPerformed
         // TODO add your handling code here:
-       if (pilihDataLaporan.getSelectedItem() == "BULAN"){
-        Tabel_DataLaporanBulan();
-        
-        } else if(pilihDataLaporan.getSelectedItem() == "TAHUN"){
-          Tabel_DataLaporanTahun();
-          
-        }   else if(pilihDataLaporan.getSelectedItem() == "PILIH"){
-                Tabel_DataLaporan();
+       if(PilihLaporan.getSelectedItem() == "PENJUALAN"){
+            
+           if(pilihDataLaporan.getSelectedItem() == "PILIH"){
+           tblelaporanpenjualanharian();
+            
+            
+           }else if (pilihDataLaporan.getSelectedItem() == "BULAN"){
+                tblelaporanpenjualanbulanan();
+            } else if (pilihDataLaporan.getSelectedItem() == "TAHUN"){
+                tblelaporanpenjualantahunan();
+            }
+            
+            
+        } else if (PilihLaporan.getSelectedItem() == "PEMBELIAN"){
+            tblelaporanpembelianharian();
+            
+            
+            if(pilihDataLaporan.getSelectedItem() == "PILIH"){
+          tblelaporanpembelianharian();
+            
+            
+           }else if (pilihDataLaporan.getSelectedItem() == "BULAN"){
+                tblelaporanpembelianbulanan();
+            } else if (pilihDataLaporan.getSelectedItem() == "TAHUN"){
+                tblelaporanpembeliantahunan();
+            }
+            
+            
+        } else if(PilihLaporan.getSelectedItem() == "RETURN"){
+            
+            
+            
+            if(pilihDataLaporan.getSelectedItem() == "PILIH"){
+           tblelaporanreturnharian();
+            
+            
+           }else if (pilihDataLaporan.getSelectedItem() == "BULAN"){
+                tblelaporanreturnbulanan();
+            } else if (pilihDataLaporan.getSelectedItem() == "TAHUN"){
+                tblelaporanreturntahunan();
+            }
+            
+            
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "salah");
         }
        
         
     }//GEN-LAST:event_pilihDataLaporanActionPerformed
-
-    private void cariLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariLaporanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cariLaporanActionPerformed
 
     private void txt_usernameProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameProfilActionPerformed
         // TODO add your handling code here:
@@ -3098,7 +3284,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(DataLaporan);
         KONTEN.repaint();
         KONTEN.revalidate();
-        Tabel_DataLaporan();
+        tblelaporanpenjualanharian();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -3120,7 +3306,7 @@ public class MenuOwner extends javax.swing.JFrame {
         KONTEN.add(DataLaporan);
         KONTEN.repaint();
         KONTEN.revalidate();
-        Tabel_DataLaporan();
+        tblelaporanpenjualanharian();
 
         DashboardMenu.setBackground(new Color(0,9,87));
         AKUNMENU.setBackground(new Color(0,9,87));
@@ -3322,39 +3508,23 @@ public class MenuOwner extends javax.swing.JFrame {
         Tabel_DataPelanggan();
     }//GEN-LAST:event_cariDataPelangganKeyReleased
 
-    private void cariLaporanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cariLaporanKeyReleased
-        // TODO add your handling code here:
-       DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("TRANSAKSI PEMBELIAN");
-        model.addColumn("TRANSAKSI PENJUALAN");
-        model.addColumn("HARGA ECERAN ");
-        model.addColumn("HARGA GROSIR");
-        model.addColumn("TANGGAL");
-       
-
-        String cari = cariLaporan.getText();
-
-        try {
-            String sql = "SELECT COUNT(detail_transaksi_pembelian.Id_pembelian) AS total,COUNT(detail_transaksi_penjualan.no_faktur) AS ttl, SUM(detail_transaksi_pembelian.harga_eceran)AS harga1, SUM(detail_transaksi_pembelian.harga_grosir)AS harga2 ,detail_transaksi_penjualan.tanggal AS tanggall FROM detail_transaksi_penjualan INNER JOIN detail_transaksi_pembelian ON  detail_transaksi_penjualan.Id_barang = detail_transaksi_pembelian.Id_barang where CONCAT(detail_transaksi_pembelian.Id_pembelian, )GROUP BY tanggall DESC;";
-            
-            java.sql.Connection connt = (Connection) Koneksi.getkoneksi();
-            java.sql.Statement stm = connt.createStatement();
-            java.sql.ResultSet res = stm.executeQuery(sql);
-            
-            while (res.next() ) {
-                model.addRow(new Object[]{res.getString("total"), res.getString("ttl"), res.getString("harga1"),
-                    res.getString("harga2"), res.getString("tanggall")});
-            }
-            tabelDataLaporan.setModel(model);
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_cariLaporanKeyReleased
-
     private void CariReturn6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CariReturn6KeyReleased
         // TODO add your handling code here:
         Tabel_Returnbarang();
     }//GEN-LAST:event_CariReturn6KeyReleased
+
+    private void PilihLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilihLaporanActionPerformed
+        // TODO add your handling code here:
+        if(PilihLaporan.getSelectedItem() == "PENJUALAN"){
+            tblelaporanpenjualanharian();
+        } else if (PilihLaporan.getSelectedItem() == "PEMBELIAN"){
+            tblelaporanpembelianharian();
+        } else if(PilihLaporan.getSelectedItem() == "RETURN"){
+            tblelaporanreturnharian();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "salah");
+        }
+    }//GEN-LAST:event_PilihLaporanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3416,6 +3586,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JPanel MENUSAMPING;
     private javax.swing.JTextField NamaDataBarang;
     private javax.swing.JPanel OWNER;
+    private javax.swing.JComboBox<String> PilihLaporan;
     private javax.swing.JPanel Profil;
     private javax.swing.JPanel SUPPLIERMENU;
     private javax.swing.JButton Simpan5;
@@ -3438,7 +3609,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JButton btn_unggah;
     private javax.swing.JTextField cariAkun;
     private javax.swing.JTextField cariDataPelanggan;
-    private javax.swing.JTextField cariLaporan;
     private javax.swing.JTextField cariTransaksiPembelian;
     private javax.swing.JTextField cariTransaksiPenjualan;
     private javax.swing.JTextField caridatabarang;
@@ -3467,7 +3637,6 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -3499,6 +3668,7 @@ public class MenuOwner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
