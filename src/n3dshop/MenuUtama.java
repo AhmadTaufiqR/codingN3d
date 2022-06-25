@@ -8,6 +8,7 @@ package n3dshop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -2439,7 +2440,8 @@ public void tampil_combo() {
                 pst.execute();
                 
                 try {
-                    JasperDesign jasdi = JRXmlLoader.load("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\report\\report3.jrxml");
+                    InputStream file = getClass().getResourceAsStream("/report/report3.jrxml");
+                    JasperDesign jasdi = JRXmlLoader.load(file);
                     java.sql.Connection con = (Connection) Koneksi.getkoneksi();
                     
                     String sql1 = "SELECT transaksi_penjualan.no_faktur, transaksi_penjualan.username, transaksi_penjualan.Harga_Total, transaksi_penjualan.bayar, transaksi_penjualan.kembali, detail_transaksi_penjualan.Id_barang, detail_transaksi_penjualan.jumlah_ecer, detail_transaksi_penjualan.jumlah_grosir, detail_transaksi_penjualan.satuan, detail_transaksi_penjualan.Harga, barang.nama_barang, petugas.nama, NOW()\n" +
@@ -2914,14 +2916,15 @@ public void tampil_combo() {
             pst.execute();
 
                    try {
-                    String jasdi = ("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportpembelian\\pembelianstr.jrxml");
+                    InputStream file = getClass().getResourceAsStream("/reportpembelian/pembelianstr.jrxml");
+                    JasperDesign jasdi = JRXmlLoader.load(file);
                     java.sql.Connection con = (Connection) Koneksi.getkoneksi();
                     Map param = new HashMap();
                     param.put("idpmb", txt_IDT.getText());
                     JasperReport js = JasperCompileManager.compileReport(jasdi);
                     JasperPrint jp = JasperFillManager.fillReport(js, param, con);
                     // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                    JasperViewer.viewReport(jp, false);
+                    JasperViewer.viewReport(jp);
 //                    
             try {
                 java.sql.Connection conn = (Connection) Koneksi.getkoneksi();
@@ -3028,7 +3031,8 @@ public void tampil_combo() {
             pst.execute();
 
                    try {
-                    String jasdi = ("E:\\Tugas Proposal\\mmmmmmm\\codingN3d\\src\\reportreturn\\strukreturn.jrxml");
+                   InputStream file = getClass().getResourceAsStream("/reportreturn/strukreturn.jrxml");
+                    JasperDesign jasdi = JRXmlLoader.load(file);
                     java.sql.Connection con = (Connection) Koneksi.getkoneksi();
                     Map param = new HashMap();
                     param.put("paramreturn", ReturnID.getText());
